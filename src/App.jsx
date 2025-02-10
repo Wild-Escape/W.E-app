@@ -6,6 +6,7 @@ import Login from "./screens/Login/Login";
 import Register from "./screens/Register/Register";
 import RegisterAdmin from "./screens/Register/RegisterAdmin";
 import RegisterUser from "./screens/Register/RegisterUser";
+import Profile from "./screens/Profile/Profile";
 
 function App() {
   
@@ -33,6 +34,10 @@ function App() {
         <Route
         path="/register/user"
         element={<RegisterUser/>}
+        />
+        <Route
+        path="/profile"
+        element={<Profile/>}
         />
       </Routes>
     </>

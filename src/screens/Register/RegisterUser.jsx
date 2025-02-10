@@ -38,10 +38,9 @@ function RegisterUser() {
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card shadow-lg">
-              <div className="card-header bg-primary text-white text-center">
-                <h4>Register User</h4>
-              </div>
+             
               <div className="card-body">
+              <h4 class="card-title text-center">Register as user</h4>
                 <form id="registrationForm" onSubmit={handleSubmit} >
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">
