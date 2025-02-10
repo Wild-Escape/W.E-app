@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { loginService } from "../../services/auth.service";
+import { AuthContext } from "../../context/auth.context";
 
-function Login() {
+const API_URL = "http://localhost:3000";
+
+function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+
+
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
     const navigate = useNavigate()
+
+    const { storeToken, authenticateUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,8 +27,10 @@ function Login() {
     .then((response)=>{
         
         console.log('JWT token', response.data.accesToken);
-        navigate('/profile')
 
+        storeToken(response.data.accesToken);  
+        authenticateUser();
+        navigate('/profile')
     })
     .catch((error) => {
         const errorDescription = error.response.data.message;

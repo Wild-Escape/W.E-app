@@ -8,36 +8,54 @@ import RegisterAdmin from "./screens/Register/RegisterAdmin";
 import RegisterUser from "./screens/Register/RegisterUser";
 import Profile from "./screens/Profile/Profile";
 
-function App() {
-  
+import IsAnon from "./components/IsAnon/IsAnon";
+import IsPrivate from "./components/IsPrivate/IsPrivate";
 
+function App() {
   return (
     <>
       <NavBar />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-        path="/"
-        element={<Home/>}
+          path="/login"
+          element={
+            <IsAnon>
+              <Login />
+            </IsAnon>
+          }
         />
         <Route
-        path="/login"
-        element={<Login/>}
+          path="/register"
+          element={
+            <IsAnon>
+              <Register />
+            </IsAnon>
+          }
         />
         <Route
-        path="/register"
-        element={<Register/>}
+          path="/register/admin"
+          element={
+            <IsAnon>
+              <RegisterAdmin />
+            </IsAnon>
+          }
         />
         <Route
-        path="/register/admin"
-        element={<RegisterAdmin/>}
+          path="/register/user"
+          element={
+            <IsAnon>
+              <RegisterUser />
+            </IsAnon>
+          }
         />
         <Route
-        path="/register/user"
-        element={<RegisterUser/>}
-        />
-        <Route
-        path="/profile"
-        element={<Profile/>}
+          path="/profile"
+          element={
+            <IsPrivate>
+              <Profile />
+            </IsPrivate>
+          }
         />
       </Routes>
     </>
