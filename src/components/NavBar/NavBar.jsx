@@ -48,6 +48,19 @@ function NavBar() {
                 </li>
               </>
             )}
+            {user.user.role === "user" && (
+                <>
+                 <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="/favorites"
+                  >
+                    See Favorites
+                  </Link>
+                </li>
+                </>
+            )}
             {!isLoggedIn && (
               <>
                 <li className="nav-item">
