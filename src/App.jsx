@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+
+//USER SCREENS
 import Home from "./screens/Home/Home";
+import RegisterUser from "./screens/Register/RegisterUser";
+import Liked from "./screens/User-screens/Liked/Liked";
+import Reservations from "./screens/User-screens/Reservations/Reservations";
+
+//ADMIN SCREENS
+import RegisterAdmin from "./screens/Register/RegisterAdmin";
+
+//COMMON COMPONENTS/SCREENS
+import Register from "./screens/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
 import Login from "./screens/Login/Login";
-import Register from "./screens/Register/Register";
-import RegisterAdmin from "./screens/Register/RegisterAdmin";
-import RegisterUser from "./screens/Register/RegisterUser";
 import Profile from "./screens/Profile/Profile";
+
 
 import IsAnon from "./components/IsAnon/IsAnon";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
@@ -54,6 +63,22 @@ function App() {
           element={
             <IsPrivate>
               <Profile />
+            </IsPrivate>
+          }
+        />
+         <Route
+          path="/user/liked"
+          element={
+            <IsPrivate>
+              <Liked />
+            </IsPrivate>
+          }
+        />
+         <Route
+          path="/user/reservations"
+          element={
+            <IsPrivate>
+              <Reservations />
             </IsPrivate>
           }
         />

@@ -26,7 +26,7 @@ function Login(props) {
     loginService(requestBody)
     .then((response)=>{
         
-        console.log('JWT token', response.data.accesToken);
+      
 
         storeToken(response.data.accesToken);  
         authenticateUser();
