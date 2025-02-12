@@ -9,6 +9,7 @@ import Reservations from "./screens/User-screens/Reservations/Reservations";
 
 //ADMIN SCREENS
 import RegisterAdmin from "./screens/Register/RegisterAdmin";
+import CreateExperienceForm from "./screens/Admin-screens/CreateExperienceForm/CreateExperienceForm";
 
 //COMMON COMPONENTS/SCREENS
 import Register from "./screens/Register/Register";
