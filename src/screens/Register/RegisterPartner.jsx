@@ -16,7 +16,7 @@ function RegisterAdmin () {
     
     e.preventDefault()
     const requestBody = {name,
-        email, password , role : "admin"
+        email, password , role : "partner"
     }
     console.log("user data-->", requestBody)
     createUser(requestBody)
@@ -39,7 +39,7 @@ function RegisterAdmin () {
             <div className="card shadow-lg">
               
               <div className="card-body">
-              <h4 class="card-title text-center">Register as Admin</h4>
+              <h4 className="card-title text-center">Register as Partner</h4>
                 <form id="registrationForm" onSubmit={handleSubmit} >
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">

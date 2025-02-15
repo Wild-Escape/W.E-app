@@ -8,8 +8,9 @@ import Liked from "./screens/User-screens/Liked/Liked";
 import Reservations from "./screens/User-screens/Reservations/Reservations";
 
 //ADMIN SCREENS
-import RegisterAdmin from "./screens/Register/RegisterAdmin";
-import CreateExperienceForm from "./screens/Admin-screens/CreateExperienceForm/CreateExperienceForm";
+import RegisterPartner from "./screens/Register/RegisterPartner";
+import CreateExperienceForm from "./screens/Partner-screens/CreateExperienceForm/CreateExperienceForm";
+import Experiences from "./screens/Partner-screens/Experiences/Experience";
 
 //COMMON COMPONENTS/SCREENS
 import Register from "./screens/Register/Register";
@@ -44,10 +45,10 @@ function App() {
           }
         />
         <Route
-          path="/register/admin"
+          path="/register/partner"
           element={
             <IsAnon>
-              <RegisterAdmin />
+              <RegisterPartner />
             </IsAnon>
           }
         />
@@ -80,6 +81,22 @@ function App() {
           element={
             <IsPrivate>
               <Reservations />
+            </IsPrivate>
+          }
+        />
+         <Route
+          path="/experiences"
+          element={
+            <IsPrivate>
+              <Experiences />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/partner/create-experience"
+          element={
+            <IsPrivate>
+              <CreateExperienceForm />
             </IsPrivate>
           }
         />

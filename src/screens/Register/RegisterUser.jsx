@@ -40,7 +40,7 @@ function RegisterUser() {
             <div className="card shadow-lg">
              
               <div className="card-body">
-              <h4 class="card-title text-center">Register as user</h4>
+              <h4 className="card-title text-center">Register as user</h4>
                 <form id="registrationForm" onSubmit={handleSubmit} >
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">

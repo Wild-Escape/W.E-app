@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { getUser } from "../services/user.service";
-
-const API_URL = "http://localhost:3000";
+import { getCurrentUser } from "../services/user.service";
 
 const AuthContext = React.createContext();
 
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
-  const [typeAdmin, setTypeAdmin] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [typePartner, setTypePartner] = useState(false);
   const [typeUser, setTypeUser] = useState(false);
 
   const storeToken = (token) => {
@@ -24,35 +21,37 @@ function AuthProviderWrapper(props) {
     // If the token exists in the localStorage
     if (storedToken) {
       // We must send the JWT token in the request's "Authorization" Headers
-      getUser({ headers: { Authorization: `Bearer ${storedToken}` } })
+      getCurrentUser({ headers: { Authorization: `Bearer ${storedToken}` } })
         .then((response) => {
           // If the server verifies that the JWT token is valid
-          const user = response.data;
+          const user = response.data.user;
+          console.log("this is the user we are setting user-->", user);
 
           // Update state variables
           setIsLoggedIn(true);
           setIsLoading(false);
-          setUser(user);
+          setCurrentUser(user);
 
-          if (user.user.role === "user") {
+          if (user.role === "user") {
             setTypeUser(true);
           }
-          if (user.user.role === "admin") {
-            setTypeAdmin(true);
+          if (user.role === "partner") {
+            setTypePartner(true);
           }
         })
         .catch((error) => {
           // If the server sends an error response (invalid token)
+          console.log("error", error)
           // Update state variables
           setIsLoggedIn(false);
           setIsLoading(false);
-          setUser(null);
+          setCurrentUser(null);
         });
     } else {
       // If the token is not available (or is removed)
       setIsLoggedIn(false);
       setIsLoading(false);
-      setUser(null);
+      setCurrentUser(null);
     }
   };
 
@@ -77,11 +76,11 @@ function AuthProviderWrapper(props) {
       value={{
         isLoggedIn,
         isLoading,
-        user,
+        currentUser,
         storeToken,
         authenticateUser,
         logOutUser,
-        typeAdmin,
+        typePartner,
         typeUser,
       }}
     >

@@ -44,7 +44,7 @@ function NavBar() {
                 </li>
               </>
             )}
-            {isLoggedIn && user?.user?.role === "admin" && (
+            {isLoggedIn && user?.user?.role === "partner" && (
               <>
                <li className="nav-item">
                   <Link
