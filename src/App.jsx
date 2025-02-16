@@ -6,6 +6,8 @@ import Home from "./screens/Home/Home";
 import RegisterUser from "./screens/Register/RegisterUser";
 import Liked from "./screens/User-screens/Liked/Liked";
 import Reservations from "./screens/User-screens/Reservations/Reservations";
+import UserMessages from "./screens/User-screens/UserMessages/UserMessages";
+import UserExperiences from "./screens/User-screens/UserExperiences/UserExperiences";
 
 //ADMIN SCREENS
 import RegisterPartner from "./screens/Register/RegisterPartner";
@@ -60,6 +62,8 @@ function App() {
             </IsAnon>
           }
         />
+
+
         <Route
           path="/profile"
           element={
@@ -85,6 +89,14 @@ function App() {
           }
         />
          <Route
+          path="/user/experiences"
+          element={
+            <IsPrivate>
+              <UserExperiences />
+            </IsPrivate>
+          }
+        />
+         <Route
           path="/experiences"
           element={
             <IsPrivate>
@@ -93,6 +105,15 @@ function App() {
           }
         />
         <Route
+          path="/user/messages"
+          element={
+            <IsPrivate>
+              <UserMessages />
+            </IsPrivate>
+          }
+        />
+
+        <Route
           path="/partner/create-experience"
           element={
             <IsPrivate>
@@ -100,6 +121,7 @@ function App() {
             </IsPrivate>
           }
         />
+       
       </Routes>
     </>
   );

@@ -5,7 +5,7 @@ const AuthContext = React.createContext();
 
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [typePartner, setTypePartner] = useState(false);
   const [typeUser, setTypeUser] = useState(false);
@@ -25,7 +25,7 @@ function AuthProviderWrapper(props) {
         .then((response) => {
           // If the server verifies that the JWT token is valid
           const user = response.data.user;
-          console.log("this is the user we are setting user-->", user);
+          
 
           // Update state variables
           setIsLoggedIn(true);

@@ -80,6 +80,7 @@ function Login(props) {
               <div className="mt-2 d-flex flex-column align-items-center" >
                 <p>Don't have an account yet?</p>
                 <Link to={"/register"}> Register</Link>
+                
               </div>
             </div>
           </div>

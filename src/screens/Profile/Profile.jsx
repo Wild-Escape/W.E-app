@@ -1,5 +1,6 @@
 
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 
 function Profile() {
@@ -9,7 +10,8 @@ function Profile() {
       <h1>Profile</h1>
       <h2>Hello: {currentUser.name}</h2>
       <p>Logged in as: {currentUser.role}</p>
-      <button onClick={logOutUser} className="btn btn-danger">Logout</button>
+      <button onClick={logOutUser} className="btn btn-danger me-2">Logout</button>
+      <Link className="btn btn-primary" to="/login">Login as Partner</Link>
     </div>
   );
 }
