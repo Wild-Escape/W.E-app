@@ -1,27 +1,25 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
+import { LoadScript, Autocomplete } from "@react-google-maps/api";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 function CreatePost() {
+  const autocompleteRef = useRef(null);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
+  
   const [formData, setFormData] = useState({
     name: "",
     intro: "",
     price: 0,
     category: [],
     duration: 0,
-    availableDates: 0,
+    availableDates:[],
     type: "",
     activities: "",
     location: "",
-    coordinates: "",
+    coordinates: {},
     gallery: [],
     highlights: [],
   });
@@ -41,12 +39,42 @@ function CreatePost() {
       [field]: value.split(",").map((item) => item.trim()),
     });
   };
-
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+    setFormData({
+      ...formData,
+      availableDates:[
+        {
+          start: start,
+          end: end
+        }
+      ]
+    })
+  };
+  const handlePlaceSelect = () => {
+    const place = autocompleteRef.current.getPlace();
+    if (place.geometry) {
+      setFormData({
+        ...formData,
+        location: place.formatted_address,
+        coordinates: {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng()
+        }
+      });
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("check data-->", formData);
   };
   return (
+    <LoadScript
+    googleMapsApiKey="AIzaSyBR9AHmU3Iw9rsvCcC4uKXJRg3aQ_RXWRY"
+    libraries={["places"]}
+  >
     <div>
       <div className="container mt-5" style={{ marginBottom: "70px" }}>
         <h2>Create Experience</h2>
@@ -117,10 +145,10 @@ function CreatePost() {
           {/* Duration */}
           <div className="mb-3">
             <label htmlFor="duration" className="form-label">
-              Duration (in days)
+              Duration 
             </label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               id="duration"
               name="duration"
@@ -181,10 +209,19 @@ function CreatePost() {
           </div>
 
           {/* Location */}
+         
+
+          {/* Coordinates */}
           <div className="mb-3">
-            <label htmlFor="location" className="form-label">
-              Location
-            </label>
+          <label htmlFor="location" className="form-label">
+            Location
+          </label>
+          <Autocomplete
+            onLoad={(autocomplete) => {
+              autocompleteRef.current = autocomplete;
+            }}
+            onPlaceChanged={handlePlaceSelect}
+          >
             <input
               type="text"
               className="form-control"
@@ -193,29 +230,14 @@ function CreatePost() {
               value={formData.location}
               onChange={handleChange}
               required
+              placeholder="Search for a location..."
             />
-          </div>
-
-          {/* Coordinates */}
-          <div className="mb-3">
-            <label htmlFor="coordinates" className="form-label">
-              Coordinates
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="coordinates"
-              name="coordinates"
-              value={formData.coordinates}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
+          </Autocomplete>
+        </div>
           {/* Gallery */}
           <div className="mb-3">
             <label htmlFor="gallery" className="form-label">
-              Gallery (comma-separated URLs)
+              Gallery 
             </label>
             <input
               type="text"
@@ -249,6 +271,7 @@ function CreatePost() {
         </form>
       </div>
     </div>
+    </LoadScript>
   );
 }
 

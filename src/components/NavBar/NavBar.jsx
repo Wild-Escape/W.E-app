@@ -59,7 +59,7 @@ function NavBar() {
                   aria-current="page"
                   to="/user/experiences"
                 >
-                  Experiences
+                  My experiences
                 </Link>
               </li>
               <li className="nav-item">
