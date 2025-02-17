@@ -12,7 +12,7 @@ function NavBar() {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row justify-content-around w-100">
           {!isLoggedIn && (
             <>
-            <li className="nav-item">
+              <li className="nav-item">
                 <Link
                   className="nav-link active"
                   aria-current="page"
@@ -30,15 +30,16 @@ function NavBar() {
                   Register
                 </Link>
               </li>
-              
             </>
           )}
-          {  isLoggedIn && currentUser.role === "user" &&
-            
-             (
-              <>
+          {isLoggedIn && currentUser.role === "user" && (
+            <>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/user/explore"
+                >
                   Explore
                 </Link>
               </li>
@@ -46,7 +47,7 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/user/liked"
+                  to="/user/favorites"
                 >
                   Favorites
                 </Link>
@@ -74,16 +75,13 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/profile"
+                  to="/user/profile"
                 >
                   Profile
                 </Link>
               </li>
             </>
-             )
-          }
-             
-           
+          )}
 
           {isLoggedIn && currentUser?.role === "partner" && (
             <>
@@ -91,7 +89,7 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/today"
+                  to="/partner/today"
                 >
                   Today
                 </Link>
@@ -100,7 +98,7 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/calendar"
+                  to="/partner/calendar"
                 >
                   Calendar
                 </Link>
@@ -109,7 +107,7 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/posting"
+                  to="/partner/postings"
                 >
                   Posting
                 </Link>
@@ -118,7 +116,7 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/calendar"
+                  to="/partner/messages"
                 >
                   Messages
                 </Link>
@@ -127,7 +125,7 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/partener/profile"
+                  to="/partner/profile"
                 >
                   Profile
                 </Link>

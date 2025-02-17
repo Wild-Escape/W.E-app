@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { Navigate } from "react-router-dom";
  
-function IsPrivate( { children } ) {
+function IsPartner( { children } ) {
   
-  const { isLoggedIn, isLoading } = useContext(AuthContext);
+  const { isLoggedIn, isLoading, currentUser } = useContext(AuthContext);
  
  
   if (isLoading) return <p>Loading ...</p>;
  
-  if (!isLoggedIn) {
+  if (!isLoggedIn || currentUser.role === "user") {
 
     return <Navigate to="/login" />;
   } else {
@@ -18,4 +18,4 @@ function IsPrivate( { children } ) {
   }
 }
  
-export default IsPrivate;
+export default IsPartner;

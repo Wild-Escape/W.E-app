@@ -31,6 +31,7 @@ function AuthProviderWrapper(props) {
           setIsLoggedIn(true);
           setIsLoading(false);
           setCurrentUser(user);
+          console.log("in authenticaate", user)
 
           if (user.role === "user") {
             setTypeUser(true);
@@ -54,6 +55,9 @@ function AuthProviderWrapper(props) {
       setCurrentUser(null);
     }
   };
+
+
+  
 
   const removeToken = () => {
     // Upon logout, remove the token from the localStorage
@@ -82,6 +86,7 @@ function AuthProviderWrapper(props) {
         logOutUser,
         typePartner,
         typeUser,
+        
       }}
     >
       {props.children}
