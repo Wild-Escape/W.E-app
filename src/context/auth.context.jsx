@@ -9,21 +9,28 @@ function AuthProviderWrapper(props) {
   const [currentUser, setCurrentUser] = useState(null);
   const [typePartner, setTypePartner] = useState(false);
   const [typeUser, setTypeUser] = useState(false);
+  const [storedTokenCheck, setStoredTokenCheck] = useState(null)
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
   };
 
   const authenticateUser = () => {
+    
+    
+  
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem("authToken");
+    setStoredTokenCheck(storedToken)
+    console.log("Stored Token:---->>>", storedToken);
 
     // If the token exists in the localStorage
     if (storedToken) {
       // We must send the JWT token in the request's "Authorization" Headers
-      getCurrentUser({ headers: { Authorization: `Bearer ${storedToken}` } })
+      getCurrentUser({ headers: { Authorization : `Bearer ${storedToken}` } })
         .then((response) => {
           // If the server verifies that the JWT token is valid
+          console.log("User authenticated successfully:", response.data);
           const user = response.data.user;
           
 
@@ -86,7 +93,7 @@ function AuthProviderWrapper(props) {
         logOutUser,
         typePartner,
         typeUser,
-        
+        storedTokenCheck
       }}
     >
       {props.children}

@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 import { LoadScript, Autocomplete } from "@react-google-maps/api";
+import { createExperienceService } from "../../../../services/experiences.service";
+import { useNavigate } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -9,12 +11,13 @@ function CreatePost() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     intro: "",
     price: 0,
     category: [],
-    duration: 0,
+    duration: "",
     availableDates: [],
     type: "",
     activities: "",
@@ -26,12 +29,11 @@ function CreatePost() {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    console.log("trying to see files",e.target.files)
+
     setFormData({
       ...formData,
-      [name]: files ? Array.from(files) : value
+      [name]: files ? Array.from(files) : value,
     });
-
   };
 
   const handleArrayChange = (e, field) => {
@@ -49,8 +51,8 @@ function CreatePost() {
       ...formData,
       availableDates: [
         {
-          start: start,
-          end: end,
+          start: new Date(start).toISOString(),
+          end: new Date(end).toISOString(),
         },
       ],
     });
@@ -68,9 +70,41 @@ function CreatePost() {
       });
     }
   };
+  const storedToken = localStorage.getItem("authToken");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("check data-->", formData);
+
+    const uploadData = new FormData();
+
+    uploadData.append("name", formData.name);
+    uploadData.append("intro", formData.intro);
+    uploadData.append("price", formData.price);
+    uploadData.append("category", JSON.stringify(formData.category));
+    uploadData.append("duration", formData.duration);
+    uploadData.append("availableDates", JSON.stringify(formData.availableDates) );
+    uploadData.append("type", formData.type);
+    uploadData.append("activities", formData.activities);
+    uploadData.append("location", formData.location);
+    uploadData.append("coordinates", JSON.stringify(formData.coordinates));
+    uploadData.append("highlights", JSON.stringify(formData.highlights));
+
+    // Append gallery files
+    formData.gallery.forEach((file) => {
+      uploadData.append("gallery", file); // Key name depends on your backend
+    });
+    console.log("check data-->", uploadData);
+    createExperienceService(uploadData, {
+      headers: {
+        Authorization: `Bearer ${storedToken}`,
+      },
+    })
+      .then(() => {
+        navigate("/partner/postings");
+      })
+      .catch((error) => {
+        console.error("Error creating experience:", error);
+      });
   };
   return (
     <LoadScript
@@ -260,7 +294,7 @@ function CreatePost() {
                 className="form-control"
                 id="highlights"
                 name="highlights"
-                value={formData.highlights.join(", ")}
+                value={formData.highlights}
                 onChange={(e) => handleArrayChange(e, "highlights")}
               />
             </div>
