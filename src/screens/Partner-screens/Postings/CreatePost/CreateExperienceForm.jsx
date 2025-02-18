@@ -1,8 +1,9 @@
 import { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
-import { LoadScript, Autocomplete } from "@react-google-maps/api";
+
 import { createExperienceService } from "../../../../services/experiences.service";
 import { useNavigate } from "react-router-dom";
+import Autocomplete from "react-google-autocomplete";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -30,44 +31,44 @@ function CreatePost() {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: files ? Array.from(files) : value,
-    });
+    }));
   };
 
   const handleArrayChange = (e, field) => {
     const { value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [field]: value.split(",").map((item) => item.trim()),
-    });
+    }));
   };
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       availableDates: [
         {
           start: new Date(start).toISOString(),
           end: new Date(end).toISOString(),
         },
       ],
-    });
+    }));
   };
-  const handlePlaceSelect = () => {
-    const place = autocompleteRef.current.getPlace();
+  const handlePlaceSelect = (place) => {
+   
     if (place.geometry) {
-      setFormData({
-        ...formData,
+      setFormData((prevFormData) => ({ // 👈 Use functional update
+        ...prevFormData, // Keep existing data
         location: place.formatted_address,
         coordinates: {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
         },
-      });
+      }));
     }
   };
   const storedToken = localStorage.getItem("authToken");
@@ -82,7 +83,10 @@ function CreatePost() {
     uploadData.append("price", formData.price);
     uploadData.append("category", JSON.stringify(formData.category));
     uploadData.append("duration", formData.duration);
-    uploadData.append("availableDates", JSON.stringify(formData.availableDates) );
+    uploadData.append(
+      "availableDates",
+      JSON.stringify(formData.availableDates)
+    );
     uploadData.append("type", formData.type);
     uploadData.append("activities", formData.activities);
     uploadData.append("location", formData.location);
@@ -107,10 +111,7 @@ function CreatePost() {
       });
   };
   return (
-    <LoadScript
-      googleMapsApiKey="AIzaSyBR9AHmU3Iw9rsvCcC4uKXJRg3aQ_RXWRY"
-      libraries={["places"]}
-    >
+   
       <div>
         <div className="container mt-5" style={{ marginBottom: "70px" }}>
           <h2>Create Experience</h2>
@@ -247,7 +248,7 @@ function CreatePost() {
             {/* Location */}
 
             {/* Coordinates */}
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label htmlFor="location" className="form-label">
                 Location
               </label>
@@ -268,6 +269,31 @@ function CreatePost() {
                   placeholder="Search for a location..."
                 />
               </Autocomplete>
+            </div> */}
+            <div className="mb-3">
+              <label htmlFor="location" className="form-label">
+                Location
+              </label>
+              <Autocomplete
+              onLoad={(autocomplete) => {
+                autocompleteRef.current = autocomplete;
+              }}
+              onPlaceSelected={handlePlaceSelect}
+            
+                apiKey="AIzaSyBR9AHmU3Iw9rsvCcC4uKXJRg3aQ_RXWRY"
+                type="text"
+                  className="form-control"
+                  id="location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  required
+                  placeholder="Search for a location..."
+                  fields
+              />
+                
+
+              
             </div>
             {/* Gallery */}
             <div className="mb-3">
@@ -305,7 +331,7 @@ function CreatePost() {
           </form>
         </div>
       </div>
-    </LoadScript>
+    
   );
 }
 
