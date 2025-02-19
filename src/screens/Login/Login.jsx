@@ -1,4 +1,4 @@
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { loginService } from "../../services/auth.service";
@@ -11,36 +11,29 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
-
-
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const { storeToken, authenticateUser } = useContext(AuthContext);
+  const { storeToken, authenticateUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requestBody = {email, password}
+    const requestBody = { email, password };
     loginService(requestBody)
-    .then((response)=>{
-        
-      
-        
-        storeToken(response.data.accesToken);  
+      .then((response) => {
+        storeToken(response.data.accesToken);
         authenticateUser();
-      
-        navigate('/profile')
-    })
-    .catch((error) => {
+
+        navigate("/profile");
+      })
+      .catch((error) => {
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
-      })
-
+      });
   };
   return (
-  
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-4">
@@ -79,10 +72,9 @@ function Login(props) {
                 </button>
               </form>
               {errorMessage && <p className="error-message">{errorMessage}</p>}
-              <div className="mt-2 d-flex flex-column align-items-center" >
+              <div className="mt-2 d-flex flex-column align-items-center">
                 <p>Don't have an account yet?</p>
                 <Link to={"/register"}> Register</Link>
-                
               </div>
             </div>
           </div>
