@@ -34,6 +34,7 @@ function Login(props) {
         navigate('/profile')
     })
     .catch((error) => {
+      console.log(error)
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
       })

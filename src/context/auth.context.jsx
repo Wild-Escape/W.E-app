@@ -22,7 +22,7 @@ function AuthProviderWrapper(props) {
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem("authToken");
     setStoredTokenCheck(storedToken)
-    console.log("Stored Token:---->>>", storedToken);
+   
 
     // If the token exists in the localStorage
     if (storedToken) {
@@ -30,7 +30,7 @@ function AuthProviderWrapper(props) {
       getCurrentUser({ headers: { Authorization : `Bearer ${storedToken}` } })
         .then((response) => {
           // If the server verifies that the JWT token is valid
-          console.log("User authenticated successfully:", response.data);
+          
           const user = response.data.user;
           
 
@@ -38,7 +38,7 @@ function AuthProviderWrapper(props) {
           setIsLoggedIn(true);
           setIsLoading(false);
           setCurrentUser(user);
-          console.log("in authenticaate", user)
+          
 
           if (user.role === "user") {
             setTypeUser(true);

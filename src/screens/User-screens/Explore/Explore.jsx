@@ -11,7 +11,11 @@ function Explore() {
       .then((res) => {
         
         setExperiences(res.data.trips);
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+        
+      })
     }, []);
     return (
       <div className="p-3 mb-5">
