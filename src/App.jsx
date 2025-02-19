@@ -2,29 +2,37 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 //USER SCREENS
-import Home from "./screens/Home/Home";
-import RegisterUser from "./screens/Register/RegisterUser";
-import Liked from "./screens/User-screens/Liked/Liked";
-import Reservations from "./screens/User-screens/Reservations/Reservations";
+import IsUser from "./components/IsUser/IsUser";
+import Explore from "./screens/User-screens/Explore/Explore";
+import Favorites from "./screens/User-screens/Favorites/Favorites";
+import UserExperiences from "./screens/User-screens/UserExperiences/UserExperiences";
+import UserMessages from "./screens/User-screens/UserMessages/UserMessages";
+import UserProfile from "./screens/User-screens/UserProfile/UserProfile";
 
-//ADMIN SCREENS
-import RegisterPartner from "./screens/Register/RegisterPartner";
-import CreateExperienceForm from "./screens/Partner-screens/CreateExperienceForm/CreateExperienceForm";
-import Experiences from "./screens/Partner-screens/Experiences/Experience";
+//PARTNER SCREENS
+import IsPartner from "./components/IsPartner/IsPartner";
+import Today from "./screens/Partner-screens/Today/Today";
+import Calendar from "./screens/Partner-screens/Calendar/Calendar";
+import Postings from "./screens/Partner-screens/Postings/Experience";
+import CreatePost from "./screens/Partner-screens/Postings/CreatePost/CreateExperienceForm";
+import PartnerMessages from "./screens/Partner-screens/PartnerMessages/PartnerMessages";
+import PartnerProfile from "./screens/Partner-screens/PartnerProfile/PartnerProfile";
 
 //COMMON COMPONENTS/SCREENS
-import Register from "./screens/Register/Register";
-import NavBar from "./components/NavBar/NavBar";
+import Home from "./screens/Home/Home";
 import Login from "./screens/Login/Login";
-import Profile from "./screens/Profile/Profile";
-
+import Register from "./screens/Register/Register";
+import RegisterUser from "./screens/Register/RegisterUser";
+import RegisterPartner from "./screens/Register/RegisterPartner";
+import NavBar from "./components/NavBar/NavBar";
 
 import IsAnon from "./components/IsAnon/IsAnon";
-import IsPrivate from "./components/IsPrivate/IsPrivate";
+
 
 function App() {
   return (
     <>
+    {/* COMMON ROUTES */}
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -60,44 +68,94 @@ function App() {
             </IsAnon>
           }
         />
+      {/* USER ROUTES */}
+      <Route
+          path="/user/explore"
+          element={
+            <IsUser>
+              <Explore />
+            </IsUser>
+          }
+        />
+         <Route
+          path="/user/favorites"
+          element={
+            <IsUser>
+              <Favorites />
+            </IsUser>
+          }
+        />
+         <Route
+          path="/user/experiences"
+          element={
+            <IsUser>
+              <UserExperiences />
+            </IsUser>
+          }
+        />
+         <Route
+          path="/user/messages"
+          element={
+            <IsUser>
+              <UserMessages />
+            </IsUser>
+          }
+        />
+         <Route
+          path="/user/profile"
+          element={
+            <IsUser>
+              <UserProfile />
+            </IsUser>
+          }
+        />
+        {/* PARTNER SCREENS */}
         <Route
-          path="/profile"
+          path="/partner/today"
           element={
-            <IsPrivate>
-              <Profile />
-            </IsPrivate>
-          }
-        />
-         <Route
-          path="/user/liked"
-          element={
-            <IsPrivate>
-              <Liked />
-            </IsPrivate>
-          }
-        />
-         <Route
-          path="/user/reservations"
-          element={
-            <IsPrivate>
-              <Reservations />
-            </IsPrivate>
-          }
-        />
-         <Route
-          path="/experiences"
-          element={
-            <IsPrivate>
-              <Experiences />
-            </IsPrivate>
+            <IsPartner>
+              <Today />
+            </IsPartner>
           }
         />
         <Route
-          path="/partner/create-experience"
+          path="/partner/calendar"
           element={
-            <IsPrivate>
-              <CreateExperienceForm />
-            </IsPrivate>
+            <IsPartner>
+              <Calendar />
+            </IsPartner>
+          }
+        />
+        <Route
+          path="/partner/postings"
+          element={
+            <IsPartner>
+              <Postings />
+            </IsPartner>
+          }
+        />
+        <Route
+          path="/partner/create-post"
+          element={
+            <IsPartner>
+              <CreatePost />
+            </IsPartner>
+          }
+        />
+        <Route
+          path="/partner/messages"
+          element={
+            <IsPartner>
+              <PartnerMessages />
+            </IsPartner>
+          }
+        />
+        <Route
+          path="/partner/profile"
+          element={
+            <IsPartner>
+              <PartnerProfile />
+            </IsPartner>
           }
         />
       </Routes>

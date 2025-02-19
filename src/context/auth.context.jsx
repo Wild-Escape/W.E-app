@@ -5,32 +5,40 @@ const AuthContext = React.createContext();
 
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [typePartner, setTypePartner] = useState(false);
   const [typeUser, setTypeUser] = useState(false);
+  const [storedTokenCheck, setStoredTokenCheck] = useState(null)
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
   };
 
   const authenticateUser = () => {
+    
+    
+  
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem("authToken");
+    setStoredTokenCheck(storedToken)
+    console.log("Stored Token:---->>>", storedToken);
 
     // If the token exists in the localStorage
     if (storedToken) {
       // We must send the JWT token in the request's "Authorization" Headers
-      getCurrentUser({ headers: { Authorization: `Bearer ${storedToken}` } })
+      getCurrentUser({ headers: { Authorization : `Bearer ${storedToken}` } })
         .then((response) => {
           // If the server verifies that the JWT token is valid
+          console.log("User authenticated successfully:", response.data);
           const user = response.data.user;
-          console.log("this is the user we are setting user-->", user);
+          
 
           // Update state variables
           setIsLoggedIn(true);
           setIsLoading(false);
           setCurrentUser(user);
+          console.log("in authenticaate", user)
 
           if (user.role === "user") {
             setTypeUser(true);
@@ -54,6 +62,9 @@ function AuthProviderWrapper(props) {
       setCurrentUser(null);
     }
   };
+
+
+  
 
   const removeToken = () => {
     // Upon logout, remove the token from the localStorage
@@ -82,6 +93,7 @@ function AuthProviderWrapper(props) {
         logOutUser,
         typePartner,
         typeUser,
+        storedTokenCheck
       }}
     >
       {props.children}

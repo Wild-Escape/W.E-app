@@ -27,9 +27,10 @@ function Login(props) {
     .then((response)=>{
         
       
-
+        
         storeToken(response.data.accesToken);  
         authenticateUser();
+      
         navigate('/profile')
     })
     .catch((error) => {
@@ -39,6 +40,7 @@ function Login(props) {
 
   };
   return (
+  
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-4">
@@ -80,6 +82,7 @@ function Login(props) {
               <div className="mt-2 d-flex flex-column align-items-center" >
                 <p>Don't have an account yet?</p>
                 <Link to={"/register"}> Register</Link>
+                
               </div>
             </div>
           </div>
