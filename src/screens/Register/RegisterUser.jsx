@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {createUser} from '../../services/user.service';
+import { createUser } from "../../services/auth.service";
 
 function RegisterUser() {
     const [name, setName] = useState();

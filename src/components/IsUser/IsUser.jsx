@@ -4,12 +4,12 @@ import { Navigate } from "react-router-dom";
  
 function IsUser( { children } ) {
   
-  const { isLoggedIn, isLoading, currentUser } = useContext(AuthContext);
+  const { isAuthLoaded, isLoading, currentUser } = useContext(AuthContext);
  
  
   if (isLoading) return <p>Loading ...</p>;
  
-  if (!isLoggedIn || currentUser.role === "partner") {
+  if (!isAuthLoaded || currentUser.role === "partner") {
  
     return <Navigate to="/login" />;
   } else {

@@ -1,47 +1,47 @@
-import { useState, useContext} from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { loginService } from "../../services/auth.service";
 import { AuthContext } from "../../context/auth.context";
 
-const API_URL = "http://localhost:3000";
-
-function Login(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
 
 
+function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
+  const { login, isAuthLoaded, currentUser } = useContext(AuthContext);
 
-    const navigate = useNavigate()
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-    const { storeToken, authenticateUser } = useContext(AuthContext);
+  if (!isAuthLoaded) {
+    return "Loading";
+  }
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requestBody = {email, password}
-    loginService(requestBody)
-    .then((response)=>{
-        
-      
-        
-        storeToken(response.data.accesToken);  
-        authenticateUser();
-      
-        navigate('/profile')
-    })
-    .catch((error) => {
-      console.log(error)
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      })
+    console.log("chechinkg the data we're sending", formData)
 
+    loginService(formData)
+      .then((res) => {
+        console.log("here we have the token --->", res)
+        login(res);
+      })
+      .catch((error) => {
+        console.log("we have an erro with the login service")
+        setErrorMessage(error.message);
+      });
   };
   return (
-  
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-4">
@@ -56,10 +56,11 @@ function Login(props) {
                   <input
                     type="text"
                     className="form-control"
-                    id="username"
+                    id="email"
                     placeholder="Enter your username"
-                    onChange={handleEmail}
+                    onChange={handleChange}
                     required
+                    name="email"
                   />
                 </div>
                 <div className="mb-3">
@@ -71,19 +72,24 @@ function Login(props) {
                     className="form-control"
                     id="password"
                     placeholder="Enter your password"
-                    onChange={handlePassword}
+                    onChange={handleChange}
                     required
+                    name="password"
                   />
                 </div>
                 <button type="submit" className="btn btn-primary w-100">
                   Login
                 </button>
+                {errorMessage && (
+                  <div className="alert alert-danger" role="alert">
+                    {errorMessage}
+                  </div>
+                )}
               </form>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
-              <div className="mt-2 d-flex flex-column align-items-center" >
+              
+              <div className="mt-2 d-flex flex-column align-items-center">
                 <p>Don't have an account yet?</p>
                 <Link to={"/register"}> Register</Link>
-                
               </div>
             </div>
           </div>

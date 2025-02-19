@@ -1,6 +1,6 @@
 import {createHttp} from "./base.service";
 
-const http = createHttp();
+const http = createHttp(true);
 
 export const getAllExperiences = () => http.get("/experiences");
 export const getExperienceDetails = (id) => http.get(`/experience/${id}`);

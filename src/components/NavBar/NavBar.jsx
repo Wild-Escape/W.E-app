@@ -4,14 +4,19 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
 function NavBar() {
-  const { isLoggedIn, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
+
+ 
+  
+ 
 
   return (
     <nav className="navbar fixed-bottom  bg-body-tertiary">
       <div className="container-fluid ">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row justify-content-around w-100">
-          {!isLoggedIn && (
-            <>
+          
+          
+            {!currentUser && (<>
               <li className="nav-item">
                 <Link
                   className="nav-link active"
@@ -30,9 +35,9 @@ function NavBar() {
                   Register
                 </Link>
               </li>
-            </>
-          )}
-          {isLoggedIn && currentUser.role === "user" && (
+            </>)}
+          
+          { currentUser?.role === "user" && (
             <>
               <li className="nav-item">
                 <Link
@@ -83,7 +88,7 @@ function NavBar() {
             </>
           )}
 
-          {isLoggedIn && currentUser?.role === "partner" && (
+          {currentUser?.role === "partner" && (
             <>
               <li className="nav-item">
                 <Link
