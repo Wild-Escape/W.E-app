@@ -14,15 +14,15 @@ function RegisterUser() {
     const handlePassword = (e) => setPassword(e.target.value)
 
   const handleSubmit = (e) => {
-    console.log("entro en handle submit")
+    
     e.preventDefault()
     const requestBody = {name,
         email, password , role : "user"
     }
-    console.log("user data-->", requestBody)
+    
     createUser(requestBody)
     .then(()=>{
-        console.log("user created :)")
+        
         navigate("/login")
     })
     .catch((err) => {

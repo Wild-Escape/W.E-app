@@ -97,7 +97,7 @@ function CreatePost() {
     formData.gallery.forEach((file) => {
       uploadData.append("gallery", file); // Key name depends on your backend
     });
-    console.log("check data-->", uploadData);
+    
     createExperienceService(uploadData, {
       headers: {
         Authorization: `Bearer ${storedToken}`,
@@ -289,7 +289,7 @@ function CreatePost() {
                   onChange={handleChange}
                   required
                   placeholder="Search for a location..."
-                  fields
+                  fields={["geometry", "name", "formatted_address"]}
               />
                 
 

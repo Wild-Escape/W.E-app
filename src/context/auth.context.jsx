@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getAccessToken, setAccessToken } from "../store/AccesTokenStore";
-import  {getCurrentUserService} from "../services/user.service"
+import { getCurrentUserService } from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
@@ -15,39 +15,40 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const getCurrentUser = (callback) => {
-    getCurrentUserService()
-      .then((res) => {
-        
-        setCurrentUser(res.user);
-        setIsAuthLoaded(true);
+    getCurrentUserService().then((res) => {
+      setCurrentUser(res.user);
+      setIsAuthLoaded(true);
 
-        callback && callback();
-      });
-  }
+      callback && callback();
+    });
+  };
 
   const login = (token) => {
-    
     const navigateToProfile = () => {
-      console.log("checking if there is current user in navigate -->>", currentUser)
-      navigate('/partner/profile');
-      
-      // if (currentUser.role === "user"){
-      //   navigate('/user/profile');
-      // } 
-      // if (currentUser.role === "partner"){
-      //   navigate('/partner/profile');
-      // } 
-    }
-    //guardar mi token en el localStorage
+      navigate("/partner/profile")
+      // console.log(
+      //   "checking if there is current user in navigate -->>",
+      //   currentUser
+      // );
+
+      // if (currentUser.role === "user") {
+      //   navigate("/user/profile");
+      // }
+      // if (currentUser.role === "partner") {
+      //   console.log("going in partner log");
+      //   navigate("/partner/profile");
+      // }
+    };
     setAccessToken(token);
     getCurrentUser(navigateToProfile);
-  }
+    //guardar mi token en el localStorage
+  };
 
   useEffect(() => {
     if (getAccessToken()) {
-      getCurrentUser()
+      getCurrentUser();
     } else {
-      setIsAuthLoaded(true)
+      setIsAuthLoaded(true);
     }
   }, []);
 
@@ -58,7 +59,7 @@ export const AuthContextProvider = ({ children }) => {
         typePartner,
         typeUser,
         isAuthLoaded,
-        login
+        login,
       }}
     >
       {children}

@@ -13,7 +13,7 @@ function Explore() {
         setExperiences(res.data.trips);
       })
       .catch((error) => {
-        console.log(error);
+        
         
       })
     }, []);

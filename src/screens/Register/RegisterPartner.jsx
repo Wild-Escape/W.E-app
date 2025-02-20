@@ -18,10 +18,10 @@ function RegisterAdmin () {
     const requestBody = {name,
         email, password , role : "partner"
     }
-    console.log("user data-->", requestBody)
+    
     createUser(requestBody)
     .then(()=>{
-        console.log("user created :)")
+        
         navigate("/login")
     })
     .catch((err) => {

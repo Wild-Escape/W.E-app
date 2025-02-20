@@ -29,15 +29,15 @@ function Login() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("chechinkg the data we're sending", formData)
+    
 
     loginService(formData)
       .then((res) => {
-        console.log("here we have the token --->", res)
+        
         login(res);
       })
       .catch((error) => {
-        console.log("we have an erro with the login service")
+        
         setErrorMessage(error.message);
       });
   };

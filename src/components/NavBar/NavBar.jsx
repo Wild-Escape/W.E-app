@@ -112,7 +112,7 @@ function NavBar() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/partner/postings"
+                  to="/partner/experiences"
                 >
                   Posting
                 </Link>
