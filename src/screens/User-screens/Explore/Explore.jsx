@@ -1,21 +1,42 @@
 import { getAllExperiences } from "../../../services/experiences.service";
+import { addToFavoriteService } from "../../../services/favorite.service";
 import { useState, useEffect } from "react";
-import { FaMapMarkerAlt, FaClock, FaEuroSign } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaClock,
+  FaEuroSign,
+  FaRegHeart,
+  FaHeart,
+} from "react-icons/fa";
 
 function Explore() {
   const [experiences, setExperiences] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  
 
   useEffect(() => {
     getAllExperiences()
       .then((res) => {
         console.log("seeing response", res);
-        setExperiences(res.trips);
+        setExperiences(res.experiences);
+        setFavorites(res.favorites);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const addToFavorites = (experienceId) => {
+    addToFavoriteService(experienceId)
+      .then((res) => {
+        console.log("seeing response", res);
+          setFavorites(res.favorites);
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="p-3 mb-5">
       {experiences &&
@@ -31,14 +52,7 @@ function Explore() {
 
             <div className="card-body">
               {/* Status Badge */}
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <span
-                  className={`badge bg-${
-                    experience.status === "pending" ? "warning" : "success"
-                  } text-dark`}
-                >
-                  {experience.status}
-                </span>
+              <div className="d-flex  mb-2">
                 <small className="text-muted">
                   {experience.type.join(", ")}
                 </small>
@@ -68,15 +82,16 @@ function Explore() {
               {/* Description */}
               <p className="card-text">{experience.intro}</p>
             </div>
-          
+
             {/* Footer */}
             <div className="card-footer bg-white">
               <div className="d-flex justify-content-between align-items-center">
-                <small className="text-muted">
-                  Category: {experience.category.join(", ")}
-                </small>
+                {favorites.find((fav) => fav.experience === experience._id) ? (
+                  <FaHeart onClick={() => addToFavorites(experience._id)} />
+                ) : (
+                  <FaRegHeart onClick={() => addToFavorites(experience._id)} />
+                )}
                 <button className="btn btn-primary btn-sm">See details</button>
-               
               </div>
             </div>
           </div>

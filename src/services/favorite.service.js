@@ -1,5 +1,5 @@
 import { createHttp } from "./base.service";
 
-const http = createHttp();
+const http = createHttp(true);
 
-export const addToFavorite = (id) => http.post(`/experiences/${id}/favorite`)
+export const addToFavoriteService = (id) => http.post(`/experiences/${id}/favorite`)

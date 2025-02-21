@@ -12,7 +12,7 @@ function Login() {
   });
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { login, isAuthLoaded, currentUser } = useContext(AuthContext);
+  const { login, isAuthLoaded } = useContext(AuthContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

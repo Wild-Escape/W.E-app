@@ -4,10 +4,10 @@ import { Navigate } from "react-router-dom";
  
 function IsUser( { children } ) {
   
-  const { isAuthLoaded, isLoading, currentUser } = useContext(AuthContext);
+  const { isAuthLoaded, currentUser } = useContext(AuthContext);
  
  
-  if (isLoading) return <p>Loading ...</p>;
+  
  
   if (!isAuthLoaded || currentUser.role === "partner") {
  
