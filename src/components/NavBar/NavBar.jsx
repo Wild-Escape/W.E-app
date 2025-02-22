@@ -1,135 +1,60 @@
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { FaCompass, FaHeart, FaUser, FaPlus, FaCalendar, FaComment, FaHome } from "react-icons/fa";
 
 function NavBar() {
-  const { isLoggedIn, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
+  const location = useLocation();
+
+  const getLinkClass = (path) => {
+    return location.pathname === path ? "nav-link active" : "nav-link";
+  };
 
   return (
-    <nav className="navbar fixed-bottom  bg-body-tertiary">
-      <div className="container-fluid ">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row justify-content-around w-100">
-          {!isLoggedIn && (
+    <nav className="navbar fixed-bottom d-block d-lg-none navbar-light bg-white border-top">
+      <div className="container">
+        <ul className="navbar-nav d-flex flex-row justify-content-between w-100">
+          {!currentUser && (
             <>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/login"
-                >
-                  Login
+              <li className="nav-item flex-grow-1 text-center">
+                <Link to="/login" className={getLinkClass("/login")}>
+                  <div className="d-flex flex-column align-items-center">
+                    <FaUser className="mb-1" size={20} />
+                    <span className="nav-text">Login</span>
+                  </div>
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/register"
-                >
-                  Register
-                </Link>
-              </li>
-            </>
-          )}
-          {isLoggedIn && currentUser.role === "user" && (
-            <>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/user/explore"
-                >
-                  Explore
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/user/favorites"
-                >
-                  Favorites
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/user/experiences"
-                >
-                  My experiences
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/user/messages"
-                >
-                  Messages
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/user/profile"
-                >
-                  Profile
+              <li className="nav-item flex-grow-1 text-center">
+                <Link to="/register" className={getLinkClass("/register")}>
+                  <div className="d-flex flex-column align-items-center">
+                    <FaPlus className="mb-1" size={20} />
+                    <span className="nav-text">Register</span>
+                  </div>
                 </Link>
               </li>
             </>
           )}
 
-          {isLoggedIn && currentUser?.role === "partner" && (
+          {currentUser?.role === "user" && (
             <>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/partner/today"
-                >
-                  Today
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/partner/calendar"
-                >
-                  Calendar
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/partner/postings"
-                >
-                  Posting
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/partner/messages"
-                >
-                  Messages
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/partner/profile"
-                >
-                  Profile
-                </Link>
-              </li>
+              <NavItem to="/user/explore" icon={<FaCompass />} label="Explore" />
+              <NavItem to="/user/favorites" icon={<FaHeart />} label="Favorites" />
+              <NavItem to="/user/experiences" icon={<FaHome />} label="My Experiences" />
+              <NavItem to="/user/messages" icon={<FaComment />} label="Messages" />
+              <NavItem to="/user/profile" icon={<FaUser />} label="Profile" />
+            </>
+          )}
+
+          {currentUser?.role === "partner" && (
+            <>
+              <NavItem to="/partner/today" icon={<FaHome />} label="Today" />
+              <NavItem to="/partner/calendar" icon={<FaCalendar />} label="Calendar" />
+              <NavItem to="/partner/experiences" icon={<FaPlus />} label="Posting" />
+              <NavItem to="/partner/messages" icon={<FaComment />} label="Messages" />
+              <NavItem to="/partner/profile" icon={<FaUser />} label="Profile" />
             </>
           )}
         </ul>
@@ -137,5 +62,26 @@ function NavBar() {
     </nav>
   );
 }
+
+const NavItem = ({ to, icon, label }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
+  return (
+    <li className="nav-item flex-grow-1 text-center">
+      <Link to={to} className={`nav-link ${isActive ? "active" : ""}`}>
+        <div className="d-flex flex-column align-items-center">
+          {React.cloneElement(icon, {
+            size: 22,
+            className: `mb-1 ${isActive ? "text-primary" : "text-muted"}`,
+          })}
+          <span className={`nav-text small ${isActive ? "text-primary" : "text-muted"}`}>
+            {label}
+          </span>
+        </div>
+      </Link>
+    </li>
+  );
+};
 
 export default NavBar;

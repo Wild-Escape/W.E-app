@@ -1,38 +1,53 @@
 import { getAllExperiences } from "../../../services/experiences.service";
+import { addToFavoriteService } from "../../../services/favorite.service";
 import { useState, useEffect } from "react";
+import Experience from "../../../components/Experience/Experience";
 
 function Explore() {
-    const [experiences, setExperiences] = useState([]);
-    const [favorites, setFavorites] = useState([]);
-  
-    useEffect(() => {
-      
-      getAllExperiences()
+  const [experiences, setExperiences] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    getAllExperiences()
       .then((res) => {
-        
-        setExperiences(res.data.trips);
+        console.log("seeing response", res);
+        setExperiences(res.experiences);
+        setFavorites(res.favorites);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    }, []);
-    return (
-      <div className="p-3 mb-5">
-   
-        {experiences && experiences.map((experience)=><div key={experience._id} className="card" style={{ width: '18rem', margin: '10px' }}>
-        <img src={experience.gallery[0]} className="card-img-top" alt="Expedition" />
-        <div className="card-body">
-          <h5 className="card-title">{experience.name}</h5>
-          
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item"><strong>Price:</strong> ${experience.price}</li>
-            <li className="list-group-item"><strong>Duration:</strong> {experience.duration} days</li>
-            <li className="list-group-item"><strong>Location:</strong> {experience.location}</li>
-            
-           
-          </ul>
+  }, []);
+
+  return (
+    <div className="p-3 mb-5">
+      <p>here we have all the experiences</p>
+      {experiences.map((experience) => (
+        <div key={experience._id}>
+          <Experience
+            isFavorite={favorites.find(
+              (fav) => fav.experience === experience._id
+            )}
+            _id={experience._id}
+            name={experience.name}
+            price={experience.price}
+            location={experience.location}
+            category={experience.category}
+            gallery={experience.gallery}
+            duration={experience.duration}
+            intro={experience.intro}
+            type={experience.type}
+            highlights={experience.highlights}
+            coordinates={experience.coordinates}
+            availableDates={experience.availableDates}
+            partner={experience.partner}
+            createdAt={experience.createdAt}
+            status={experience.status}
+          />
         </div>
-        
-      </div>)}
-      </div>
-    );
-  }
+      ))}
+    </div>
+  );
+}
 
 export default Explore;

@@ -1,36 +1,44 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { loginService } from "../../services/auth.service";
 import { AuthContext } from "../../context/auth.context";
 
-const API_URL = "http://localhost:3000";
 
-function Login(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
+function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const navigate = useNavigate();
+  const { login, isAuthLoaded } = useContext(AuthContext);
 
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
+  if (!isAuthLoaded) {
+    return "Loading";
+  }
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { email, password };
-    loginService(requestBody)
-      .then((response) => {
-        storeToken(response.data.accesToken);
-        authenticateUser();
+    
 
-        navigate("/profile");
+    loginService(formData)
+      .then((res) => {
+        
+        login(res);
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
+        
+        setErrorMessage(error.message);
       });
   };
   return (
@@ -48,10 +56,11 @@ function Login(props) {
                   <input
                     type="text"
                     className="form-control"
-                    id="username"
+                    id="email"
                     placeholder="Enter your username"
-                    onChange={handleEmail}
+                    onChange={handleChange}
                     required
+                    name="email"
                   />
                 </div>
                 <div className="mb-3">
@@ -63,15 +72,21 @@ function Login(props) {
                     className="form-control"
                     id="password"
                     placeholder="Enter your password"
-                    onChange={handlePassword}
+                    onChange={handleChange}
                     required
+                    name="password"
                   />
                 </div>
                 <button type="submit" className="btn btn-primary w-100">
                   Login
                 </button>
+                {errorMessage && (
+                  <div className="alert alert-danger" role="alert">
+                    {errorMessage}
+                  </div>
+                )}
               </form>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
+              
               <div className="mt-2 d-flex flex-column align-items-center">
                 <p>Don't have an account yet?</p>
                 <Link to={"/register"}> Register</Link>
@@ -85,3 +100,4 @@ function Login(props) {
 }
 
 export default Login;
+

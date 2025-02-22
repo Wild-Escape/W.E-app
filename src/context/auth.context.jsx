@@ -1,95 +1,70 @@
-import React, { useState, useEffect } from "react";
-import { getCurrentUser } from "../services/user.service";
+import { createContext, useEffect, useState } from "react";
+import { getAccessToken, setAccessToken } from "../store/AccesTokenStore";
+import { getCurrentUserService } from "../services/user.service";
+import { useNavigate } from "react-router-dom";
 
-const AuthContext = React.createContext();
+export const AuthContext = createContext();
 
-function AuthProviderWrapper(props) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isAuthLoaded, setIsAuthLoaded] = useState(false);
+
   const [typePartner, setTypePartner] = useState(false);
   const [typeUser, setTypeUser] = useState(false);
-  
 
-  const storeToken = (token) => {
-    localStorage.setItem("authToken", token);
+  const navigate = useNavigate();
+
+  const getCurrentUser = (callback) => {
+    getCurrentUserService().then((res) => {
+      setCurrentUser(res.user);
+      setIsAuthLoaded(true);
+
+      callback && callback();
+    });
   };
 
-  const authenticateUser = () => {
-    // Get the stored token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
-    
-    // If the token exists in the localStorage
-    if (storedToken) {
-      // We must send the JWT token in the request's "Authorization" Headers
-      getCurrentUser({ headers: { Authorization: `Bearer ${storedToken}` } })
-        .then((response) => {
-          // If the server verifies that the JWT token is valid
-          console.log("User authenticated successfully:", response.data);
-          const user = response.data.user;
+  const login = (token) => {
+    const navigateToProfile = () => {
+      navigate("/partner/profile")
+      // console.log(
+      //   "checking if there is current user in navigate -->>",
+      //   currentUser
+      // );
 
-          // Update state variables
-          setIsLoggedIn(true);
-          setIsLoading(false);
-          setCurrentUser(user);
-          console.log("in authenticaate", user);
-
-          if (user.role === "user") {
-            setTypeUser(true);
-          }
-          if (user.role === "partner") {
-            setTypePartner(true);
-          }
-        })
-        .catch((error) => {
-          // If the server sends an error response (invalid token)
-          console.log("error", error);
-          // Update state variables
-          setIsLoggedIn(false);
-          setIsLoading(false);
-          setCurrentUser(null);
-        });
-    } else {
-      // If the token is not available (or is removed)
-      setIsLoggedIn(false);
-      setIsLoading(false);
-      setCurrentUser(null);
-    }
-  };
-
-  const removeToken = () => {
-    // Upon logout, remove the token from the localStorage
-    localStorage.removeItem("authToken");
-  };
-
-  const logOutUser = () => {
-    // To log out the user, remove the token
-    removeToken();
-    // and update the state variables
-    authenticateUser();
+      // if (currentUser.role === "user") {
+      //   navigate("/user/profile");
+      // }
+      // if (currentUser.role === "partner") {
+      //   console.log("going in partner log");
+      //   navigate("/partner/profile");
+      // }
+    };
+    setAccessToken(token);
+    getCurrentUser(navigateToProfile);
+    //guardar mi token en el localStorage
   };
 
   useEffect(() => {
-    authenticateUser();
+    if (getAccessToken()) {
+      getCurrentUser();
+    } else {
+      setIsAuthLoaded(true);
+    }
   }, []);
 
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn,
-        isLoading,
         currentUser,
-        storeToken,
-        authenticateUser,
-        logOutUser,
         typePartner,
         typeUser,
-        
+        isAuthLoaded,
+        login,
       }}
     >
-      {props.children}
+      {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export { AuthProviderWrapper, AuthContext };
+export default AuthContextProvider;
