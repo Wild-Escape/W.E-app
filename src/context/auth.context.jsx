@@ -15,7 +15,8 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const getCurrentUser = (callback) => {
-    getCurrentUserService().then((res) => {
+    getCurrentUserService()
+    .then((res) => {
       setCurrentUser(res.user);
       setIsAuthLoaded(true);
 

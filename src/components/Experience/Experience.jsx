@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { addToFavoriteService } from "../../services/favorite.service";
-import { FaMapMarkerAlt, FaClock, FaEuroSign, FaRegHeart, FaHeart } from "react-icons/fa";
+import { FaMapMarkerAlt, FaClock, FaEuroSign,FaDollarSign, FaRegHeart, FaHeart } from "react-icons/fa";
 
 function Experience({
   isFavorite,
@@ -9,12 +9,12 @@ function Experience({
   name,
   price,
   location,
-  category,
+  durationType,
   gallery,
   duration,
   intro,
   type,
-  highlights,
+  currency,
   coordinates,
   availableDates,
   partner,
@@ -71,9 +71,15 @@ function Experience({
           <div>
             <FaClock className="me-2" />
             <span>{duration}</span>
+            <span>{durationType}</span>
           </div>
           <div>
-            <FaEuroSign className="me-2" />
+            {currency === "dollars" ? (
+              <FaDollarSign className="me-2" />
+            ) : (
+              <FaEuroSign className="me-2" />
+  )}
+            
             <span>{price} / person</span>
           </div>
         </div>
@@ -92,7 +98,7 @@ function Experience({
               <FaRegHeart  />
             )}
           </div>
-          <Link to={`/experience/${_id}`} className="btn btn-primary btn-sm">
+          <Link to={`/user/experience/${_id}`} className="btn btn-primary btn-sm">
             See details
           </Link>
         </div>
