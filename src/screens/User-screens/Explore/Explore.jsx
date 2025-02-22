@@ -32,12 +32,12 @@ function Explore() {
             name={experience.name}
             price={experience.price}
             location={experience.location}
-            category={experience.category}
+            durationType={experience.durationType}
             gallery={experience.gallery}
             duration={experience.duration}
             intro={experience.intro}
             type={experience.type}
-            highlights={experience.highlights}
+            currency={experience.currency}
             coordinates={experience.coordinates}
             availableDates={experience.availableDates}
             partner={experience.partner}
