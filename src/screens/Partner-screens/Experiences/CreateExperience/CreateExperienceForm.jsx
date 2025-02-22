@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 
+
 import { createExperienceService } from "../../../../services/experiences.service";
 import { useNavigate } from "react-router-dom";
 import Autocomplete from "react-google-autocomplete";
@@ -17,15 +18,16 @@ function CreatePost() {
     name: "",
     intro: "",
     price: 0,
-    category: [],
-    duration: "",
+    currency:"",
+    duration: 0,
+    durationType:"",
     availableDates: [],
     type: "",
     activities: "",
     location: "",
     coordinates: {},
     gallery: [],
-    highlights: [],
+    
   });
 
   const handleChange = (e) => {
@@ -81,8 +83,9 @@ function CreatePost() {
     uploadData.append("name", formData.name);
     uploadData.append("intro", formData.intro);
     uploadData.append("price", formData.price);
-    uploadData.append("category", JSON.stringify(formData.category));
+    uploadData.append("currency", formData.currency);
     uploadData.append("duration", formData.duration);
+    uploadData.append("durationType", formData.durationType);
     uploadData.append(
       "availableDates",
       JSON.stringify(formData.availableDates)
@@ -91,7 +94,7 @@ function CreatePost() {
     uploadData.append("activities", formData.activities);
     uploadData.append("location", formData.location);
     uploadData.append("coordinates", JSON.stringify(formData.coordinates));
-    uploadData.append("highlights", JSON.stringify(formData.highlights));
+    
 
     // Append gallery files
     formData.gallery.forEach((file) => {
@@ -149,6 +152,7 @@ function CreatePost() {
 
             {/* Price */}
             <div className="mb-3">
+              <div>
               <label htmlFor="price" className="form-label">
                 Price
               </label>
@@ -161,31 +165,39 @@ function CreatePost() {
                 onChange={handleChange}
                 required
               />
+              </div>
+              <div >
+              <label htmlFor="currency" className="form-label">
+                Currency
+              </label>
+              <select
+              type="text"
+                className="form-select"
+                id="currency"
+                name="currency"
+                value={formData.currency}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select a currency</option>
+                <option value="euros">€</option>
+                <option value="dollars">$</option>
+                
+                
+              </select>
+            </div>
             </div>
 
-            {/* Category */}
-            <div className="mb-3">
-              <label htmlFor="category" className="form-label">
-                Category (comma-separated)
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="category"
-                name="category"
-                value={formData.category.join(", ")}
-                onChange={(e) => handleArrayChange(e, "category")}
-                required
-              />
-            </div>
+           
 
             {/* Duration */}
             <div className="mb-3">
+              <div>
               <label htmlFor="duration" className="form-label">
                 Duration
               </label>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 id="duration"
                 name="duration"
@@ -193,6 +205,28 @@ function CreatePost() {
                 onChange={handleChange}
                 required
               />
+
+              </div>
+              <div >
+              <label htmlFor="durationType" className="form-label">
+                Duration type
+              </label>
+              <select
+              type="text"
+                className="form-select"
+                id="durationType"
+                name="durationType"
+                value={formData.durationType}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select a type</option>
+                <option value="hour">Hour</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                
+              </select>
+            </div>
             </div>
 
             {/* Dates */}
@@ -227,6 +261,7 @@ function CreatePost() {
                 <option value="express">Express</option>
                 <option value="short stay">Short Stay</option>
                 <option value="long stay">Long Stay</option>
+                <option value="mixed stay">Mixed Stay</option>
               </select>
             </div>
 
@@ -310,20 +345,7 @@ function CreatePost() {
                 multiple
               />
             </div>
-            {/* Highlights */}
-            <div className="mb-3">
-              <label htmlFor="highlights" className="form-label">
-                Highlights (comma-separated)
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="highlights"
-                name="highlights"
-                value={formData.highlights}
-                onChange={(e) => handleArrayChange(e, "highlights")}
-              />
-            </div>
+           
 
             <button type="submit" className="btn btn-primary">
               Submit

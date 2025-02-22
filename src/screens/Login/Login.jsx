@@ -29,11 +29,8 @@ function Login() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-
     loginService(formData)
       .then((res) => {
-        
         login(res);
       })
       .catch((error) => {
