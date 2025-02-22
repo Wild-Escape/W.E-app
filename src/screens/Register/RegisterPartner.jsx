@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {createUser} from '../../services/user.service';
+import { createUser } from "../../services/auth.service";
 function RegisterAdmin () {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
@@ -18,10 +18,10 @@ function RegisterAdmin () {
     const requestBody = {name,
         email, password , role : "partner"
     }
-    console.log("user data-->", requestBody)
+    
     createUser(requestBody)
     .then(()=>{
-        console.log("user created :)")
+        
         navigate("/login")
     })
     .catch((err) => {
