@@ -104,7 +104,7 @@ function CreatePost() {
       },
     })
       .then(() => {
-        navigate("/partner/postings");
+        navigate("/partner/experiences");
       })
       .catch((error) => {
         console.error("Error creating experience:", error);
