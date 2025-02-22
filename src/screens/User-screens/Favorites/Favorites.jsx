@@ -1,10 +1,16 @@
 import Experience from "../../../components/Experience/Experience";
-import { useState, useEffect, use } from "react";
-
+import { useState, useEffect} from "react";
+import { getFavoritesService } from "../../../services/favorite.service";
 function Favorites () {
     const [favorites, setFavorites] = useState([]);
     useEffect(() => {
-       
+       getFavoritesService()
+       .then((res)=>{
+        console.log("this are all the favorites-->>", res)
+        setFavorites(res.favExperiences
+        )
+       })
+       .catch((error)=>next(error))
     }
     , []);
     return (

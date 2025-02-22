@@ -92,7 +92,7 @@ function Experience({
               <FaRegHeart  />
             )}
           </div>
-          <Link to={`/experiences/${_id}`} className="btn btn-primary btn-sm">
+          <Link to={`/experience/${_id}`} className="btn btn-primary btn-sm">
             See details
           </Link>
         </div>
