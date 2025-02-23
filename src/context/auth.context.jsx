@@ -61,6 +61,7 @@ export const AuthContextProvider = ({ children }) => {
         typeUser,
         isAuthLoaded,
         login,
+        getCurrentUser
       }}
     >
       {children}

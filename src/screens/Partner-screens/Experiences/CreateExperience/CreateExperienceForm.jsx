@@ -39,13 +39,7 @@ function CreatePost() {
     }));
   };
 
-  const handleArrayChange = (e, field) => {
-    const { value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [field]: value.split(",").map((item) => item.trim()),
-    }));
-  };
+  
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
