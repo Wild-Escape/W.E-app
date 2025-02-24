@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../context/auth.context";
 import { logout } from "../../../store/AccesTokenStore";
-import { FaUserCircle, FaSignOutAlt, FaIdBadge, FaRegCalendarCheck } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaIdBadge, FaRegCalendarCheck, FaUserEdit } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 function PartnerProfile() {
   const { currentUser } = useContext(AuthContext);
@@ -24,10 +25,7 @@ function PartnerProfile() {
               <div className="row align-items-center mb-4">
                 {/* Profile Picture Placeholder */}
                 <div className="col-md-4 text-center mb-3 mb-md-0">
-                  <div className="avatar-placeholder rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto" 
-                    style={{ width: '120px', height: '120px' }}>
-                    <span className="display-4">{currentUser.name[0]}</span>
-                  </div>
+                <img src={currentUser.profileImage} alt="" style={{ width: "120px", height: "120px", borderRadius:"50%" }}/>
                 </div>
 
                 {/* User Info */}
@@ -68,6 +66,10 @@ function PartnerProfile() {
 
             {/* Footer with Logout */}
             <div className="card-footer bg-light d-flex justify-content-end">
+            <Link className="btn btn-info d-flex align-items-center me-3" to={`/partner/edit/${currentUser.id}`}>
+                <FaUserEdit className="me-2" />
+                Edit Profile
+              </Link> 
               <button 
                 onClick={logout} 
                 className="btn btn-danger d-flex align-items-center"

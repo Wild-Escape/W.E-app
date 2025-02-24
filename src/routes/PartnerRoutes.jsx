@@ -7,6 +7,7 @@ import CreateExperience from '../screens/Partner-screens/Experiences/CreateExper
 import PartnerMessages from '../screens/Partner-screens/PartnerMessages/PartnerMessages';
 import PartnerProfile from '../screens/Partner-screens/PartnerProfile/PartnerProfile';
 import PartnerExperienceDetails from "../screens/Partner-screens/Experiences/PartnerExperienceDetails/PartnerExperienceDetails";
+import EditPartnerProfile from "../screens/Partner-screens/PartnerProfile/EditPartnerProfile/EditPartnerProfile";
 
 const PartnerRoutes = [
 <Route key="/partner/today" path="/partner/today" element={<IsPartner><Today /></IsPartner>} />,
@@ -15,7 +16,8 @@ const PartnerRoutes = [
 <Route key="partner/create-post" path="/partner/create-post" element={<IsPartner><CreateExperience /></IsPartner>} />,
 <Route key="partner/messages" path="/partner/messages" element={<IsPartner><PartnerMessages /></IsPartner>} />,
 <Route key="partner/profile" path="/partner/profile" element={<IsPartner><PartnerProfile /></IsPartner>} />,
-<Route key="/partner/experience/:id/details" path="/partner/experience/:id/details" element={<IsPartner><PartnerExperienceDetails /></IsPartner>} />
+<Route key="/partner/experience/:id/details" path="/partner/experience/:id/details" element={<IsPartner><PartnerExperienceDetails /></IsPartner>} />,
+<Route key="partner/edit/:id" path="partner/edit/:id" element={<IsPartner><EditPartnerProfile /></IsPartner>} />
 
 ]
 
