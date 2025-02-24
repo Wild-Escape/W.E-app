@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { getExperienceDetails } from "../../../../services/experiences.service"
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
 function ExperienceDetails() {
     const { expeienceId } = useParams();
@@ -95,13 +96,13 @@ function ExperienceDetails() {
 
                 </div>
                 {experience.type[0] === "express" ? (
-                    <button className="btn btn-success mt-4">
+                    <Link to="/user/checkout" className="btn btn-success mt-4">
                         Reserve now
-                    </button>
+                    </Link>
                 ) : (
-                    <button className="btn btn-success mt-4">
+                    <Link className="btn btn-success mt-4">
                         Send a booking request
-                    </button>
+                    </Link>
                 )}
             </div>}
         </div>
