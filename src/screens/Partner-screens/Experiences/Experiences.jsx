@@ -11,10 +11,7 @@ function Experiences() {
         console.log("in partner experiences", res.shelterTrips);
         setPartnerExperiences(res.shelterTrips);
       })
-      .catch((error) => {
-        console.log(error)
-        next(error)
-      });
+      .catch((error)=>next(error))
   }, []);
   return (
     <div className="p-3" style={{marginBottom: "50px"}}>
