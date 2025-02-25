@@ -6,7 +6,8 @@ function IsUser( { children } ) {
   
   const { isAuthLoaded, currentUser } = useContext(AuthContext);
  
- 
+ console.log("is auth-->", isAuthLoaded)
+ console.log("current user role-->", currentUser.role);
   
  
   if (!isAuthLoaded || currentUser.role === "partner") {
