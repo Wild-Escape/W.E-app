@@ -7,7 +7,9 @@ import Favorites from '../screens/User-screens/Favorites/Favorites';
 import Explore from '../screens/User-screens/Explore/Explore';
 import ExperienceDetails from "../screens/User-screens/Explore/ExperienceDetails/ExperienceDetails";
 import EditUserProfile from "../screens/User-screens/UserProfile/EditUserProfile/EditUserProfile";
-import StripeCheckout from "../screens/User-screens/Explore/ExperienceDetails/StripeCheckout/StripeCheckout";
+import StripeComponent from "../screens/User-screens/Explore/ExperienceDetails/StripeComponent/StripeComponent";
+import Completion from "../screens/User-screens/Explore/ExperienceDetails/StripeComponent/Completion/Completion";
+
 
 const UserRoutes = [
 <Route key="/user/explore" path="/user/explore" element={<IsUser><Explore /></IsUser>} />,
@@ -17,7 +19,9 @@ const UserRoutes = [
 <Route key="/user/profile" path="/user/profile" element={<IsUser><UserProfile /></IsUser>} />,
 <Route key="/user/:expeienceId" path="user/experience/:expeienceId" element={<IsUser><ExperienceDetails /></IsUser>} />,
 <Route key="/user/edit/:id" path="/user/edit/:id" element={<IsUser><EditUserProfile /></IsUser>} />,
-<Route key="/user/checkout" path="/user/checkout" element={<IsUser><StripeCheckout /></IsUser>} />
+<Route key="/user/checkout" path="/user/checkout" element={<IsUser><StripeComponent /></IsUser>} />,
+<Route key="/user/completed/payment" path="/user/completed/payment" element={<IsUser><Completion /></IsUser>} />,
+
 
    
 ]
