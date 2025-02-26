@@ -30,10 +30,12 @@ function CheckoutForm() {
       setMessage(error.message);
     }
 
+    // call to the backend to store the data of the payment
+
     setIsProcessing(false);
   };
   return (
-    <div className="p-3" style={{marginBottom:"100px"}}>
+    <div style={{marginBottom:"100px"}}>
       <form id="payment-form" onSubmit={handleSubmit}>
         <PaymentElement />
         <button disabled={isProcessing} className="btn btn-primary mt-3">

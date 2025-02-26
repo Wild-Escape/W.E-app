@@ -6,10 +6,27 @@ import {
 } from "../../../../../services/stripe.service";
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
+import { useParams } from "react-router-dom";
+import { getExperienceDetails } from "../../../../../services/experiences.service";
 
 function StripeComponent() {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+
+  const [experience, setExperience] = useState(null);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    getExperienceDetails(id)
+      .then((res) => {
+        console.log("Data in stripe --->>", res.trip);
+        setExperience(res.trip);
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }, []);
 
   useEffect(() => {
     getPublishableKeyService()
@@ -30,6 +47,28 @@ function StripeComponent() {
   return (
     <div>
       <h1>Payment Element</h1>
+      {experience && (
+        <div className="card mb-4">
+          <div className="card-body">
+            <h2 className="card-title h4 mb-3">{experience.name}</h2>
+            <div className="row">
+              <div className="col-6">
+                <p className="mb-1">
+                  <strong>Duration:</strong> {experience.duration} {experience.durationType}s
+                </p>
+                <p className="mb-0">
+                  <strong>Currency:</strong> {experience.currency}
+                </p>
+              </div>
+              <div className="col-6 text-end">
+                <p className="h5 mb-0">
+                  Total: {experience.price.toFixed(2)} {experience.currency === 'euros' ? '€' : experience.currency}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm />

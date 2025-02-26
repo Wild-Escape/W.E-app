@@ -10,7 +10,7 @@ function Explore() {
   useEffect(() => {
     getAllExperiences()
       .then((res) => {
-        console.log("seeing response", res);
+       
         setExperiences(res.experiences);
         setFavorites(res.favorites);
       })

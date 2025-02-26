@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
 function ExperienceDetails() {
     const { expeienceId } = useParams();
-    console.log("the id-->", expeienceId)
+    
     const [experience, setExperience] = useState(null)
     useEffect(() => {
         getExperienceDetails(expeienceId)
@@ -96,7 +96,7 @@ function ExperienceDetails() {
 
                 </div>
                 {experience.type[0] === "express" ? (
-                    <Link to="/user/checkout" className="btn btn-success mt-4">
+                    <Link to={`/user/${experience.id}/payment`} className="btn btn-success mt-4">
                         Reserve now
                     </Link>
                 ) : (
