@@ -71,7 +71,7 @@ function StripeComponent() {
       )}
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm />
+          <CheckoutForm data={experience} />
         </Elements>
       )}
     </div>

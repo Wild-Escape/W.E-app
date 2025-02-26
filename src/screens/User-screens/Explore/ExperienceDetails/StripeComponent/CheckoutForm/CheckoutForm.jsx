@@ -2,10 +2,28 @@ import "./CheckoutForm.css";
 import { useEffect, useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
+import { createPaymentService } from "../../../../../../services/payment.service";
 
-function CheckoutForm() {
+function CheckoutForm(data) {
   const stripe = useStripe();
   const elements = useElements();
+
+  
+  console.log("available dates-->", data.availableDates);
+  const paymentData = {
+    experience: data.id,
+    price: {
+      amount: data.price,
+      currency: data.currency,
+    },
+    dates: {
+      start: data.availableDates[0].start,
+      end: data.availableDates[0].end,
+    }
+    
+  }
+
+  console.log("experiece dataFormated in checkout form", data.availableDates);
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -25,6 +43,15 @@ function CheckoutForm() {
         return_url: `${window.location.origin}/user/completed/payment`,
       },
     });
+
+    createPaymentService(paymentData) 
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
 
     if (error) {
       setMessage(error.message);
