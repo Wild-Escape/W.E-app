@@ -12,14 +12,17 @@ function Favorites () {
        })
        .catch((error)=>next(error))
     }
-    , []);
+    , [favorites]);
     return (
-        <div className="p-4">
+        <div className="p-4" style={{marginBottom:"55px"}}> 
             <p>Here will be the liked experiences of the user</p>
             {favorites && favorites.map((experience) => (   
                 
                     
                     <Experience key={experience._id}
+                    isFavorite={favorites.find(
+                        (fav) => fav._id === experience._id
+                      )}
                         _id={experience._id}
                         name={experience.name}
                         price={experience.price}

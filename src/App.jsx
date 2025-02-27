@@ -12,7 +12,7 @@ function App() {
     <>
       <APIProvider
         apiKey={mapsApiKey}
-        onLoad={() => console.log("Maps API has loaded.")}
+        
       >
         <NavBar />
 

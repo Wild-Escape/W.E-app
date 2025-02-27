@@ -1,22 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 import { getExperienceDetails } from "../../../../services/experiences.service";
+import {
+  getFavoritesService,
+  addToFavoriteService,
+} from "../../../../services/favorite.service";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Map, Marker } from "@vis.gl/react-google-maps";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 function ExperienceDetails() {
-  const { expeienceId } = useParams();
+  const { experienceId } = useParams();
 
   const mapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-
+  const [userFavorites, setuserFavorites] = useState(null);
   const [experience, setExperience] = useState(null);
+  const [favorite, setFavorite] = useState(null);
+
   useEffect(() => {
-    getExperienceDetails(expeienceId)
+    getFavoritesService()
       .then((res) => {
-        console.log(
-          "chechinkg the latitude",
-          Number(JSON.parse(res.trip.coordinates).lat.toFixed(4))
-        );
+        setuserFavorites(res.favExperiences);
+      })
+      .catch((error) => next(error));
+  }, []);
+
+  useEffect(() => {
+    getExperienceDetails(experienceId)
+      .then((res) => {
         setExperience(res.trip);
       })
       .catch((error) => {
@@ -24,6 +35,29 @@ function ExperienceDetails() {
         next(error);
       });
   }, []);
+
+  useEffect(() => {
+    if (userFavorites && userFavorites.length > 0) {
+      const isFavorite = userFavorites.some(
+        (favorite) => favorite.id === experienceId
+      );
+      setFavorite(isFavorite);
+    }
+  }, [userFavorites]);
+
+  const submitFavorites = () => {
+    addToFavoriteService(experienceId)
+      .then((res) => {
+        if (res.message === "Added to favorites") {
+          setFavorite(true);
+        } else {
+          setFavorite(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -126,16 +160,45 @@ function ExperienceDetails() {
               Created at: {new Date(experience.createdAt).toLocaleDateString()}
             </p>
           </div>
-          {experience.type[0] === "express" ? (
-            <Link
-              to={`/user/${experience.id}/payment`}
-              className="btn btn-success mt-4"
-            >
-              Reserve now
-            </Link>
-          ) : (
-            <Link className="btn btn-success mt-4">Send a booking request</Link>
-          )}
+          <div className="mt-4 d-flex flex-column ">
+            {favorite ? (
+              <button
+                onClick={submitFavorites}
+                className="btn btn-danger d-flex justify-content-around align-items-center"
+                style={{ cursor: "pointer", width: "fit-content" }}
+              >
+                Remove from favorite
+                <FaRegHeart style={{ marginLeft: "5px" }} />
+              </button>
+            ) : (
+              <button
+                onClick={submitFavorites}
+                className="btn btn-primary d-flex justify-content-around align-items-center"
+                style={{ cursor: "pointer", width: "fit-content" }}
+              >
+                Add to favorite
+                <FaHeart style={{ marginLeft: "5px" }} />
+                
+              </button>
+            )}
+
+            {experience.type[0] === "express" ? (
+              <Link
+                to={`/user/${experience.id}/payment`}
+                className="btn btn-success mt-2"
+                style={{ cursor: "pointer", width: "fit-content" }}
+              >
+                Reserve now
+              </Link>
+            ) : (
+              <Link
+                className="btn btn-success mt-2"
+                style={{ cursor: "pointer", width: "fit-content" }}
+              >
+                Send a booking request
+              </Link>
+            )}
+          </div>
         </div>
       )}
     </div>
