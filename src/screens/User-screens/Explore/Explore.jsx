@@ -10,7 +10,6 @@ function Explore() {
   useEffect(() => {
     getAllExperiences()
       .then((res) => {
-       
         setExperiences(res.experiences);
         setFavorites(res.favorites);
       })
@@ -43,6 +42,7 @@ function Explore() {
             partner={experience.partner}
             createdAt={experience.createdAt}
             status={experience.status}
+            partnerName={experience.partner.name}
           />
         </div>
       ))}

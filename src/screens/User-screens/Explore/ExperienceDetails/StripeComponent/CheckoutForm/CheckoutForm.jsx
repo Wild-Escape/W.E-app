@@ -9,17 +9,17 @@ function CheckoutForm(data) {
   const elements = useElements();
 
   
-  console.log("available dates-->", data.availableDates);
+ // console.log("available dates-->", data.availableDates);
   const paymentData = {
     experience: data.id,
     price: {
       amount: data.price,
       currency: data.currency,
     },
-    dates: {
-      start: data.availableDates[0].start,
-      end: data.availableDates[0].end,
-    }
+    // dates: {
+    //   start: data.availableDates[0].start,
+    //   end: data.availableDates[0].end,
+    // }
     
   }
 

@@ -20,7 +20,8 @@ function Experience({
   partner,
   createdAt,
   status,
-  setFavorites
+  setFavorites,
+  partnerName
 }) {
   const [favorite, setFavorite] = useState(isFavorite);
 
@@ -59,6 +60,7 @@ function Experience({
 
         {/* Title */}
         <h5 className="card-title">{name}</h5>
+        <h6 className="card-title">Partner: {partnerName}</h6>
 
         {/* Location */}
         <div className="d-flex align-items-center mb-2">

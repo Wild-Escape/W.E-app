@@ -44,6 +44,7 @@ function ExperienceDetails() {
                 <div className="row g-4">
                     {/* Left Column */}
                     <div className="col-md-8">
+                        <h4>Partner: {experience.partner.name}</h4>
                         <p className="lead text-muted mb-4">{experience.intro}</p>
 
                         {/* Duration & Type */}
