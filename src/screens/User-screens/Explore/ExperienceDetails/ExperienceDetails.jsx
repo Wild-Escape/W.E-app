@@ -37,7 +37,7 @@ function ExperienceDetails() {
   }, []);
 
   useEffect(() => {
-    if (userFavorites && userFavorites.length > 0) {
+    if (userFavorites) {
       const isFavorite = userFavorites.some(
         (favorite) => favorite.id === experienceId
       );
@@ -178,7 +178,6 @@ function ExperienceDetails() {
               >
                 Add to favorite
                 <FaHeart style={{ marginLeft: "5px" }} />
-                
               </button>
             )}
 
