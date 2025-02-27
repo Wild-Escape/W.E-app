@@ -9,6 +9,7 @@ import Autocomplete from "react-google-autocomplete";
 import "react-datepicker/dist/react-datepicker.css";
 
 function CreatePost() {
+ 
   const autocompleteRef = useRef(null);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
@@ -309,7 +310,7 @@ function CreatePost() {
               }}
               onPlaceSelected={handlePlaceSelect}
             
-                apiKey="AIzaSyBR9AHmU3Iw9rsvCcC4uKXJRg3aQ_RXWRY"
+                apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
                 type="text"
                   className="form-control"
                   id="location"

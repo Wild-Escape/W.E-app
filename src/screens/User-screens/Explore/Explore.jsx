@@ -6,6 +6,7 @@ import Experience from "../../../components/Experience/Experience";
 function Explore() {
   const [experiences, setExperiences] = useState([]);
   const [favorites, setFavorites] = useState([]);
+   console.log("test api key--->", import.meta.env.VITE_GOOGLE_MAPS_API_KEY)
 
   useEffect(() => {
     getAllExperiences()
