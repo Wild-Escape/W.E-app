@@ -1,15 +1,14 @@
 import { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 
-
 import { createExperienceService } from "../../../../services/experiences.service";
 import { useNavigate } from "react-router-dom";
 import Autocomplete from "react-google-autocomplete";
 
+
 import "react-datepicker/dist/react-datepicker.css";
 
 function CreatePost() {
- 
   const autocompleteRef = useRef(null);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
@@ -19,16 +18,15 @@ function CreatePost() {
     name: "",
     intro: "",
     price: 0,
-    currency:"",
+    currency: "",
     duration: 0,
-    durationType:"",
+    durationType: "",
     availableDates: [],
     type: "",
     activities: "",
     location: "",
     coordinates: {},
     gallery: [],
-    
   });
 
   const handleChange = (e) => {
@@ -40,7 +38,6 @@ function CreatePost() {
     }));
   };
 
-  
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
@@ -56,9 +53,9 @@ function CreatePost() {
     }));
   };
   const handlePlaceSelect = (place) => {
-   
     if (place.geometry) {
-      setFormData((prevFormData) => ({ // 👈 Use functional update
+      setFormData((prevFormData) => ({
+        // 👈 Use functional update
         ...prevFormData, // Keep existing data
         location: place.formatted_address,
         coordinates: {
@@ -89,13 +86,12 @@ function CreatePost() {
     uploadData.append("activities", formData.activities);
     uploadData.append("location", formData.location);
     uploadData.append("coordinates", JSON.stringify(formData.coordinates));
-    
 
     // Append gallery files
     formData.gallery.forEach((file) => {
       uploadData.append("gallery", file); // Key name depends on your backend
     });
-    
+
     createExperienceService(uploadData, {
       headers: {
         Authorization: `Bearer ${storedToken}`,
@@ -109,45 +105,44 @@ function CreatePost() {
       });
   };
   return (
-   
-      <div>
-        <div className="container mt-5" style={{ marginBottom: "70px" }}>
-          <h2>Create Experience</h2>
-          <form onSubmit={handleSubmit}>
-            {/* Name */}
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">
-                Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
+    <div>
+      <div className="container mt-5" style={{ marginBottom: "80px" }}>
+        <h2>Create Experience</h2>
+        <form onSubmit={handleSubmit}>
+          {/* Name */}
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {/* Intro */}
-            <div className="mb-3">
-              <label htmlFor="intro" className="form-label">
-                Intro
-              </label>
-              <textarea
-                className="form-control"
-                id="intro"
-                name="intro"
-                value={formData.intro}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          {/* Intro */}
+          <div className="mb-3">
+            <label htmlFor="intro" className="form-label">
+              Intro
+            </label>
+            <textarea
+              className="form-control"
+              id="intro"
+              name="intro"
+              value={formData.intro}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {/* Price */}
-            <div className="mb-3">
-              <div>
+          {/* Price */}
+          <div className="mb-3">
+            <div>
               <label htmlFor="price" className="form-label">
                 Price
               </label>
@@ -160,13 +155,13 @@ function CreatePost() {
                 onChange={handleChange}
                 required
               />
-              </div>
-              <div >
+            </div>
+            <div>
               <label htmlFor="currency" className="form-label">
                 Currency
               </label>
               <select
-              type="text"
+                type="text"
                 className="form-select"
                 id="currency"
                 name="currency"
@@ -177,17 +172,13 @@ function CreatePost() {
                 <option value="">Select a currency</option>
                 <option value="euros">€</option>
                 <option value="dollars">$</option>
-                
-                
               </select>
             </div>
-            </div>
+          </div>
 
-           
-
-            {/* Duration */}
-            <div className="mb-3">
-              <div>
+          {/* Duration */}
+          <div className="mb-3">
+            <div>
               <label htmlFor="duration" className="form-label">
                 Duration
               </label>
@@ -200,14 +191,13 @@ function CreatePost() {
                 onChange={handleChange}
                 required
               />
-
-              </div>
-              <div >
+            </div>
+            <div>
               <label htmlFor="durationType" className="form-label">
                 Duration type
               </label>
               <select
-              type="text"
+                type="text"
                 className="form-select"
                 id="durationType"
                 name="durationType"
@@ -219,66 +209,65 @@ function CreatePost() {
                 <option value="hour">Hour</option>
                 <option value="week">Week</option>
                 <option value="month">Month</option>
-                
               </select>
             </div>
-            </div>
+          </div>
 
-            {/* Dates */}
-            <div className="mb-3">
-              <label htmlFor="dates" className="form-label">
-                Select available dates
-              </label>
-              <DatePicker
-                selected={startDate}
-                onChange={onChange}
-                startDate={startDate}
-                endDate={endDate}
-                selectsRange
-                inline
-              />
-            </div>
+          {/* Dates */}
+          <div className="mb-3">
+            <label htmlFor="dates" className="form-label">
+              Select available dates
+            </label>
+            <DatePicker
+              selected={startDate}
+              onChange={onChange}
+              startDate={startDate}
+              endDate={endDate}
+              selectsRange
+              inline
+            />
+          </div>
 
-            {/* Type */}
-            <div className="mb-3">
-              <label htmlFor="type" className="form-label">
-                Type
-              </label>
-              <select
-                className="form-select"
-                id="type"
-                name="type"
-                value={formData.type}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select a type</option>
-                <option value="express">Express</option>
-                <option value="short stay">Short Stay</option>
-                <option value="long stay">Long Stay</option>
-                <option value="mixed stay">Mixed Stay</option>
-              </select>
-            </div>
+          {/* Type */}
+          <div className="mb-3">
+            <label htmlFor="type" className="form-label">
+              Type
+            </label>
+            <select
+              className="form-select"
+              id="type"
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select a type</option>
+              <option value="express">Express</option>
+              <option value="short stay">Short Stay</option>
+              <option value="long stay">Long Stay</option>
+              <option value="mixed stay">Mixed Stay</option>
+            </select>
+          </div>
 
-            {/* Activities */}
-            <div className="mb-3">
-              <label htmlFor="activities" className="form-label">
-                Activities
-              </label>
-              <textarea
-                className="form-control"
-                id="activities"
-                name="activities"
-                value={formData.activities}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          {/* Activities */}
+          <div className="mb-3">
+            <label htmlFor="activities" className="form-label">
+              Activities
+            </label>
+            <textarea
+              className="form-control"
+              id="activities"
+              name="activities"
+              value={formData.activities}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {/* Location */}
+          {/* Location */}
 
-            {/* Coordinates */}
-            {/* <div className="mb-3">
+          {/* Coordinates */}
+          {/* <div className="mb-3">
               <label htmlFor="location" className="form-label">
                 Location
               </label>
@@ -300,55 +289,51 @@ function CreatePost() {
                 />
               </Autocomplete>
             </div> */}
-            <div className="mb-3">
-              <label htmlFor="location" className="form-label">
-                Location
-              </label>
+          <div className="mb-3">
+            <label htmlFor="location" className="form-label">
+              Location
+            </label>
+           
               <Autocomplete
-              onLoad={(autocomplete) => {
-                autocompleteRef.current = autocomplete;
-              }}
-              onPlaceSelected={handlePlaceSelect}
-            
+                onLoad={(autocomplete) => {
+                  autocompleteRef.current = autocomplete;
+                }}
+                onPlaceSelected={handlePlaceSelect}
                 apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
                 type="text"
-                  className="form-control"
-                  id="location"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  required
-                  placeholder="Search for a location..."
-                  fields={["geometry", "name", "formatted_address"]}
-              />
-                
-
-              
-            </div>
-            {/* Gallery */}
-            <div className="mb-3">
-              <label htmlFor="imageUrl" className="form-label">
-                Gallery
-              </label>
-              <input
-                type="file"
                 className="form-control"
-                id="gallery"
-                name="gallery"
+                id="location"
+                name="location"
+                value={formData.location}
                 onChange={handleChange}
                 required
-                multiple
+                placeholder="Search for a location..."
+                fields={["geometry", "name", "formatted_address"]}
               />
-            </div>
-           
+            
+          </div>
+          {/* Gallery */}
+          <div className="mb-3">
+            <label htmlFor="imageUrl" className="form-label">
+              Gallery
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="gallery"
+              name="gallery"
+              onChange={handleChange}
+              required
+              multiple
+            />
+          </div>
 
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </form>
-        </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </div>
-    
+    </div>
   );
 }
 

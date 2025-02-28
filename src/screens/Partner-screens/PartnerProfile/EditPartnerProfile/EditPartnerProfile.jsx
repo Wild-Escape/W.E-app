@@ -6,6 +6,7 @@ import { getPartnerDetailsService, editPartnerService } from "../../../../servic
 function EditPartnerProfile () {
       const { id } = useParams();
       const [editData, setEditData] = useState(null);
+      const [error, setError] = useState(null)
     
       const { getCurrentUser} = useContext(AuthContext)
     
@@ -14,14 +15,18 @@ function EditPartnerProfile () {
       useEffect(() => {
         getPartnerDetailsService(id)
           .then((response) => {
+
+            console.log("respose in edit profile", response)
             setEditData({
                 name: response.user.name,
                 email: response.user.email,
-                profileImage : ""
+                profileImage : response.user.profileImage
             });
             
           })
-          .catch((error) => next(error));
+          .catch((error) => {
+            setError(error)
+            next(error)});
       }, []);
       const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -48,9 +53,11 @@ function EditPartnerProfile () {
           .then((response) => {
             console.log("updated user", response);
             getCurrentUser()
-            navigate("/user/profile")
+            navigate("/partner/profile")
           })
-          .catch((error) => next(error));
+          .catch((error) => {
+            console.log("error in edit", error)
+            next(error)})
       };
     return (
         <div>
@@ -63,7 +70,7 @@ function EditPartnerProfile () {
                     <h2 className="card-title text-center mb-0">Edit Profile</h2>
                   </div>
                   <div className="card-body p-4">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} >
                       {/* Profile Image Upload */}
                       <div className="mb-4 text-center">
                         <label htmlFor="profileImage" className="form-label fw-semibold">
@@ -77,6 +84,7 @@ function EditPartnerProfile () {
                           onChange={handleChange}
                           accept="image/*"
                           required
+                          
                         />
                         <div className="form-text">Recommended size: 200x200 pixels</div>
                       </div>

@@ -34,7 +34,7 @@ function Login() {
         login(res);
       })
       .catch((error) => {
-        
+        console.log("error in login-->",error)
         setErrorMessage(error.message);
       });
   };
@@ -78,7 +78,7 @@ function Login() {
                   Login
                 </button>
                 {errorMessage && (
-                  <div className="alert alert-danger" role="alert">
+                  <div className="alert alert-danger mt-2" role="alert">
                     {errorMessage}
                   </div>
                 )}
