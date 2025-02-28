@@ -92,6 +92,7 @@ function CreatePost() {
       uploadData.append("gallery", file); // Key name depends on your backend
     });
 
+    console.log("check data befor server call", uploadData)
     createExperienceService(uploadData, {
       headers: {
         Authorization: `Bearer ${storedToken}`,
@@ -263,32 +264,6 @@ function CreatePost() {
               required
             />
           </div>
-
-          {/* Location */}
-
-          {/* Coordinates */}
-          {/* <div className="mb-3">
-              <label htmlFor="location" className="form-label">
-                Location
-              </label>
-              <Autocomplete
-                onLoad={(autocomplete) => {
-                  autocompleteRef.current = autocomplete;
-                }}
-                onPlaceChanged={handlePlaceSelect}
-              >
-                <input
-                  type="text"
-                  className="form-control"
-                  id="location"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  required
-                  placeholder="Search for a location..."
-                />
-              </Autocomplete>
-            </div> */}
           <div className="mb-3">
             <label htmlFor="location" className="form-label">
               Location

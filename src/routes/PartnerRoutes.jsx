@@ -8,6 +8,7 @@ import PartnerMessages from '../screens/Partner-screens/PartnerMessages/PartnerM
 import PartnerProfile from '../screens/Partner-screens/PartnerProfile/PartnerProfile';
 import PartnerExperienceDetails from "../screens/Partner-screens/Experiences/PartnerExperienceDetails/PartnerExperienceDetails";
 import EditPartnerProfile from "../screens/Partner-screens/PartnerProfile/EditPartnerProfile/EditPartnerProfile";
+import PartnerExperienceEdit from "../screens/Partner-screens/Experiences/PartnerExperienceDetails/PartnerExperienceEdit/PartnerExperienceEdit";
 
 
 const PartnerRoutes = [
@@ -19,6 +20,9 @@ const PartnerRoutes = [
 <Route key="partner/profile" path="/partner/profile" element={<IsPartner><PartnerProfile /></IsPartner>} />,
 <Route key="partner/experience/:id/details" path="/partner/experience/:id/details" element={<IsPartner><PartnerExperienceDetails /></IsPartner>} />,
 <Route key="partner/edit/:id" path="/partner/edit/:id" element={<IsPartner><EditPartnerProfile /></IsPartner>} />,
+<Route key="/experience/:id/edit" path="/experience/:id/edit" element={<IsPartner><PartnerExperienceEdit  /></IsPartner>} />,
+
+
 
 
 ]

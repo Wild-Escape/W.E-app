@@ -121,8 +121,8 @@ function ExperienceDetails() {
                 <Map
                   style={{ width: "320px", height: "350px" }}
                   defaultCenter={{
-                    lat: Number(JSON.parse(experience.coordinates).lat),
-                    lng: Number(JSON.parse(experience.coordinates).lng),
+                    lat: experience.coordinates.lat,
+                    lng: experience.coordinates.lng,
                   }}
                   defaultZoom={8}
                   gestureHandling={"greedy"}
@@ -130,8 +130,8 @@ function ExperienceDetails() {
                 >
                   <Marker
                     position={{
-                      lat: Number(JSON.parse(experience.coordinates).lat),
-                      lng: Number(JSON.parse(experience.coordinates).lng),
+                      lat: experience.coordinates.lat,
+                      lng: experience.coordinates.lng,
                     }}
                   />
                 </Map>

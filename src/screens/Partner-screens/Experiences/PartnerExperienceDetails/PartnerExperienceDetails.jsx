@@ -82,8 +82,8 @@ function PartnerExperienceDetails() {
                 <Map
                   style={{ width: "320px", height: "350px" }}
                   defaultCenter={{
-                    lat: Number(JSON.parse(experience.coordinates).lat),
-                    lng: Number(JSON.parse(experience.coordinates).lng),
+                    lat: experience.coordinates.lat,
+                    lng: experience.coordinates.lng,
                   }}
                   defaultZoom={8}
                   gestureHandling={"greedy"}
@@ -91,8 +91,8 @@ function PartnerExperienceDetails() {
                 >
                   <Marker
                     position={{
-                      lat: Number(JSON.parse(experience.coordinates).lat),
-                      lng: Number(JSON.parse(experience.coordinates).lng),
+                      lat: experience.coordinates.lat,
+                      lng: experience.coordinates.lng,
                     }}
                   />
                 </Map>
@@ -122,8 +122,8 @@ function PartnerExperienceDetails() {
               Created at: {new Date(experience.createdAt).toLocaleDateString()}
             </p>
           </div>
-          <Link className="btn btn-primary mt-2">
-          Edit experience
+          <Link className="btn btn-primary mt-2" to={`/experience/${id}/edit`}>
+          Edit experience 
           </Link>
         </div>
       )}
