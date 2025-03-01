@@ -116,8 +116,8 @@ function ExperienceDetails() {
               </div>
 
               {/* Coordinates */}
-              <div className="mb-4">
-                <p className="fw-bold mb-2">See us in the map</p>
+              <div className="mb-2">
+                <p className="fw-bold mb-2 text-center">See us in the map</p>
                 <Map
                   style={{ width: "320px", height: "350px" }}
                   defaultCenter={{
@@ -140,6 +140,7 @@ function ExperienceDetails() {
 
             {/* Right Column - Gallery */}
             <div className="col-md-4">
+            <p className="fw-bold mb-2 text-center">Gallery</p>
               <div className="d-flex flex-column gap-3">
                 {experience.gallery.map((img, index) => (
                   <img

@@ -7,12 +7,11 @@ function Favorites () {
        getFavoritesService()
        .then((res)=>{
         console.log("this are all the favorites-->>", res)
-        setFavorites(res.favExperiences
-        )
+        setFavorites(res.favExperiences)
        })
        .catch((error)=>next(error))
     }
-    , [favorites]);
+    , []);
     return (
         <div className="p-4" style={{marginBottom:"55px"}}> 
             <p>Here will be the liked experiences of the user</p>
