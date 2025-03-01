@@ -19,13 +19,9 @@ function CheckoutForm(data) {
     //   end: data.availableDates[0].end,
     // }
   };
-console.log("check payment data-->", paymentData)
+  console.log("check payment data-->", paymentData)
   console.log("experiece dataFormated in checkout form", data);
-  createPaymentService(paymentData)
-   .then((res)=>{
-    console.log("created payment",res)
-   })
-   .catch((err)=>next(err))
+
 
 
   const [message, setMessage] = useState(null);
@@ -40,18 +36,22 @@ console.log("check payment data-->", paymentData)
 
     setIsProcessing(true);
     console.log("before confirmation")
-    const { error } = await stripe.confirmPayment({
+    const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/user/completed/payment`,
-      },
+      confirmParams: {},
+      redirect: "if_required"
     });
     if (error) {
       setMessage(error.message);
+    } else if (paymentIntent && paymentIntent.status === "succeeded") {
+      const payment = await createPaymentService(paymentData)
+      console.log("after confirmation");
+      setIsProcessing(false);
+      // Now manually redirect
+      window.location.href = `${window.location.origin}/user/completed/payment`;
     }
-    console.log("after confirmation")
 
-   
+
 
     setIsProcessing(false);
   };
