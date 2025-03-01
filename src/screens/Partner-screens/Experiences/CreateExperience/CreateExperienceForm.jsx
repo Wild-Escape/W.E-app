@@ -89,7 +89,7 @@ function CreatePost() {
 
     // Append gallery files
     formData.gallery.forEach((file) => {
-      uploadData.append("gallery", file); // Key name depends on your backend
+      uploadData.append("gallery", file); 
     });
 
     console.log("check data befor server call", uploadData)

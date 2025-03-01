@@ -69,7 +69,7 @@ function PartnerExperienceEdit() {
       }));
     }
   };
-  const storedToken = localStorage.getItem("authToken");
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
