@@ -4,23 +4,28 @@ import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { createPaymentService } from "../../../../../../services/payment.service";
 
-function CheckoutForm(data) {
+
+function CheckoutForm({data, selectedDate}) {
   const stripe = useStripe();
   const elements = useElements();
-
-  const paymentData = {
-    experience: data.data.id,
-    price: {
-      amount: data.data.price,
-      currency: data.data.currency,
-    },
-    // dates: {
-    //   start: data.availableDates[0].start,
-    //   end: data.availableDates[0].end,
-    // }
-  };
-  console.log("check payment data-->", paymentData)
+  console.log("selected date_--> ", selectedDate)
   console.log("experiece dataFormated in checkout form", data);
+  const date = new Date(selectedDate);
+  const formatedDate = date.toString();
+  console.log("formated date-->", formatedDate);
+  const paymentData = {
+    experience: data.id,
+    price: {
+      amount: data.price,
+      currency: data.currency,
+    },
+    dates: {
+      start: formatedDate,
+      
+    }
+  };
+  
+  console.log("check payment data-->", paymentData)
 
 
 

@@ -8,10 +8,15 @@ import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { useParams } from "react-router-dom";
 import { getExperienceDetails } from "../../../../../services/experiences.service";
+import { useLocation } from "react-router-dom";
 
 function StripeComponent() {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+
+  const location = useLocation();
+  const { selectedDate } = location.state || {};
+
 
   const [experience, setExperience] = useState(null);
 
@@ -65,13 +70,20 @@ function StripeComponent() {
                   Total: {experience.price.toFixed(2)} {experience.currency === 'euros' ? '€' : experience.currency}
                 </p>
               </div>
+              <div className="col-6 text-end">
+                <p className="h5 mb-0">
+                  Date: {selectedDate}
+                </p>
+              </div>
             </div>
           </div>
         </div>
       )}
+
+
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm data={experience} />
+          <CheckoutForm data={experience} selectedDate={selectedDate} />
         </Elements>
       )}
     </div>

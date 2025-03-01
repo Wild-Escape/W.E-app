@@ -8,14 +8,20 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Map, Marker } from "@vis.gl/react-google-maps";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import DatePicker from "react-datepicker";
+
+
 
 function ExperienceDetails() {
   const { experienceId } = useParams();
+
 
   const mapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [userFavorites, setuserFavorites] = useState(null);
   const [experience, setExperience] = useState(null);
   const [favorite, setFavorite] = useState(null);
+
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     getFavoritesService()
@@ -140,7 +146,7 @@ function ExperienceDetails() {
 
             {/* Right Column - Gallery */}
             <div className="col-md-4">
-            <p className="fw-bold mb-2 text-center">Gallery</p>
+              <p className="fw-bold mb-2 text-center">Gallery</p>
               <div className="d-flex flex-column gap-3">
                 {experience.gallery.map((img, index) => (
                   <img
@@ -152,6 +158,21 @@ function ExperienceDetails() {
                   />
                 ))}
               </div>
+            </div>
+          </div>
+          {/* Choose Dates */}
+          <div className="mb-4 d-flex flex-column align-items-center">
+            <p>Choose your dates</p>
+            <div>
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(new Date(date).toDateString())}
+                //startDate={startDate}
+                //excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
+                selectsRange
+                selectsDisabledDaysInRange
+                inline
+              />
             </div>
           </div>
 
@@ -187,6 +208,7 @@ function ExperienceDetails() {
                 to={`/user/${experience.id}/payment`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
+                state={{ selectedDate}}
               >
                 Reserve now
               </Link>
@@ -205,3 +227,5 @@ function ExperienceDetails() {
   );
 }
 export default ExperienceDetails;
+
+
