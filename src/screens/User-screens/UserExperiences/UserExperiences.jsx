@@ -1,9 +1,11 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { getBookedExperiencesService } from "../../../services/payment.service";
 import "./UserExperiences.css";
 import { FaMoneyBillWave, FaCalendarAlt, FaHome } from "react-icons/fa";
 import { MdEuro } from "react-icons/md";
 import { BsCurrencyDollar } from "react-icons/bs";
+import { Link } from "react-router-dom";
+
 
 function UserExperiences() {
   const [experiences, setExperiences] = useState([]);
@@ -23,10 +25,8 @@ function UserExperiences() {
       <h1 className="ms-2 mb-3">My Booked Experiences</h1>
       {experiences.length === 0 && (
         <div>
-            <p>
-                No experiences reserved :(
-            </p>
-            <button className="btn btn primary"> Start searching</button>
+          <p>No experiences reserved :(</p>
+          <button className="btn btn primary"> Start searching</button>
         </div>
       )}
       {experiences &&
@@ -87,12 +87,8 @@ function UserExperiences() {
                             )}
                           </div>
                         </div>
-                        </div>
-                        <button className="btn btn-primary">
-                          {" "}
-                          See details
-                        </button>
-                      
+                      </div>
+                      <Link to={`/user/experience/${experience.experience._id}`} className="btn btn-primary">See details</Link>
                     </div>
                   </div>
                 </div>
