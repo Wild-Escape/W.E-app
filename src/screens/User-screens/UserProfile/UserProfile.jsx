@@ -8,29 +8,31 @@ import {
   FaIdBadge,
   FaRegCalendarCheck,
   FaUserEdit,
-  FaRegHeart
+  FaRegHeart,
 } from "react-icons/fa";
 
 function UserProfile() {
   const { currentUser } = useContext(AuthContext);
   return (
-    <div className="container py-5">
+    <div className="container py-5 p-3">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
-          <div className="">
-            {/* Profile Header */}
-           
-                <h1 className="mb-0">Profile</h1>
-             
+          <div>
+            <h1 className="mb-0">Profile</h1>
             {/* Profile Body */}
             <div className="card-body mt-3">
               <div className="row align-items-center mb-4">
                 {/* Profile Picture Placeholder */}
                 <div className="col-md-4 text-center mb-3 mb-md-0">
-                  
-                <img src={currentUser.profileImage} alt="" style={{ width: "120px", height: "120px", borderRadius:"50%" }}/>
-                    
-                  
+                  <img
+                    src={currentUser.profileImage}
+                    alt=""
+                    style={{
+                      width: "120px",
+                      height: "120px",
+                      borderRadius: "50%",
+                    }}
+                  />
                 </div>
 
                 {/* User Info */}
@@ -71,11 +73,14 @@ function UserProfile() {
             </div>
 
             {/* Footer with Logout */}
-            <div className="card-footer  d-flex justify-content-end">
-            <Link className="btn btn-info d-flex align-items-center me-3" to={`/user/edit/${currentUser.id}`}>
+            <div className="card-footer  d-flex justify-content-end mt-5">
+              <Link
+                className="btn btn-info d-flex align-items-center me-3"
+                to={`/user/edit/${currentUser.id}`}
+              >
                 <FaUserEdit className="me-2" />
                 Edit Profile
-              </Link> 
+              </Link>
               <button
                 onClick={logout}
                 className="btn btn-danger d-flex align-items-center"
@@ -83,7 +88,6 @@ function UserProfile() {
                 <FaSignOutAlt className="me-2" />
                 Logout
               </button>
-              
             </div>
           </div>
         </div>

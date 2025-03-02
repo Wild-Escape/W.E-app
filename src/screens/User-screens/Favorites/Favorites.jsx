@@ -15,6 +15,11 @@ function Favorites () {
     return (
         <div className="p-3" style={{marginBottom:"55px"}}> 
             <h1 className="mb-3 ms-2">Favorites</h1>
+            {favorites.length === 0 && (
+                <div>
+                    <p>No favorites yet</p>
+                    <button className="btn btn-primary"> Go explore!!</button>
+                </div>)}
             {favorites && favorites.map((experience) => (   
                 
                     
