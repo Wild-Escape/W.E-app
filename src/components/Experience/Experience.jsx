@@ -25,7 +25,6 @@ function Experience({
   currency,
   coordinates,
   availableDates,
-  partner,
   createdAt,
   status,
   setFavorites,

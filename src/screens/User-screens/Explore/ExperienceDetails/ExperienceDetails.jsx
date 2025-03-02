@@ -47,6 +47,7 @@ function ExperienceDetails() {
     getExperienceDetails(experienceId)
       .then((res) => {
         setExperience(res.trip);
+        console.log("check details data-->", res.trip);
       })
       .catch((error) => {
         console.log(error);
@@ -173,22 +174,28 @@ function ExperienceDetails() {
             </div>
           </div>
           {/* Choose Dates */}
-          <div className="mb-4 d-flex flex-column align-items-center">
-            <p>Choose your dates</p>
-            <div>
-              <DatePicker
-                selected={selectedDate}
-                onChange={(date) =>
-                  setSelectedDate(new Date(date).toDateString())
-                }
-                //startDate={startDate}
-                //excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
-                selectsRange
-                selectsDisabledDaysInRange
-                inline
-              />
+          {!bookedExperiences.includes(experienceId) && (
+            <div className="mb-4 d-flex flex-column align-items-center">
+              <div className="mt-4">
+                <p>Available from: {experience.availableDates[0].start}</p>
+                <p>Available till: {experience.availableDates[0].end}</p>
+              </div>
+              <p>Choose your dates</p>
+              <div>
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={(date) =>
+                    setSelectedDate(new Date(date).toDateString())
+                  }
+                  //startDate={startDate}
+                  //excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
+                  selectsRange
+                  selectsDisabledDaysInRange
+                  inline
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Footer */}
           <div className="mt-4 pt-3 border-top text-muted small">
@@ -240,7 +247,6 @@ function ExperienceDetails() {
                 Send a booking request
               </Link>
             )}
-           
           </div>
         </div>
       )}
