@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { addToFavoriteService } from "../../services/favorite.service";
-import { FaMapMarkerAlt, FaClock, FaEuroSign,FaDollarSign, FaRegHeart, FaHeart } from "react-icons/fa";
+import { getBookedExperiencesService } from "../../services/payment.service";
+import {
+  FaMapMarkerAlt,
+  FaClock,
+  FaEuroSign,
+  FaDollarSign,
+  FaRegHeart,
+  FaHeart,
+} from "react-icons/fa";
 
 function Experience({
   isFavorite,
@@ -21,22 +29,33 @@ function Experience({
   createdAt,
   status,
   setFavorites,
-  partnerName
+  partnerName,
 }) {
   const [favorite, setFavorite] = useState(isFavorite);
+  const [bookedExperiences, setBookedExperiences] = useState([]);
+
+  useEffect(() => {
+    getBookedExperiencesService()
+      .then((res) => {
+        const bookedExperiencesId = res.map(
+          (experience) => experience.experience._id
+        );
+        setBookedExperiences(bookedExperiencesId);
+      })
+      .catch((error) => next(error));
+  }, []);
 
   const submitFavorites = () => {
     addToFavoriteService(_id)
       .then((res) => {
-      if (res.message === "Added to favorites") {
-        setFavorite(true);
-      } else {
-        setFavorite(false);
-      }
+        if (res.message === "Added to favorites") {
+          setFavorite(true);
+        } else {
+          setFavorite(false);
+        }
       })
       .catch((error) => {
         console.log(error);
-         
       });
   };
 
@@ -44,7 +63,7 @@ function Experience({
     <div className="card shadow-sm h-100 mb-3">
       {/* Gallery Image */}
       <img
-        src={gallery?.[0] || 'default-image.jpg'}
+        src={gallery?.[0] || "default-image.jpg"}
         className="card-img-top"
         alt={name}
         style={{ height: "200px", objectFit: "cover" }}
@@ -80,8 +99,8 @@ function Experience({
               <FaDollarSign className="me-2" />
             ) : (
               <FaEuroSign className="me-2" />
-  )}
-            
+            )}
+
             <span>{price} / person</span>
           </div>
         </div>
@@ -94,15 +113,24 @@ function Experience({
       <div className="card-footer bg-white">
         <div className="d-flex justify-content-between align-items-center">
           <div onClick={submitFavorites} style={{ cursor: "pointer" }}>
-            {favorite ? (
-              <FaHeart />
-            ) : (
-              <FaRegHeart  />
-            )}
+            {favorite ? <FaHeart /> : <FaRegHeart />}
           </div>
-          <Link to={`/user/experience/${_id}`} className="btn btn-primary btn-sm">
-            See details
-          </Link>
+          <div>
+            {bookedExperiences.includes(_id) && (
+              <p
+                className="badge bg-success text-white "
+                style={{ marginRight: "13px", marginBottom: "0" }}
+              >
+                Experience reserved
+              </p>
+            )}
+            <Link
+              to={`/user/experience/${_id}`}
+              className="btn btn-primary btn-sm"
+            >
+              See details
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -17,17 +17,13 @@ function UserProfile() {
     <div className="container py-5">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
-          <div className="card shadow-lg border-0">
+          <div className="">
             {/* Profile Header */}
-            <div className="card-header bg-primary text-white rounded-top">
-              <div className="d-flex align-items-center gap-3">
-                <FaUserCircle size="2.5em" />
+           
                 <h1 className="mb-0">Profile</h1>
-              </div>
-            </div>
-
+             
             {/* Profile Body */}
-            <div className="card-body">
+            <div className="card-body mt-3">
               <div className="row align-items-center mb-4">
                 {/* Profile Picture Placeholder */}
                 <div className="col-md-4 text-center mb-3 mb-md-0">
@@ -75,7 +71,7 @@ function UserProfile() {
             </div>
 
             {/* Footer with Logout */}
-            <div className="card-footer bg-light d-flex justify-content-end">
+            <div className="card-footer  d-flex justify-content-end">
             <Link className="btn btn-info d-flex align-items-center me-3" to={`/user/edit/${currentUser.id}`}>
                 <FaUserEdit className="me-2" />
                 Edit Profile

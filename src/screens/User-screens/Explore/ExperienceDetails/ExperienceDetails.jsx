@@ -1,27 +1,39 @@
-import { useState, useEffect, useRef } from "react";
 import { getExperienceDetails } from "../../../../services/experiences.service";
 import {
   getFavoritesService,
   addToFavoriteService,
 } from "../../../../services/favorite.service";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { getBookedExperiencesService } from "../../../../services/payment.service";
+
+import { useState, useEffect, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
+
 import { Map, Marker } from "@vis.gl/react-google-maps";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 
-
-
 function ExperienceDetails() {
   const { experienceId } = useParams();
-
 
   const mapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [userFavorites, setuserFavorites] = useState(null);
   const [experience, setExperience] = useState(null);
   const [favorite, setFavorite] = useState(null);
+  const [bookedExperiences, setBookedExperiences] = useState(null);
 
   const [selectedDate, setSelectedDate] = useState(null);
+
+  useEffect(() => {
+    getBookedExperiencesService()
+      .then((res) => {
+        const bookedExperiencesId = res.map(
+          (experience) => experience.experience._id
+        );
+        setBookedExperiences(bookedExperiencesId);
+        console.log("booked experiences id-->", bookedExperiencesId);
+      })
+      .catch((error) => next(error));
+  }, []);
 
   useEffect(() => {
     getFavoritesService()
@@ -166,7 +178,9 @@ function ExperienceDetails() {
             <div>
               <DatePicker
                 selected={selectedDate}
-                onChange={(date) => setSelectedDate(new Date(date).toDateString())}
+                onChange={(date) =>
+                  setSelectedDate(new Date(date).toDateString())
+                }
                 //startDate={startDate}
                 //excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
                 selectsRange
@@ -186,7 +200,7 @@ function ExperienceDetails() {
             {favorite ? (
               <button
                 onClick={submitFavorites}
-                className="btn btn-danger d-flex justify-content-around align-items-center"
+                className="btn btn-warning d-flex justify-content-around align-items-center"
                 style={{ cursor: "pointer", width: "fit-content" }}
               >
                 Remove from favorite
@@ -202,13 +216,19 @@ function ExperienceDetails() {
                 <FaHeart style={{ marginLeft: "5px" }} />
               </button>
             )}
-
-            {experience.type[0] === "express" ? (
+            {bookedExperiences.includes(experienceId) ? (
+              <button
+                className="btn btn-success mt-3"
+                style={{ width: "fit-content" }}
+              >
+                Alredy reserved !
+              </button>
+            ) : experience.type[0] === "express" ? (
               <Link
                 to={`/user/${experience.id}/payment`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
-                state={{ selectedDate}}
+                state={{ selectedDate }}
               >
                 Reserve now
               </Link>
@@ -220,6 +240,7 @@ function ExperienceDetails() {
                 Send a booking request
               </Link>
             )}
+           
           </div>
         </div>
       )}
@@ -227,5 +248,3 @@ function ExperienceDetails() {
   );
 }
 export default ExperienceDetails;
-
-

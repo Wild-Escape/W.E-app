@@ -13,8 +13,8 @@ function Favorites () {
     }
     , []);
     return (
-        <div className="p-4" style={{marginBottom:"55px"}}> 
-            <p>Here will be the liked experiences of the user</p>
+        <div className="p-3" style={{marginBottom:"55px"}}> 
+            <h1 className="mb-3 ms-2">Favorites</h1>
             {favorites && favorites.map((experience) => (   
                 
                     
