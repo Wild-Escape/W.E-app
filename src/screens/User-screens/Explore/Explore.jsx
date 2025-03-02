@@ -14,6 +14,7 @@ function Explore() {
       .then((res) => {
         setExperiences(res.experiences);
         setFavorites(res.favorites);
+        console.log("check experience data-->", res.experiences[0].partner.name)
       })
       .catch((error) => {
         console.log(error);
