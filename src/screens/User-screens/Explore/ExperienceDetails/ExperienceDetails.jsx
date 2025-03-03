@@ -177,11 +177,31 @@ function ExperienceDetails() {
           {!bookedExperiences.includes(experienceId) && (
             <div className="mb-4 d-flex flex-column align-items-center">
               <div className="mt-4">
-                <p>Available from: {experience.availableDates[0].start}</p>
-                <p>Available till: {experience.availableDates[0].end}</p>
+                <p>
+                  Available from:
+                  {new Date(experience.availableDates[0].start).toLocaleString(
+                    "en-UK",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
+                </p>
+                <p>
+                  Available till:{" "}
+                  {new Date(experience.availableDates[0].end).toLocaleString(
+                    "en-UK",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
+                </p>
               </div>
-              <p>Choose your dates</p>
-              <div>
+              {experience.type[0] === "express" && <div>
+              <p className="text-center">Select your date</p>
                 <DatePicker
                   selected={selectedDate}
                   onChange={(date) =>
@@ -193,7 +213,7 @@ function ExperienceDetails() {
                   selectsDisabledDaysInRange
                   inline
                 />
-              </div>
+              </div>}
             </div>
           )}
 

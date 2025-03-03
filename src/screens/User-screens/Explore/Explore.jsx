@@ -1,4 +1,3 @@
-import "./Explore.css";
 import { getAllExperiences } from "../../../services/experiences.service";
 import { addToFavoriteService } from "../../../services/favorite.service";
 import { useState, useEffect } from "react";

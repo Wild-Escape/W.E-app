@@ -6,7 +6,6 @@ import { MdEuro } from "react-icons/md";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-
 function UserExperiences() {
   const [experiences, setExperiences] = useState([]);
   useEffect(() => {
@@ -49,15 +48,15 @@ function UserExperiences() {
                     </span>
                   </div>
                   <span
-                    className={`  badge ${
-                      experience.experience.status === "confirmed"
+                    className={`badge ${
+                      experience.status === "confirmed"
                         ? "bg-success"
-                        : experience.experience.status === "pending"
-                        ? "bg-warning"
-                        : "bg-danger"
+                        : experience.status === "declined"
+                        ? "bg-danger"
+                        : "bg-warning"
                     }`}
                   >
-                    {experience.experience.status}
+                    {experience.status}
                   </span>
                 </div>
 
@@ -88,7 +87,12 @@ function UserExperiences() {
                           </div>
                         </div>
                       </div>
-                      <Link to={`/user/experience/${experience.experience._id}`} className="btn btn-primary">See details</Link>
+                      <Link
+                        to={`/user/experience/${experience.experience._id}`}
+                        className="btn btn-primary"
+                      >
+                        See details
+                      </Link>
                     </div>
                   </div>
                 </div>
