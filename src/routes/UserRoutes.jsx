@@ -9,7 +9,7 @@ import ExperienceDetails from "../screens/User-screens/Explore/ExperienceDetails
 import EditUserProfile from "../screens/User-screens/UserProfile/EditUserProfile/EditUserProfile";
 import StripeComponent from "../screens/User-screens/Explore/ExperienceDetails/StripeComponent/StripeComponent";
 import Completion from "../screens/User-screens/Explore/ExperienceDetails/StripeComponent/Completion/Completion";
-
+import Application from "../screens/User-screens/Explore/ExperienceDetails/Application/Application";
 
 const UserRoutes = [
 <Route key="/user/explore" path="/user/explore" element={<IsUser><Explore /></IsUser>} />,
@@ -21,7 +21,7 @@ const UserRoutes = [
 <Route key="/user/edit/:id" path="/user/edit/:id" element={<IsUser><EditUserProfile /></IsUser>} />,
 <Route key="/user/:id/payment" path="/user/:id/payment" element={<IsUser><StripeComponent /></IsUser>} />,
 <Route key="/user/completed/payment" path="/user/completed/payment" element={<Completion />} />,
-
+<Route key="/user/:id/booking/ " path="/user/:id/booking/" element={<Application/>} />,
 
    
 ]

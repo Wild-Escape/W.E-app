@@ -19,7 +19,7 @@ function ExperienceDetails() {
   const [userFavorites, setuserFavorites] = useState(null);
   const [experience, setExperience] = useState(null);
   const [favorite, setFavorite] = useState(null);
-  const [bookedExperiences, setBookedExperiences] = useState(null);
+  const [bookedExperiences, setBookedExperiences] = useState([]);
 
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -261,6 +261,7 @@ function ExperienceDetails() {
               </Link>
             ) : (
               <Link
+              to={`/user/${experience.id}/booking`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
               >

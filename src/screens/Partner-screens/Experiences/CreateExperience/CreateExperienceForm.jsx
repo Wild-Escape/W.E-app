@@ -181,7 +181,7 @@ function CreatePost() {
           <div className="mb-3">
             <div>
               <label htmlFor="duration" className="form-label">
-                Duration
+                Minimum duration
               </label>
               <input
                 type="number"
