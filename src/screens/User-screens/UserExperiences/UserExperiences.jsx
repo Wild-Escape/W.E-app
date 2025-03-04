@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { getBookedExperiencesService } from "../../../services/payment.service";
 import "./UserExperiences.css";
-import { FaMoneyBillWave, FaCalendarAlt, FaHome } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { IoMdPricetag } from "react-icons/io";
 import { MdEuro } from "react-icons/md";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -30,73 +31,55 @@ function UserExperiences() {
       )}
       {experiences &&
         experiences.map((experience) => (
-          <div key={experience._id} className="row mb-4">
-            <div className="col-12 col-md-8 mx-auto">
-              <div className="card shadow-sm hover-shadow-lg-hover transition-all h-100 p-3">
-                <div className="d-flex justify-content-between">
-                  <div>
-                    <FaCalendarAlt className="me-2" />
-                    <span className="text-dark">
-                      {new Date(experience.dates.start).toLocaleDateString(
-                        "en-US",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        }
-                      )}
-                    </span>
-                  </div>
-                  <span
-                    className={`badge ${
-                      experience.status === "confirmed"
-                        ? "bg-success"
-                        : experience.status === "declined"
-                        ? "bg-danger"
-                        : "bg-warning"
-                    }`}
-                  >
-                    {experience.status}
-                  </span>
-                </div>
-
-                <div className="d-flex align-items-center mb-3 mt-2">
-                  <FaHome className="text-primary me-2" size={24} />
-                  <h2 className="card-title h4 mb-0">
-                    {experience.experience.name}
-                  </h2>
-                </div>
-
-                <div className="row g-3">
-                  <div className="col-12 col-md-6">
-                    <div className="d-flex  align-items-center justify-content-between text-muted">
-                      <div className="d-flex ">
-                        <div className="d-flex align-items-center justify-content-center">
-                          <FaMoneyBillWave className="me-2 mb-2" />
-                        </div>
-                        <div className="d-flex">
-                          <p className="h5 text-dark">
-                            {experience.experience.price}
-                          </p>
-                          <div>
-                            {experience.experience.currency === "dollars" ? (
-                              <BsCurrencyDollar />
-                            ) : (
-                              <MdEuro />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <Link
-                        to={`/user/experience/${experience.experience._id}`}
-                        className="btn btn-primary"
-                      >
-                        See details
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+          <div
+            key={experience._id}
+            className="mb-3 card shadow-sm hover-shadow-lg-hover p-3"
+          >
+            <h3 className="card-title h4 mb-0">{experience.experience.name}</h3>
+            <div className="d-flex justify-content-between mt-3 align-items-center">
+              <div className="d-flex align-items-center">
+                <FaCalendarAlt className="me-2" />
+                <span className="text-dark">
+                  {new Date(experience.dates.start).toLocaleDateString(
+                    "en-US",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
+                </span>
               </div>
+              <div className="d-flex align-items-center">
+                <IoMdPricetag style={{marginRight:"5px"}}/> {experience.experience.price}
+                {experience.experience.currency === "dollars" ? (
+                  <BsCurrencyDollar />
+                ) : (
+                  <MdEuro />
+                )}
+              </div>
+            </div>
+
+            <div className="d-flex justify-content-between align-items-center mt-3">
+              <div>
+                <span
+                  className={`badge ${
+                    experience.status === "confirmed"
+                      ? "bg-success"
+                      : experience.status === "declined"
+                      ? "bg-danger"
+                      : "bg-warning"
+                  }`}
+                >
+                  {experience.status}
+                </span>
+              </div>
+              <Link
+                to={`/user/experience/${experience.experience._id}`}
+                className="btn btn-primary"
+              >
+                See details
+              </Link>
             </div>
           </div>
         ))}

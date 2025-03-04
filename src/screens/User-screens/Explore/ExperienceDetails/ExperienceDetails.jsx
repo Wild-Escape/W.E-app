@@ -7,9 +7,11 @@ import { getBookedExperiencesService } from "../../../../services/payment.servic
 
 import { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import { LuPawPrint } from "react-icons/lu";
 
 import { Map, Marker } from "@vis.gl/react-google-maps";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { IoMdTime } from "react-icons/io";
 import DatePicker from "react-datepicker";
 
 function ExperienceDetails() {
@@ -82,7 +84,7 @@ function ExperienceDetails() {
     <div>
       {experience && (
         <div
-          className="container-md mx-auto p-4 bg-white rounded-3 shadow-sm"
+          className="container-md mx-auto p-4 bg-white "
           style={{ marginBottom: "100px" }}
         >
           {/* Header Section */}
@@ -92,19 +94,15 @@ function ExperienceDetails() {
                 <h1 className="display-5 fw-bold text-dark mb-2">
                   {experience.name}
                 </h1>
-                <div className="d-flex align-items-center gap-2">
+                <div className="d-flex align-items-center gap-2 mt-2">
                   <span className="fs-5 text-secondary">
                     📍 {experience.location}
                   </span>
                 </div>
-              </div>
-              <div className="text-end">
-                <h2 className="text-success fw-bold mb-0">
-                  {experience.price} {experience.currency}
+                <h2 className="text-success fw-bold mb-0 mt-2">
+                  Price: {experience.price}
+                  {experience.currency === "dollars" ? "$" : "€"}
                 </h2>
-                <small className="text-muted">
-                  per {experience.durationType}
-                </small>
               </div>
             </div>
           </div>
@@ -113,7 +111,11 @@ function ExperienceDetails() {
           <div className="row g-4">
             {/* Left Column */}
             <div className="col-md-8">
-              <h4>Partner: {experience.partner.name}</h4>
+              <h4>
+                <LuPawPrint />
+                Partner: {experience.partner.name}
+              </h4>
+
               <p className="lead text-muted mb-4">{experience.intro}</p>
 
               {/* Duration & Type */}
@@ -121,13 +123,14 @@ function ExperienceDetails() {
                 <div className="d-flex gap-5">
                   <div>
                     <p className="fw-bold mb-1">Duration</p>
-                    <p className="text-muted mb-0">
+                    <p className="text-muted mb-0 d-flex align-items-center">
+                      <IoMdTime style={{ marginRight: "3px" }} />
                       {experience.duration} {experience.durationType}
                     </p>
                   </div>
                   <div>
                     <p className="fw-bold mb-1">Experience Type</p>
-                    <p className="text-muted mb-0">
+                    <p className="text-muted mb-0 text-end">
                       {experience.type.join(", ")}
                     </p>
                   </div>
@@ -135,10 +138,14 @@ function ExperienceDetails() {
               </div>
 
               {/* Coordinates */}
-              <div className="mb-2">
-                <p className="fw-bold mb-2 text-center">See us in the map</p>
+              <div className="mb-2 d-flex flex-column align-items-center">
+                <h4 className="fw-bold mb-3 text-center ">See us in the map</h4>
+
                 <Map
-                  style={{ width: "320px", height: "350px" }}
+                  style={{
+                    width: "320px",
+                    height: "350px",
+                  }}
                   defaultCenter={{
                     lat: experience.coordinates.lat,
                     lng: experience.coordinates.lng,
@@ -159,8 +166,8 @@ function ExperienceDetails() {
 
             {/* Right Column - Gallery */}
             <div className="col-md-4">
-              <p className="fw-bold mb-2 text-center">Gallery</p>
-              <div className="d-flex flex-column gap-3">
+              <h4 className="fw-bold mb-3 text-center">Gallery</h4>
+              <div className="d-flex flex-column gap-3 ">
                 {experience.gallery.map((img, index) => (
                   <img
                     key={index}
@@ -200,20 +207,22 @@ function ExperienceDetails() {
                   )}
                 </p>
               </div>
-              {experience.type[0] === "express" && <div>
-              <p className="text-center">Select your date</p>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) =>
-                    setSelectedDate(new Date(date).toDateString())
-                  }
-                  //startDate={startDate}
-                  //excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
-                  selectsRange
-                  selectsDisabledDaysInRange
-                  inline
-                />
-              </div>}
+              {experience.type[0] === "express" && (
+                <div>
+                  <p className="text-center">Select your date</p>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) =>
+                      setSelectedDate(new Date(date).toDateString())
+                    }
+                    //startDate={startDate}
+                    //excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
+                    selectsRange
+                    selectsDisabledDaysInRange
+                    inline
+                  />
+                </div>
+              )}
             </div>
           )}
 
@@ -255,13 +264,13 @@ function ExperienceDetails() {
                 to={`/user/${experience.id}/payment`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
-                state={{ startDate}}
+                state={{ startDate }}
               >
                 Reserve now
               </Link>
             ) : (
               <Link
-              to={`/user/${experience.id}/booking`}
+                to={`/user/${experience.id}/booking`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
               >

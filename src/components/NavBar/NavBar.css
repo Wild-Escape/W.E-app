@@ -6,11 +6,12 @@
   
   .nav-link {
     transition: all 0.2s ease;
-    padding: 8px 12px !important;
+    padding: 8px 12px ;
   }
   
   .nav-link.active {
     font-weight: 500;
+    color: rgb(255, 145, 0);
   }
   
   .nav-text {
