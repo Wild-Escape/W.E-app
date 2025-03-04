@@ -9,6 +9,7 @@ import PartnerProfile from '../screens/Partner-screens/PartnerProfile/PartnerPro
 import PartnerExperienceDetails from "../screens/Partner-screens/Experiences/PartnerExperienceDetails/PartnerExperienceDetails";
 import EditPartnerProfile from "../screens/Partner-screens/PartnerProfile/EditPartnerProfile/EditPartnerProfile";
 import PartnerExperienceEdit from "../screens/Partner-screens/Experiences/PartnerExperienceDetails/PartnerExperienceEdit/PartnerExperienceEdit";
+import ReviewApplication from "../screens/Partner-screens/Today/ReviewApplication/ReviewApplication";
 
 
 const PartnerRoutes = [
@@ -21,6 +22,7 @@ const PartnerRoutes = [
 <Route key="partner/experience/:id/details" path="/partner/experience/:id/details" element={<IsPartner><PartnerExperienceDetails /></IsPartner>} />,
 <Route key="partner/edit/:id" path="/partner/edit/:id" element={<IsPartner><EditPartnerProfile /></IsPartner>} />,
 <Route key="/experience/:id/edit" path="/experience/:id/edit" element={<IsPartner><PartnerExperienceEdit  /></IsPartner>} />,
+<Route key="/application/:paymentId/review" path="/application/:paymentId/review" element={<IsPartner><ReviewApplication /></IsPartner>} />,
 
 
 

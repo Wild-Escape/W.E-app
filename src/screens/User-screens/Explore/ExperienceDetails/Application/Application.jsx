@@ -34,7 +34,7 @@ function Application() {
         if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
         if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
         if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = 'Invalid email address';
-        if (formData.age < 18 || formData.age > 99) newErrors.age = 'Age must be between 18-99';
+        if (formData.age < 14 || formData.age > 99) newErrors.age = 'Age must be between 14-99';
         if (formData.languages.length === 0) newErrors.languages = 'At least one language required';
         if (!formData.motive.trim()) newErrors.motive = 'Motivation is required';
 
@@ -43,6 +43,7 @@ function Application() {
     };
 
     const handleSubmit = (e) => {
+        console.log("entered in handle submit")
         e.preventDefault();
         setWasValidated(true);
         if (!validateForm()) return;
@@ -56,7 +57,11 @@ function Application() {
         sendApplicationService(submissionData)
             .then((res) => {
                 console.log('Application submitted:', res);
-                navigate(`/user/${id}/payment`)
+                navigate(`/user/${id}/payment`,{ 
+                    state: { 
+                      startDate: formData.startDate 
+                    } 
+                  })
             })
             .catch((error) => next(error));
         
@@ -240,7 +245,7 @@ function Application() {
                                 </div>
 
                                 <div className="col-12 mt-4">
-                                    <button type="submit" className="btn btn-primary btn-lg w-100">
+                                    <button type="submit"  className="btn btn-primary btn-lg w-100">
                                         Submit Application
                                     </button>
                                 </div>

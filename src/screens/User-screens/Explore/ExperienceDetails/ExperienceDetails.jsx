@@ -21,7 +21,7 @@ function ExperienceDetails() {
   const [favorite, setFavorite] = useState(null);
   const [bookedExperiences, setBookedExperiences] = useState([]);
 
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [startDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     getBookedExperiencesService()
@@ -203,7 +203,7 @@ function ExperienceDetails() {
               {experience.type[0] === "express" && <div>
               <p className="text-center">Select your date</p>
                 <DatePicker
-                  selected={selectedDate}
+                  selected={startDate}
                   onChange={(date) =>
                     setSelectedDate(new Date(date).toDateString())
                   }
@@ -255,7 +255,7 @@ function ExperienceDetails() {
                 to={`/user/${experience.id}/payment`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
-                state={{ selectedDate }}
+                state={{ startDate}}
               >
                 Reserve now
               </Link>

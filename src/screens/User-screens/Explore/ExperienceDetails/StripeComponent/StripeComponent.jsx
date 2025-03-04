@@ -15,7 +15,7 @@ function StripeComponent() {
   const [clientSecret, setClientSecret] = useState("");
 
   const location = useLocation();
-  const { selectedDate } = location.state || {};
+  const { startDate } = location.state || {};
 
 
   const [experience, setExperience] = useState(null);
@@ -59,20 +59,23 @@ function StripeComponent() {
             <div className="row">
               <div className="col-6">
                 <p className="mb-1">
-                  <strong>Duration:</strong> {experience.duration} {experience.durationType}s
+                  <strong>Duration:</strong> {experience.duration} {experience.durationType}
                 </p>
                 <p className="mb-0">
                   <strong>Currency:</strong> {experience.currency}
                 </p>
               </div>
               <div className="col-6 text-end">
-                <p className="h5 mb-0">
+                {experience.type === "express" ? (<p className="h5 mb-0">
                   Total: {experience.price.toFixed(2)} {experience.currency === 'euros' ? '€' : experience.currency}
-                </p>
+                </p>):(<p className="h5 mb-0">
+                  Reservation fee: {experience.price.toFixed(2)} {experience.currency === 'euros' ? '€' : experience.currency}
+                </p>)}
+                
               </div>
               <div className="col-6 text-end">
                 <p className="h5 mb-0">
-                  Date: {selectedDate}
+                  Date: {startDate}
                 </p>
               </div>
             </div>
@@ -83,7 +86,7 @@ function StripeComponent() {
 
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm data={experience} selectedDate={selectedDate} />
+          <CheckoutForm data={experience} selectedDate={startDate} />
         </Elements>
       )}
     </div>

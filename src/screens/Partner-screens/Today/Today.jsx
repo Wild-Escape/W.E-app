@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPendingPaymentsService } from "../../../services/payment.service";
+import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaRegUserCircle } from "react-icons/fa";
 import { confirmExperienceService, declineExperienceService } from "../../../services/payment.service";
 function Today() {
@@ -43,7 +44,7 @@ function Today() {
 
   return (
     <div className="p-3">
-      <p clas> Today preview </p>
+      <p> Today preview </p>
       {pendingExperiences.length === 0 && (
         <div>
           <p>No pending experiences :(</p>
@@ -102,7 +103,8 @@ function Today() {
                         </button>
                       </div>
                     ) : (
-                      <button className="btn btn-primary">Review</button>
+                      <Link to={`/application/${experience._id}/review`}
+                      className="btn btn-primary">Review</Link>
                     )}
                   </div>
                 </div>
