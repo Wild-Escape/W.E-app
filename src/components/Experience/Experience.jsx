@@ -23,11 +23,6 @@ function Experience({
   intro,
   type,
   currency,
-  coordinates,
-  availableDates,
-  createdAt,
-  status,
-  setFavorites,
   partnerName,
 }) {
   const [favorite, setFavorite] = useState(isFavorite);
