@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, use, useEffect, useState } from "react";
 import { getAccessToken, setAccessToken } from "../store/AccesTokenStore";
 import { getCurrentUserService } from "../services/user.service";
 import { useNavigate } from "react-router-dom";
@@ -26,24 +26,19 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = (token) => {
     const navigateToProfile = () => {
-      navigate("/partner/profile")
-      // console.log(
-      //   "checking if there is current user in navigate -->>",
-      //   currentUser
-      // );
-
-      // if (currentUser.role === "user") {
-      //   navigate("/user/profile");
-      // }
-      // if (currentUser.role === "partner") {
-      //   console.log("going in partner log");
-      //   navigate("/partner/profile");
-      // }
+      
     };
     setAccessToken(token);
     getCurrentUser(navigateToProfile);
     //guardar mi token en el localStorage
   };
+  useEffect(()=>{
+    if(currentUser?.role === "partner"){
+      navigate("/partner/today")
+    }
+    if(currentUser?.role === "user"){
+      navigate("/user/explore")}
+  },[currentUser])
 
   useEffect(() => {
     if (getAccessToken()) {

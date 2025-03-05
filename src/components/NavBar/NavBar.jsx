@@ -3,7 +3,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-import { FaCompass, FaHeart, FaUser, FaPlus, FaCalendar, FaComment, FaHome } from "react-icons/fa";
+import { FaCompass, FaHeart, FaUser, FaPlus, FaCalendar, FaComment,FaPen} from "react-icons/fa";
+import { BsFillSuitcase2Fill } from "react-icons/bs";
 
 function NavBar() {
   const { currentUser } = useContext(AuthContext);
@@ -42,7 +43,7 @@ function NavBar() {
             <>
               <NavItem to="/user/explore" icon={<FaCompass />} label="Explore" />
               <NavItem to="/user/favorites" icon={<FaHeart />} label="Favorites" />
-              <NavItem to="/user/experiences" icon={<FaHome />} label="My Experiences" />
+              <NavItem to="/user/experiences" icon={<BsFillSuitcase2Fill />} label="My" />
               <NavItem to="/user/messages" icon={<FaComment />} label="Messages" />
               <NavItem to="/user/profile" icon={<FaUser />} label="Profile" />
             </>
@@ -50,7 +51,7 @@ function NavBar() {
 
           {currentUser?.role === "partner" && (
             <>
-              <NavItem to="/partner/today" icon={<FaHome />} label="Today" />
+              <NavItem to="/partner/today" icon={<FaPen />} label="Action" />
               <NavItem to="/partner/calendar" icon={<FaCalendar />} label="Calendar" />
               <NavItem to="/partner/experiences" icon={<FaPlus />} label="Posting" />
               <NavItem to="/partner/messages" icon={<FaComment />} label="Messages" />
