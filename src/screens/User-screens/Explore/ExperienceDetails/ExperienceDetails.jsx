@@ -8,6 +8,8 @@ import { getBookedExperiencesService } from "../../../../services/payment.servic
 import { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LuPawPrint } from "react-icons/lu";
+import { FaMapLocationDot } from "react-icons/fa6";
+import { GrGallery } from "react-icons/gr";
 
 import { Map, Marker } from "@vis.gl/react-google-maps";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
@@ -139,7 +141,7 @@ function ExperienceDetails() {
 
               {/* Coordinates */}
               <div className="mb-2 d-flex flex-column align-items-center">
-                <h4 className="fw-bold mb-3 text-center ">See us in the map</h4>
+                <h4 className="fw-bold mb-3 text-center d-flex align-items-center "><FaMapLocationDot style={{marginRight:"8px"}} />See us in the map</h4>
 
                 <Map
                   style={{
@@ -166,7 +168,7 @@ function ExperienceDetails() {
 
             {/* Right Column - Gallery */}
             <div className="col-md-4">
-              <h4 className="fw-bold mb-3 text-center">Gallery</h4>
+              <h4 className="fw-bold mb-3 d-flex align-items-center justify-content-center"> <GrGallery style={{marginRight:"8px"}}/>Gallery</h4>
               <div className="d-flex flex-column gap-3 ">
                 {experience.gallery.map((img, index) => (
                   <img
