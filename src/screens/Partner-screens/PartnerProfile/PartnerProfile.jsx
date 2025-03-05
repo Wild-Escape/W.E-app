@@ -14,12 +14,11 @@ function PartnerProfile() {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="container py-5 p-3">
+    <div className="container p-3">
+      <h1 className="mb-0">Partner Profile</h1>
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
           <div>
-            <h1 className="mb-0">Partner Profile</h1>
-
             {/* Profile Body */}
             <div className="card-body mt-3">
               <div className="row align-items-center mb-4">

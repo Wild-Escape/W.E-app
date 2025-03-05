@@ -11,32 +11,40 @@ function Experiences() {
         console.log("in partner experiences", res.shelterTrips);
         setPartnerExperiences(res.shelterTrips);
       })
-      .catch((error)=>next(error))
+      .catch((error) => next(error));
   }, []);
   return (
-    <div className="p-3" style={{marginBottom: "50px"}}>
-      <p>Here we will have all the expreiences created by this admin</p>
-      <Link className="btn btn-secondary mb-3" to="/partner/create-post">
-        Add Experience
-      </Link>
-
-      {partnerExperiences &&
-        partnerExperiences.map((experience) => (
-          <div className="card mb-3" style={{width: "18rem"}} key={experience._id}>
-            <img src={experience.gallery[0]} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">{experience.name}</h5>
-              <p className="card-text">
-                {experience.intro}
-              </p>
-              <Link to={`/partner/experience/${experience._id}/details`} className="btn btn-primary">
-                See details
-              </Link>
+    <div className="p-3" style={{ marginBottom: "50px" }}>
+      <div className="d-flex justify-content-between mb-3">
+        <h1 className="mb-3">Postings</h1>
+        <Link className="btn btn-secondary mb-3" to="/partner/create-post">
+          Add Experience
+        </Link>
+      </div>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        {partnerExperiences &&
+          partnerExperiences.map((experience) => (
+            <div class="col" key={experience._id}>
+              <div className="card mb-3" >
+                <img
+                  src={experience.gallery[0]}
+                  className="card-img-top"
+                  alt="..."
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{experience.name}</h5>
+                  <p className="card-text">{experience.intro}</p>
+                  <Link
+                    to={`/partner/experience/${experience._id}/details`}
+                    className="btn btn-primary"
+                  >
+                    See details
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-
-      
+          ))}
+      </div>
     </div>
   );
 }

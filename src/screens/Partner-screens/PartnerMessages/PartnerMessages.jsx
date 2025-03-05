@@ -1,9 +1,7 @@
 function PartnerMessages () {
     return (
-        <div>
-            <p>
-                here well have the partner messages
-            </p>
+        <div className="p-3">
+            <h1>Messages</h1>             
         </div>
     )
 }

@@ -29,9 +29,10 @@ function Calendar() {
   }, []);
   return (
     <div className="p-3" style={{ marginBottom: "70px" }}>
+        <h1 className="mb-3">Calendar</h1>
       {confirmedExperiences && (
         <>
-          <p>Calendar</p>
+          
           <div className="border border-dark rounded p-2">
             <p>Confirmed experiences: {confirmedExperiences.length}</p>
             <Link to={""} className="btn btn-primary">

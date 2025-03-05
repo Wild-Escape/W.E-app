@@ -2,6 +2,7 @@ import Experience from "../../../components/Experience/Experience";
 import { useState, useEffect } from "react";
 import { getFavoritesService } from "../../../services/favorite.service";
 import { IoSearch } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -19,7 +20,7 @@ function Favorites() {
       {favorites.length === 0 && (
         <div className="border border-secondary rounded p-3 shadow-sm d-flex flex-column align-items-center">
           <h5 className="mb-3">No favorites yet</h5>
-          <button className="btn btn-primary d-flex align-items-center justify-content-center"> <IoSearch style={{marginRight:"5px"}} /> Go explore !</button>
+          <Link to="/user/explore" className="btn btn-primary d-flex align-items-center justify-content-center"> <IoSearch style={{marginRight:"5px"}} /> Go explore !</Link>
         </div>
       )}
       {favorites &&
