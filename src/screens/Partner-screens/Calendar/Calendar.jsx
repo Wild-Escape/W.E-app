@@ -59,8 +59,8 @@ function Calendar() {
 
           <div className="border border-dark rounded p-2">
             <p>Confirmed experiences: {confirmedExperiences.length}</p>
-            <Link to={""} className="btn btn-primary">
-              Check details
+            <Link to='/confirmed/experiences' className="btn btn-primary">
+              See details 
             </Link>
           </div>
 
