@@ -11,6 +11,7 @@ import EditPartnerProfile from "../screens/Partner-screens/PartnerProfile/EditPa
 import PartnerExperienceEdit from "../screens/Partner-screens/Experiences/PartnerExperienceDetails/PartnerExperienceEdit/PartnerExperienceEdit";
 import ReviewApplication from "../screens/Partner-screens/Today/ReviewApplication/ReviewApplication";
 import ConfirmedExperiences from "../screens/Partner-screens/Calendar/ConfirmedExperiences/ConfirmedExperiences";
+import Chat from "../screens/Partner-screens/PartnerMessages/Chat/Chat";
 
 const PartnerRoutes = [
 <Route key="/partner/today" path="/partner/today" element={<IsPartner><Today /></IsPartner>} />,
@@ -23,8 +24,8 @@ const PartnerRoutes = [
 <Route key="partner/edit/:id" path="/partner/edit/:id" element={<IsPartner><EditPartnerProfile /></IsPartner>} />,
 <Route key="/experience/:id/edit" path="/experience/:id/edit" element={<IsPartner><PartnerExperienceEdit  /></IsPartner>} />,
 <Route key="/application/:paymentId/review" path="/application/:paymentId/review" element={<IsPartner><ReviewApplication /></IsPartner>} />,
-<Route key="/confirmed/experiences" path="/confirmed/experiences" element={<IsPartner><ConfirmedExperiences/></IsPartner>} />
-
+<Route key="/confirmed/experiences" path="/confirmed/experiences" element={<IsPartner><ConfirmedExperiences/></IsPartner>} />,
+<Route key="/chat/:id" path="/chat/:id" element={<IsPartner><Chat/></IsPartner>} />,
 
 
 

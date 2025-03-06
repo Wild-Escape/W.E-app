@@ -1,5 +1,6 @@
 import { getChatsService } from "../../../services/chat.service";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function PartnerMessages() {
   const [chats, setChats] = useState([]);
@@ -30,8 +31,9 @@ function PartnerMessages() {
                   }}
                   alt="profile image"
                 />
+                
                 <h4>@ {chat.participants[1].name}</h4>
-                <button className="btn btn-info">enter chat</button>
+                <Link to={`/chat/${chat.id}`} className="btn btn-info">enter chat</Link>
               </div>
             </div>
           ))}
