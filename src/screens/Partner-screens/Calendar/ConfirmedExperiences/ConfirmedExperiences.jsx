@@ -1,30 +1,32 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { getConfirmedExperiencesService } from "../../../../services/payment.service";
-import { createChatService, getChatsService } from "../../../../services/chat.service";
+import {
+  createChatService,
+  getChatsService,
+} from "../../../../services/chat.service";
 import { useNavigate } from "react-router-dom";
 import {
   FaCalendar,
   FaTag,
-  FaDollarSign,
   FaUser,
   FaEnvelope,
   FaComment,
 } from "react-icons/fa";
-import { AuthContext } from "../../../../context/auth.context";
+import { Link } from "react-router-dom";
 
 function ConfirmedExperiences() {
   const [confirmedExperiences, setConfirmedExperiences] = useState([]);
   const [chats, setChats] = useState([]);
-    useEffect(() => {
-      getChatsService()
-        .then((res) => {
-          console.log("all chats--->", res);
-          setChats(res);
-        })
-        .catch((err) => {
-          console.error(err)
-        });
-    }, []);
+  useEffect(() => {
+    getChatsService()
+      .then((res) => {
+        console.log("all chats--->", res);
+        setChats(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -38,11 +40,11 @@ function ConfirmedExperiences() {
   }, []);
 
   const createChat = (id) => {
-    console.log("user id-->", id)
+    console.log("user id-->", id);
     createChatService(id)
       .then((response) => {
-        console.log(response)
-        navigate("/partner/messages");
+        console.log(response);
+        navigate(`/chat/${response.id}`);
       })
       .catch((error) => {
         console.error(error);
@@ -64,8 +66,8 @@ function ConfirmedExperiences() {
         {confirmedExperiences.length > 0 &&
           confirmedExperiences.map((experience) => (
             <div className="col" key={experience._id}>
-              <div className="card shadow-sm" >
-                <div className="card-body" style={{margin:"0"}}>
+              <div className="card shadow-sm">
+                <div className="card-body" style={{ margin: "0" }}>
                   <div className="d-flex align-items-center mb-3">
                     <FaCalendar className="text-muted me-2" />
                     <small className="text-muted">
@@ -86,7 +88,8 @@ function ConfirmedExperiences() {
                     </div>
                     <div className="col text-end">
                       <h5 className="mb-0">
-                        {experience.price.currency === "dollars" ? "$" : "€"} {experience.price.amount} {experience.price.currency}
+                        {experience.price.currency === "dollars" ? "$" : "€"}{" "}
+                        {experience.price.amount} {experience.price.currency}
                       </h5>
                     </div>
                   </div>
@@ -113,11 +116,29 @@ function ConfirmedExperiences() {
                       </p>
                     </div>
                   </div>
-                  {}
-                  <button onClick={()=>createChat(experience.user.id)} className="btn btn-outline-primary w-100 mt-3">
-                    <FaComment className="me-2" />
-                    Text User
-                  </button>
+                  {(() => {
+                    const chat = chats.find(
+                      (chat) => chat.participants[1].id === experience.user.id
+                    );
+
+                    return chat ? (
+                      <Link
+                        to={`/chat/${chat.id}`} // Just the id here
+                        className="btn btn-outline-primary w-100 mt-3"
+                      >
+                        <FaComment className="me-2" />
+                        Go to chat
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => createChat(experience.user.id)}
+                        className="btn btn-outline-primary w-100 mt-3"
+                      >
+                        <FaComment className="me-2" />
+                        Text User
+                      </button>
+                    );
+                  })()}
                 </div>
               </div>
             </div>

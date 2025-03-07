@@ -21,7 +21,7 @@
   }
 }
 
-.card-body {
+#chat-body {
   margin-bottom: 50px;
   margin-top: 65px;
 }
@@ -30,8 +30,8 @@ li {
   display: block;
   .me-2 {
     width: 100%;
-    word-wrap: break-word; /* Makes long words break into the next line */
-    overflow-wrap: break-word; /* Alternative for newer browsers */
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
   }
   .text-muted {
     font-size: 10px;

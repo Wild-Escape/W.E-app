@@ -74,7 +74,7 @@ function UserChat () {
         <p className="fw-bold mb-0">{chat?.participants[1].name}</p>
       </div>
 
-      <div className="card-body">
+      <div id="chat-body" className="card-body">
         <ul className="list-group list-group-flush">
           {chat?.messages.map((message, index) => (
             <li

@@ -21,7 +21,7 @@
     }
   }
   
-  .card-body {
+  #chat-body {
     margin-bottom: 50px;
     margin-top: 65px;
   }
