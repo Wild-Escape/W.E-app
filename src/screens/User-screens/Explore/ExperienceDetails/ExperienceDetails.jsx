@@ -5,7 +5,7 @@ import {
 } from "../../../../services/favorite.service";
 import { getBookedExperiencesService } from "../../../../services/payment.service";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LuPawPrint } from "react-icons/lu";
 import { FaMapLocationDot } from "react-icons/fa6";
@@ -18,8 +18,6 @@ import DatePicker from "react-datepicker";
 
 function ExperienceDetails() {
   const { experienceId } = useParams();
-
-  const mapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [userFavorites, setuserFavorites] = useState(null);
   const [experience, setExperience] = useState(null);
   const [favorite, setFavorite] = useState(null);

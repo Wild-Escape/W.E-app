@@ -1,0 +1,39 @@
+.card-header {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+  .chat-form {
+    width: 100vw;
+    position: fixed;
+    bottom: 55px;
+    left: 0;
+    z-index: 3;
+    background-color: white;
+    margin: 0;
+    button {
+      margin-left: 15px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(204, 15, 91, 0.37);
+    }
+  }
+  
+  #chat-body {
+    margin-bottom: 50px;
+    margin-top: 65px;
+  }
+  
+  li {
+    display: block;
+    .me-2 {
+      width: 100%;
+      word-wrap: break-word; 
+      overflow-wrap: break-word; 
+    }
+    .text-muted {
+      font-size: 10px;
+    }
+  }

@@ -51,6 +51,12 @@ function Calendar() {
       });
     }
   }, [confirmedExperiences]);
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  
   return (
     <div className="p-3" style={{ marginBottom: "70px" }}>
       <h1 className="mb-3">Calendar</h1>
@@ -59,8 +65,8 @@ function Calendar() {
 
           <div className="border border-dark rounded p-2">
             <p>Confirmed experiences: {confirmedExperiences.length}</p>
-            <Link to={""} className="btn btn-primary">
-              Check details
+            <Link to='/confirmed/experiences' className="btn btn-primary">
+              See details 
             </Link>
           </div>
 
@@ -112,117 +118,20 @@ function Calendar() {
           />
           
           <div className="row row-cols-1 row-cols-md-2 g-4 mt-2">
-
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">January</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.January.length}</p>
-                  <button className="btn btn-primary">See details</button>
+            {
+            monthNames.map((month) => (
+              <div className="col" key={month}>
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">{month}</h5>
+                    <p className="card-text">
+                      Experiences this month : {sortedExperiences[month].length}
+                    </p>
+                    <Link to={`/month/${month}`} state={{ monthData : data }} className="btn btn-primary">See details</Link>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">February</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.February.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">March</h5>
-                  <p className="card-text">Experiences this month :{sortedExperiences.March.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">April</h5>
-                  <p className="card-text">Experiences this month :{sortedExperiences.April.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">May</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.May.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">June</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.June.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">July</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.July.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">August</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.August.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">September</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.September.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">October</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.October.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">November</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.November.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" >
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">December</h5>
-                  <p className="card-text">Experiences this month : {sortedExperiences.December.length}</p>
-                  <button className="btn btn-primary">See details</button>
-                </div>
-              </div>
-            </div>
-
-
+            ))}
           </div>
         </>
       )}
