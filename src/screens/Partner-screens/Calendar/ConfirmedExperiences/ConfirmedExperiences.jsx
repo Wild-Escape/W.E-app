@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getConfirmedExperiencesService } from "../../../../services/payment.service";
-import { createChatService } from "../../../../services/chat.service";
+import { createChatService, getChatsService } from "../../../../services/chat.service";
 import { useNavigate } from "react-router-dom";
 import {
   FaCalendar,
@@ -10,9 +10,21 @@ import {
   FaEnvelope,
   FaComment,
 } from "react-icons/fa";
+import { AuthContext } from "../../../../context/auth.context";
 
 function ConfirmedExperiences() {
   const [confirmedExperiences, setConfirmedExperiences] = useState([]);
+  const [chats, setChats] = useState([]);
+    useEffect(() => {
+      getChatsService()
+        .then((res) => {
+          console.log("all chats--->", res);
+          setChats(res);
+        })
+        .catch((err) => {
+          console.error(err)
+        });
+    }, []);
 
   const navigate = useNavigate();
 
@@ -52,8 +64,8 @@ function ConfirmedExperiences() {
         {confirmedExperiences.length > 0 &&
           confirmedExperiences.map((experience) => (
             <div className="col" key={experience._id}>
-              <div className="card h-100 shadow-sm">
-                <div className="card-body">
+              <div className="card shadow-sm" >
+                <div className="card-body" style={{margin:"0"}}>
                   <div className="d-flex align-items-center mb-3">
                     <FaCalendar className="text-muted me-2" />
                     <small className="text-muted">
@@ -101,7 +113,7 @@ function ConfirmedExperiences() {
                       </p>
                     </div>
                   </div>
-
+                  {}
                   <button onClick={()=>createChat(experience.user.id)} className="btn btn-outline-primary w-100 mt-3">
                     <FaComment className="me-2" />
                     Text User
