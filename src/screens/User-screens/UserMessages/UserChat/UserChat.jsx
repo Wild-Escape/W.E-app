@@ -63,7 +63,7 @@ function UserChat () {
           <IoChevronBackOutline size={20} />
         </Link>
         <img
-          src={`${chat?.participants[1].profileImage}`}
+          src={`${chat?.participants[0].profileImage}`}
           className="rounded-circle me-3"
           style={{
             width: "40px",
@@ -72,7 +72,7 @@ function UserChat () {
           }}
           alt="profile image"
         />
-        <p className="fw-bold mb-0">{chat?.participants[1].name}</p>
+        <p className="fw-bold mb-0">{chat?.participants[0].name}</p>
       </div>
 
       <div id="chat-body" className="card-body">

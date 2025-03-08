@@ -36,7 +36,9 @@ function Experience({
         );
         setBookedExperiences(bookedExperiencesId);
       })
-      .catch((error) => next(error));
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const submitFavorites = () => {

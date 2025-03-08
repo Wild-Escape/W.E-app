@@ -50,11 +50,11 @@ function StripeComponent() {
   }, []);
 
   return (
-    <div>
+    <div className="p-3">
       <h1>Payment Element</h1>
       {experience && (
-        <div className="card mb-4">
-          <div className="card-body">
+        <div className="border border-secondary-subtle rounded mb-3 mt-3">
+          <div className="p-3 ">
             <h2 className="card-title h4 mb-3">{experience.name}</h2>
             <div className="row">
               <div className="col-6">
@@ -66,18 +66,20 @@ function StripeComponent() {
                 </p>
               </div>
               <div className="col-6 text-end">
-                {experience.type === "express" ? (<p className="h5 mb-0">
+                {experience.type === "express" ? (<p className=" mb-0">
                   Total: {experience.price.toFixed(2)} {experience.currency === 'euros' ? '€' : experience.currency}
-                </p>):(<p className="h5 mb-0">
-                  Reservation fee: {experience.price.toFixed(2)} {experience.currency === 'euros' ? '€' : experience.currency}
+                </p>):(<p className=" mb-0">
+                 <b>Reservation fee:</b>  {(experience.price * 0.15).toFixed(2)} {experience.currency === 'euros' ? '€' : experience.currency}
                 </p>)}
                 
               </div>
-              <div className="col-6 text-end">
-                <p className="h5 mb-0">
-                  Date: {startDate}
+              <div className="col-6 ">
+                <p className=" mb-0">
+                  <b>Date:</b> {startDate}
                 </p>
               </div>
+              <hr className="mt-2"/>
+                <p style={{fontSize:"12px"}}>The reservation fee will be deducted of the total price of the experience</p>
             </div>
           </div>
         </div>

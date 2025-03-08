@@ -3,10 +3,14 @@ import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { sendApplicationService } from "../../../../../services/application.service";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Application() {
     const { id } = useParams();
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const { availableDates } = location.state || {};
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -57,14 +61,14 @@ function Application() {
         sendApplicationService(submissionData)
             .then((res) => {
                 console.log('Application submitted:', res);
-                navigate(`/user/${id}/payment`,{ 
-                    state: { 
-                      startDate: formData.startDate 
-                    } 
-                  })
+                navigate(`/user/${id}/payment`, {
+                    state: {
+                        startDate: formData.startDate
+                    }
+                })
             })
             .catch((error) => next(error));
-        
+
     };
 
     const handleArrayChange = (e) => {
@@ -78,8 +82,8 @@ function Application() {
         setFormData({ ...formData, languages: values });
     };
     return (
-        <div style={{ marginBottom: "70px" }}>
-            <div className="container mt-5">
+        <div style={{ marginBottom: "50px" }}>
+            <div className="container p-3">
                 <div>
                     <div className="card-header ">
                         <h2 className="mb-0">Volunteer Application</h2>
@@ -180,16 +184,37 @@ function Application() {
                                     </div>
                                     <small className="form-text text-muted">Hold Ctrl/Cmd to select multiple</small>
                                 </div>
-                                <div className="col-12">
-                                    <DatePicker
-                                        selected={formData.startDate}
-                                        onChange={(date) =>
-                                            setFormData({ ...formData, startDate: new Date(date).toDateString()})
-                                        }
-                                        selectsRange
-                                        selectsDisabledDaysInRange
-                                        inline
-                                    />
+                                <div className="col-12 ">
+                                    <div className="border border-light-subtle rounded-3 p-3 mb-3">
+                                        <p>Availability</p>
+                                        <p>From: {new Date(availableDates[0].start).toLocaleString(
+                                            "en-UK",
+                                            {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                            }
+                                        )}</p>
+                                        <p>Until: {new Date(availableDates[0].end).toLocaleString(
+                                            "en-UK",
+                                            {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                            }
+                                        )}</p>
+                                    </div>
+                                    <div className="d-flex justify-content-center">
+                                        <DatePicker
+                                            selected={formData.startDate}
+                                            onChange={(date) =>
+                                                setFormData({ ...formData, startDate: new Date(date).toDateString() })
+                                            }
+                                            selectsRange
+                                            selectsDisabledDaysInRange
+                                            inline
+                                        />
+                                    </div>
                                 </div>
                                 <div className="col-12">
                                     <div>
@@ -245,7 +270,7 @@ function Application() {
                                 </div>
 
                                 <div className="col-12 mt-4">
-                                    <button type="submit"  className="btn btn-primary btn-lg w-100">
+                                    <button type="submit" className="btn btn-primary btn-lg w-100">
                                         Submit Application
                                     </button>
                                 </div>

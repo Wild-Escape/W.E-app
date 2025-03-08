@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { getPartnerExperiences } from "../../../services/experiences.service";
 import { useState, useEffect } from "react";
+import { FaArrowUpLong } from "react-icons/fa6";
 
 function Experiences() {
   const [partnerExperiences, setPartnerExperiences] = useState([]);
@@ -21,6 +22,8 @@ function Experiences() {
           Add Experience
         </Link>
       </div>
+      {partnerExperiences.length === 0 && <div className="border border-secondary-subtle rounded p-3">
+        No experiences yet, click up to create <FaArrowUpLong /></div>}
       <div class="row row-cols-1 row-cols-md-2 g-4">
         {partnerExperiences &&
           partnerExperiences.map((experience) => (

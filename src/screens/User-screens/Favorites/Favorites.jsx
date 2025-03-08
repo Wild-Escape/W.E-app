@@ -18,7 +18,7 @@ function Favorites() {
     <div className="p-3" style={{ marginBottom: "55px" }}>
       <h1 className="mb-3 ms-2">Favorites</h1>
       {favorites.length === 0 && (
-        <div className="border border-secondary rounded p-3 shadow-sm d-flex flex-column align-items-center">
+        <div className="border border-light-subtle rounded p-3 shadow-sm d-flex flex-column align-items-center">
           <h5 className="mb-3">No favorites yet</h5>
           <Link to="/user/explore" className="btn btn-primary d-flex align-items-center justify-content-center"> <IoSearch style={{marginRight:"5px"}} /> Go explore !</Link>
         </div>
