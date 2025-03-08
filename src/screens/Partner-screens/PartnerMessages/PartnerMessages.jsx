@@ -21,6 +21,7 @@ function PartnerMessages() {
     <div className="p-3">
       <h1>Messages</h1>
       <div className="row row-cols-1 row-cols-md-2 g-4">
+        {chats.length === 0 && <p>No messages yet</p>}
         {chats &&
           chats.map((chat) => (
             <Link

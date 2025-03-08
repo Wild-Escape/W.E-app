@@ -54,7 +54,8 @@ function UserChat () {
 
   return (
     <div className="container p-3" style={{ marginBottom: "70px" }}>
-      <div
+      <div 
+      id="chat-header"
         className="card-header p-3 d-flex align-items-center"
         style={{ backgroundColor: "white", width: "100vw" }}
       >

@@ -19,35 +19,38 @@ function Calendar() {
     November: [],
     December: [],
   });
+
   useEffect(() => {
     getConfirmedExperiencesService()
       .then((res) => {
         console.log("confirmed experiences-->", res);
-        setConfirmedExperiences(res); // State update happens async!
+        setConfirmedExperiences(res);
       })
       .catch((err) => next(err));
   }, []);
 
   useEffect(() => {
     if (confirmedExperiences.length > 0) {
-      setSortedExperiences((prev) => {
-        const newSortedExperiences = { ...prev };
+      setSortedExperiences(prev => {
+        // Create fresh month structure instead of spreading previous state
+        const newSorted = monthNames.reduce((acc, month) => {
+          acc[month] = [];
+          return acc;
+        }, {});
 
-        confirmedExperiences.forEach((experience) => {
+        confirmedExperiences.forEach(experience => {
           const date = new Date(experience.dates.start);
-          const month = date.toLocaleString("default", { month: "long" });
+          // Use UTC methods to avoid timezone issues
+          const monthIndex = date.getUTCMonth();
+          const monthName = monthNames[monthIndex];
 
-          if (!newSortedExperiences[month]) {
-            newSortedExperiences[month] = [];
-          }
-
-          // Prevent duplicates
-          if (!newSortedExperiences[month].some((exp) => exp.id === experience.id)) {
-            newSortedExperiences[month].push(experience);
+          // Check if ID already exists in the month's array
+          if (!newSorted[monthName].some(exp => exp._id === experience._id)) {
+            newSorted[monthName].push(experience);
           }
         });
 
-        return newSortedExperiences;
+        return newSorted;
       });
     }
   }, [confirmedExperiences]);
@@ -56,7 +59,7 @@ function Calendar() {
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  
+
   return (
     <div className="p-3" style={{ marginBottom: "70px" }}>
       <h1 className="mb-3">Calendar</h1>
@@ -66,7 +69,7 @@ function Calendar() {
           <div className="border border-dark rounded p-2">
             <p>Confirmed experiences: {confirmedExperiences.length}</p>
             <Link to='/confirmed/experiences' className="btn btn-primary">
-              See details 
+              See details
             </Link>
           </div>
 
@@ -108,30 +111,34 @@ function Calendar() {
                   sortedExperiences.November.length,
                   sortedExperiences.December.length,
                 ],
-               
 
-                
+
+
               },
             ]}
             width={330}
             height={200}
           />
-          
+
           <div className="row row-cols-1 row-cols-md-2 g-4 mt-2">
             {
-            monthNames.map((month) => (
-              <div className="col" key={month}>
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">{month}</h5>
-                    <p className="card-text">
-                      Experiences this month : {sortedExperiences[month].length}
-                    </p>
-                    <Link to={`/month/${month}`} state={{ monthData : data }} className="btn btn-primary">See details</Link>
+              monthNames.map((month) => (
+                <div className="col" key={month}>
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">{month}</h5>
+                      <p className="card-text">
+                        Experiences this month : {sortedExperiences[month].length}
+                      </p>
+                      <Link to={{
+                        pathname: `/month/${month}`
+                      }} 
+                      state={{ experiences: sortedExperiences[month] }}
+                      className="btn btn-primary">See details</Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </>
       )}
