@@ -7,22 +7,24 @@ import { FaSearch } from "react-icons/fa";
 function Explore() {
   const [experiences, setExperiences] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getAllExperiences()
       .then((res) => {
         setExperiences(res.experiences);
         setFavorites(res.favorites);
-        console.log("check explore data-->", res)
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(console.error);
   }, []);
+
+  // Filter experiences based on search term
+  const filteredExperiences = experiences.filter((experience) =>
+    experience.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="p-3 mb-5">
-      
       <div className="container mb-4" style={{ maxWidth: "800px" }}>
         <form className="input-group shadow-sm">
           <input
@@ -30,6 +32,8 @@ function Explore() {
             className="form-control form-control-lg border-end-0"
             placeholder="Search experiences..."
             aria-label="Search experiences"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button
             className="btn btn-light bg-white border-start-0"
@@ -40,7 +44,7 @@ function Explore() {
         </form>
       </div>
 
-      {experiences.map((experience) => (
+      {filteredExperiences.map((experience) => (
         <div key={experience._id}>
           <Experience
             isFavorite={favorites.find(

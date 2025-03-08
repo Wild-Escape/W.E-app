@@ -10,7 +10,7 @@ import { Link, useParams } from "react-router-dom";
 import { LuPawPrint } from "react-icons/lu";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { GrGallery } from "react-icons/gr";
-
+import { MdEventAvailable } from "react-icons/md";
 import { Map, Marker } from "@vis.gl/react-google-maps";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
@@ -182,11 +182,11 @@ function ExperienceDetails() {
           </div>
           {/* Choose Dates */}
           {!bookedExperiences.includes(experienceId) && (
-            <div className="mb-4 d-flex flex-column align-items-center">
-              <div className="mt-4">
-                <p>
-                  Available from:
-                  {new Date(experience.availableDates[0].start).toLocaleString(
+            <div className="mb-4 d-flex flex-column align-items-center ">
+              <div className="mt-4 border border-light-subtle p-3 rounded-2" style={{width:"100%"}}>
+                <h4 className="fw-bold mb-3 d-flex align-items-center justify-content-center"><MdEventAvailable style={{marginRight:"8px"}} />Availavility</h4>
+                <p className="text-center">
+                 <b>From:</b>  {new Date(experience.availableDates[0].start).toLocaleString(
                     "en-UK",
                     {
                       year: "numeric",
@@ -195,9 +195,8 @@ function ExperienceDetails() {
                     }
                   )}
                 </p>
-                <p>
-                  Available till:{" "}
-                  {new Date(experience.availableDates[0].end).toLocaleString(
+                <p className="text-center"> 
+                  <b>Until:</b>  {new Date(experience.availableDates[0].end).toLocaleString(
                     "en-UK",
                     {
                       year: "numeric",
@@ -208,8 +207,8 @@ function ExperienceDetails() {
                 </p>
               </div>
               {experience.type[0] === "express" && (
-                <div>
-                  <p className="text-center">Select your date</p>
+                <div className="mt-3">
+                  <p className="text-center fw-bold">Select your date</p>
                   <DatePicker
                     selected={startDate}
                     onChange={(date) =>
@@ -273,6 +272,7 @@ function ExperienceDetails() {
                 to={`/user/${experience.id}/booking`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
+                state={{availableDates:experience.availableDates}}
               >
                 Send a booking request
               </Link>

@@ -41,6 +41,7 @@ function CheckoutForm({data, selectedDate}) {
 
     setIsProcessing(true);
     console.log("before confirmation")
+
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       confirmParams: {},
@@ -53,7 +54,7 @@ function CheckoutForm({data, selectedDate}) {
       console.log("after confirmation");
       setIsProcessing(false);
       // Now manually redirect
-      window.location.href = `${window.location.origin}/user/completed/payment`;
+      window.location.href = `${window.location.origin}//user/experiences`;
     }
 
 

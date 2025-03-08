@@ -59,11 +59,11 @@ function EditUserProfile() {
     <div>
       
       {editData && (<div className="container mt-5">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center p-3">
           <div className="col-md-6">
-            <div className="card shadow-lg">
+            <div className="">
               <div className="card-body">
-                <h4 className="card-title text-center">Edit Profile</h4>
+                <h4 className="card-title text-center mb-3">Edit Profile</h4>
                 <form  onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="imageUrl" className="form-label">
@@ -109,8 +109,8 @@ function EditUserProfile() {
                   </div>
                 
 
-                  <button type="submit" className="btn btn-primary w-100">
-                    Edit
+                  <button type="submit" className="btn btn-primary mt-3 w-100">
+                    Update Profile
                   </button>
                 </form>
               </div>

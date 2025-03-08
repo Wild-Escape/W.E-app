@@ -65,15 +65,15 @@ function EditPartnerProfile () {
           <div className="container mt-5">
             <div className="row justify-content-center">
               <div className="col-md-8 col-lg-6">
-                <div className="card shadow-lg border-0 rounded-3">
-                  <div className="card-header bg-primary bg-gradient text-white py-3">
+                <div >
+                  <div className=" bg-gradient">
                     <h2 className="card-title text-center mb-0">Edit Profile</h2>
                   </div>
                   <div className="card-body p-4">
                     <form onSubmit={handleSubmit} >
                       {/* Profile Image Upload */}
-                      <div className="mb-4 text-center">
-                        <label htmlFor="profileImage" className="form-label fw-semibold">
+                      <div className="mb-4 ">
+                        <label htmlFor="profileImage" className="form-label">
                           Profile Image
                         </label>
                         <input
@@ -91,7 +91,7 @@ function EditPartnerProfile () {
       
                       {/* Name Field */}
                       <div className="mb-4">
-                        <label htmlFor="name" className="form-label fw-semibold">
+                        <label htmlFor="name" className="form-label">
                           Full Name
                         </label>
                         <input
@@ -107,7 +107,7 @@ function EditPartnerProfile () {
       
                       {/* Email Field */}
                       <div className="mb-4">
-                        <label htmlFor="email" className="form-label fw-semibold">
+                        <label htmlFor="email" className="form-label ">
                           Email Address
                         </label>
                         <input
@@ -125,7 +125,7 @@ function EditPartnerProfile () {
                       <div className="d-grid mt-5">
                         <button 
                           type="submit" 
-                          className="btn btn-primary btn-lg bg-gradient shadow-sm py-2 fw-semibold"
+                          className="btn btn-primary  bg-gradient shadow-sm py-2 "
                         >
                           Update Profile
                         </button>

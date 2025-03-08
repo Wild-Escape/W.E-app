@@ -54,7 +54,8 @@ function UserChat () {
 
   return (
     <div className="container p-3" style={{ marginBottom: "70px" }}>
-      <div
+      <div 
+      id="chat-header"
         className="card-header p-3 d-flex align-items-center"
         style={{ backgroundColor: "white", width: "100vw" }}
       >
@@ -62,7 +63,7 @@ function UserChat () {
           <IoChevronBackOutline size={20} />
         </Link>
         <img
-          src={`${chat?.participants[1].profileImage}`}
+          src={`${chat?.participants[0].profileImage}`}
           className="rounded-circle me-3"
           style={{
             width: "40px",
@@ -71,7 +72,7 @@ function UserChat () {
           }}
           alt="profile image"
         />
-        <p className="fw-bold mb-0">{chat?.participants[1].name}</p>
+        <p className="fw-bold mb-0">{chat?.participants[0].name}</p>
       </div>
 
       <div id="chat-body" className="card-body">

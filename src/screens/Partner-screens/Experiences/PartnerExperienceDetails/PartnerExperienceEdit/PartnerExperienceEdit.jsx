@@ -4,7 +4,7 @@ import { getPartnerExperience } from "../../../../../services/experiences.servic
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
 import Autocomplete from "react-google-autocomplete";
-import { updateExperienceService } from "../../../../../services/experiences.service";
+import { updateExperienceService, deleteExperienceService } from "../../../../../services/experiences.service";
 
 
 
@@ -16,7 +16,6 @@ function PartnerExperienceEdit() {
   useEffect(() => {
     getPartnerExperience(id)
       .then((res) => {
-        
         setFormData({
             ...res.partnerExperience,
         
@@ -105,6 +104,16 @@ function PartnerExperienceEdit() {
         console.error("Error creating experience:", error);
       });
   };
+
+  const deleteExperience = () => {
+    deleteExperienceService(id)
+      .then(() => {
+        navigate("/partner/experiences");
+      })
+      .catch((error) => {
+        console.error("Error deleting experience:", error);
+      });
+  }
 
 
   return (<>
@@ -308,7 +317,14 @@ function PartnerExperienceEdit() {
               </div>
     
               <button type="submit" className="btn btn-primary">
-                Submit
+                Edit
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger ms-3"
+                onClick={deleteExperience}
+              >
+                Delete
               </button>
             </form>
           </div>

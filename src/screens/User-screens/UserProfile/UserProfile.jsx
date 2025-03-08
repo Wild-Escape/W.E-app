@@ -9,19 +9,23 @@ import {
   FaRegCalendarCheck,
   FaUserEdit,
   FaRegHeart,
+  FaUserAstronaut
 } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { MdCardMembership } from "react-icons/md";
+
 
 function UserProfile() {
   const { currentUser } = useContext(AuthContext);
   return (
-    <div className="container py-5 p-3">
+    <div className="container p-3">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
           <div>
             <h1 className="mb-0">Profile</h1>
             {/* Profile Body */}
             <div className="card-body mt-3">
-              <div className="row align-items-center mb-4">
+              <div className="row align-items-center">
                 {/* Profile Picture Placeholder */}
                 <div className="col-md-4 text-center mb-3 mb-md-0">
                   <img
@@ -36,46 +40,36 @@ function UserProfile() {
                 </div>
 
                 {/* User Info */}
-                <div className="col-md-8">
+                <div className="col-md-8 ms-3">
                   <h2 className="mb-3">
-                    <FaIdBadge className="me-2" />
-                    {currentUser.name}
+                    Hello !! {currentUser.name}
                   </h2>
-
-                  <div className="d-flex flex-wrap gap-4">
-                    <div className="badge bg-info text-dark">
-                      <FaRegCalendarCheck className="me-2" />
-                      Member since:{" "}
-                      {new Date(currentUser.createdAt).toLocaleDateString()}
-                    </div>
-                    <div className="badge bg-warning text-dark">
-                      Role: {currentUser.role}
-                    </div>
-                  </div>
                 </div>
               </div>
 
               {/* Additional Info Section */}
-              <div className="border-top pt-3">
+              <div className="border-top p-3 border-bottom">
                 <h5 className="mb-3">Account Details</h5>
                 <dl className="row">
-                  <dt className="col-sm-4">Email:</dt>
+                  <dt className="col-sm-4 d-flex align-items-center"> <MdEmail style={{marginRight:"8px"}} /> Email:</dt>
                   <dd className="col-sm-8">{currentUser.email}</dd>
-
-                  {currentUser.phone && (
-                    <>
-                      <dt className="col-sm-4">Phone:</dt>
-                      <dd className="col-sm-8">{currentUser.phone}</dd>
-                    </>
-                  )}
                 </dl>
+                <dl className="row">
+                  <dt className="col-sm-4 d-flex align-items-center"> <MdCardMembership style={{marginRight:"8px"}} />Member since:</dt>
+                  <dd className="col-sm-8"> {new Date(currentUser.createdAt).toLocaleDateString()}</dd>
+                </dl>
+                <dl className="row">
+                  <dt className="col-sm-4 d-flex align-items-center"> <FaUserAstronaut style={{marginRight:"8px"}} />Role:</dt>
+                  <dd className="col-sm-8">{currentUser.role}</dd>
+                </dl>
+                
               </div>
             </div>
 
             {/* Footer with Logout */}
-            <div className="card-footer  d-flex justify-content-end mt-5">
+            <div className="card-footer  d-flex justify-content-end mt-4">
               <Link
-                className="btn btn-info d-flex align-items-center me-3"
+                className="btn btn-primary d-flex align-items-center me-3"
                 to={`/user/edit/${currentUser.id}`}
               >
                 <FaUserEdit className="me-2" />

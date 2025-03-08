@@ -15,6 +15,7 @@ import {
   FaHistory,
   FaInfoCircle,
 } from "react-icons/fa";
+import { FaLanguage } from "react-icons/fa6";
 
 function ReviewApplication() {
   const { paymentId } = useParams();
@@ -69,10 +70,9 @@ function ReviewApplication() {
 
   return (
     <div className="container p-3" style={{ marginBottom: "70px" }}>
-      <h2 className="text-success mb-4">
-        <FaInfoCircle className="me-2" />
+      <h1 className=" mb-4">
         Review Application
-      </h2>
+      </h1>
 
       {/* Payment Info Card */}
       <div className="card shadow-sm mb-4">
@@ -131,7 +131,6 @@ function ReviewApplication() {
             />
             <div>
               <h5 className="mb-1">
-                <FaUser className="me-2 text-muted" />
                 {applicationData.firstName} {applicationData.lastName}
               </h5>
               <p className="mb-0 text-muted">
@@ -180,7 +179,7 @@ function ReviewApplication() {
                 value={applicationData.age}
               />
               <DetailItem
-                icon={<FaComments />}
+                icon={<FaLanguage />}
                 label="Languages"
                 value={applicationData.languages?.join(", ")}
               />
@@ -194,8 +193,7 @@ function ReviewApplication() {
 
           {/* Motivation Section */}
           <div className="mt-4">
-            <h6 className="text-success">
-              <FaComments className="me-2" />
+            <h6>
               Motivation
             </h6>
             <p className="text-muted" style={{ whiteSpace: "pre-wrap" }}>
@@ -207,10 +205,6 @@ function ReviewApplication() {
 
       {/* Action Buttons */}
       <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-        <Link className="btn btn-outline-success me-md-2">
-          <FaComments className="me-2" />
-          Text User
-        </Link>
         {paymentData.partnerConfirmed ? (
           <button className="btn btn-success">Experience confirmed !!</button>
         ) : (
@@ -236,7 +230,7 @@ function ReviewApplication() {
 
 const DetailItem = ({ icon, label, value }) => (
   <div className="mb-3">
-    <span className="text-success me-2">{icon}</span>
+    <span className="me-2">{icon}</span>
     <strong>{label}:</strong>
     <span className="ms-2 text-muted">{value}</span>
   </div>
