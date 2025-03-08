@@ -85,7 +85,7 @@ function UserChat () {
               } ${
                 message.sender.id !== currentUser.id && "justify-content-end me-4"
               } `}
-              style={{backgroundColor:`${message.sender.id === currentUser.id ? ("rgba(204, 15, 91, 0.25)"):("rgba(0, 15, 144, 0.25)") }`}}
+              style={{backgroundColor:`${message.sender.id === currentUser.id ? ("rgba(255, 153, 0, 0.42)"):("rgba(0, 102, 255, 0.45)") }`}}
             >
               <div className="me-2">{message.text}</div>
               <div className="text-muted" style={{textAlign:`${message.sender.id === currentUser.id && "end"}`}}>

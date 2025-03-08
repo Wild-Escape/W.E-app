@@ -9,7 +9,6 @@ function UserMessages () {
        getChatsService()
          .then((res) => {
            console.log("all chats--->", res);
-           console.log("messages--->", res[0].messages[0].text)
            setChats(res);
          })
          .catch((err) => {
@@ -21,6 +20,9 @@ function UserMessages () {
        <div className="p-3">
          <h1>Messages</h1>
          <div className="row row-cols-1 row-cols-md-2 g-4">
+          {chats.length === 0 && <div>
+            <p>No messages yet</p>
+            </div>}
            {chats &&
              chats.map((chat) => (
                <Link
