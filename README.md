@@ -19,12 +19,22 @@ Wild-Escape is a centralized platform for wildlife conservation, allowing users 
 <img width="370" alt="Screenshot 2025-03-10 at 10 29 41" src="https://github.com/user-attachments/assets/b1f3d06a-d8d8-408e-93a8-7ac1d036bb10" />
 
 - Add experiences to favorites
+  
+<img width="373" alt="favorites" src="https://github.com/user-attachments/assets/1bf10135-b13f-4433-a43d-337d4ee9325d" />
+  
 - Reserve experiences through Stripe payment integration
+  
+<img width="372" alt="Screenshot 2025-03-10 at 15 32 44" src="https://github.com/user-attachments/assets/d3143b99-e98e-439c-8dcb-ada3a11fe03b" />
+
 - View and check the status of reservations
   
 <img width="365" alt="Screenshot 2025-03-10 at 10 29 54" src="https://github.com/user-attachments/assets/9ad19975-3fc8-40d6-a353-a2b62cf1ac4b" />
 
-- Chat with reservation camps
+- Chat with partner(conservation site)
+  
+<img width="371" alt="chat" src="https://github.com/user-attachments/assets/68dad073-7297-49ff-9a76-f783580a053a" />
+
+  
 - Update profile data
 
 ### Partners
