@@ -39,10 +39,23 @@ Wild-Escape is a centralized platform for wildlife conservation, allowing users 
 
 ### Partners
 - Upload and edit conservation experiences
+
+<img width="371" alt="Screenshot 2025-03-10 at 15 41 52" src="https://github.com/user-attachments/assets/717973ec-1ffa-4c82-aee9-30273617492e" />
+  
 - Review, accept, or decline reservations
+- 
+<img width="374" alt="Screenshot 2025-03-10 at 15 40 39" src="https://github.com/user-attachments/assets/8a0b721a-0156-4d09-bdaf-e49789ba5d27" />
+<img width="370" alt="Screenshot 2025-03-10 at 15 40 59" src="https://github.com/user-attachments/assets/140a6585-c58c-4131-893d-094a477dea67" />
+
+  
 - Chat with users
+  
+<img width="371" alt="Screenshot 2025-03-10 at 15 42 40" src="https://github.com/user-attachments/assets/c1e2cf60-cfe1-4a49-a251-bfe45bc4ffff" />
+
+  
 - Preview of confirmed experiences throughout the year
   
+<img width="373" alt="Screenshot 2025-03-10 at 15 41 33" src="https://github.com/user-attachments/assets/fc7476fc-96f6-452b-90ac-17aadf210fed" />
 <img width="371" alt="Screenshot 2025-03-10 at 10 36 20" src="https://github.com/user-attachments/assets/cf35eacf-b48f-476e-8723-7edd337b8459" />
 
 - Update profile data
