@@ -43,7 +43,7 @@ Wild-Escape is a centralized platform for wildlife conservation, allowing users 
 <img width="371" alt="Screenshot 2025-03-10 at 15 41 52" src="https://github.com/user-attachments/assets/717973ec-1ffa-4c82-aee9-30273617492e" />
   
 - Review, accept, or decline reservations
-- 
+
 <img width="374" alt="Screenshot 2025-03-10 at 15 40 39" src="https://github.com/user-attachments/assets/8a0b721a-0156-4d09-bdaf-e49789ba5d27" />
 <img width="370" alt="Screenshot 2025-03-10 at 15 40 59" src="https://github.com/user-attachments/assets/140a6585-c58c-4131-893d-094a477dea67" />
 
