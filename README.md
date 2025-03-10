@@ -14,9 +14,12 @@ Wild-Escape is a centralized platform for wildlife conservation, allowing users 
 
 ### Users
 - Explore different wildlife conservation experiences
+<img width="375" alt="Screenshot 2025-03-10 at 10 28 35" src="https://github.com/user-attachments/assets/358909fc-be45-42ff-adce-7605045a6d00" />
+<img width="370" alt="Screenshot 2025-03-10 at 10 29 41" src="https://github.com/user-attachments/assets/b1f3d06a-d8d8-408e-93a8-7ac1d036bb10" />
 - Add experiences to favorites
 - Reserve experiences through Stripe payment integration
 - View and check the status of reservations
+<img width="365" alt="Screenshot 2025-03-10 at 10 29 54" src="https://github.com/user-attachments/assets/9ad19975-3fc8-40d6-a353-a2b62cf1ac4b" />
 - Chat with reservation camps
 - Update profile data
 
@@ -25,6 +28,7 @@ Wild-Escape is a centralized platform for wildlife conservation, allowing users 
 - Review, accept, or decline reservations
 - Chat with users
 - Preview of confirmed experiences throughout the year
+<img width="371" alt="Screenshot 2025-03-10 at 10 36 20" src="https://github.com/user-attachments/assets/cf35eacf-b48f-476e-8723-7edd337b8459" />
 - Update profile data
 
 ## Installation
