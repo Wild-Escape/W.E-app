@@ -14,7 +14,7 @@ Wild-Escape is a centralized platform for wildlife conservation, allowing users 
 
 ### Users
 - Explore different wildlife conservation experiences
-- 
+  
 <img width="375" alt="Screenshot 2025-03-10 at 10 28 35" src="https://github.com/user-attachments/assets/358909fc-be45-42ff-adce-7605045a6d00" />
 <img width="370" alt="Screenshot 2025-03-10 at 10 29 41" src="https://github.com/user-attachments/assets/b1f3d06a-d8d8-408e-93a8-7ac1d036bb10" />
 
