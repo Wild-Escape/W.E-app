@@ -256,7 +256,7 @@ function ExperienceDetails() {
                 className="btn btn-success mt-3"
                 style={{ width: "fit-content" }}
               >
-                Alredy reserved !
+                Already reserved !
               </button>
             ) : experience.type[0] === "express" ? (
               <Link
