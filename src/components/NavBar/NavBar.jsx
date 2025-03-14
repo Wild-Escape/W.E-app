@@ -15,7 +15,7 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar fixed-bottom d-block d-lg-none navbar-light bg-white border-top">
+    <nav className="navbar fixed-bottom d-block  navbar-light bg-white border-top">
       <div className="container">
         <ul className="navbar-nav d-flex flex-row justify-content-between w-100">
           {!currentUser && (
