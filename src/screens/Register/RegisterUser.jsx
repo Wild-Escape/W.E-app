@@ -21,7 +21,7 @@ function RegisterUser() {
 
     createUser(requestBody)
       .then(() => {
-        navigate("/login");
+        navigate("/common/login");
       })
       .catch((err) => {
         setErrors(err);

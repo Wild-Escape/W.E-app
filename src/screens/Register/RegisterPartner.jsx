@@ -21,7 +21,7 @@ function RegisterAdmin() {
 
     createUser(requestBody)
       .then(() => {
-        navigate("/login");
+        navigate("/common/login");
       })
       .catch((err) => {
         console.log(err.message);

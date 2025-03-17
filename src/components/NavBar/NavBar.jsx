@@ -21,7 +21,7 @@ function NavBar() {
           {!currentUser && (
             <>
               <li className="nav-item flex-grow-1 text-center">
-                <Link to="/login" className={getLinkClass("/login")}>
+                <Link to="/common/login" className={getLinkClass("/common/login")}>
                   <div className="d-flex flex-column align-items-center">
                     <FaUser className="mb-1" size={20} />
                     <span className="nav-text">Login</span>

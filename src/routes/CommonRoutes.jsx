@@ -9,7 +9,7 @@ import RegisterUser from '../screens/Register/RegisterUser';
 
 const CommonRoutes = [
   <Route key="/" path="/" element={<Home />} />,
-  <Route key="/login" path="/login" element={<IsAnon><Login /></IsAnon>} />,
+  <Route key="/common/login" path="/common/login" element={<IsAnon><Login /></IsAnon>} />,
   <Route key="/register" path="/register" element={<IsAnon><Register /></IsAnon>} />,
   <Route key="/register/partner" path="/register/partner" element={<IsAnon><RegisterPartner /></IsAnon>} />,
   <Route key="/register/user" path="/register/user" element={<IsAnon><RegisterUser /></IsAnon>} />,
