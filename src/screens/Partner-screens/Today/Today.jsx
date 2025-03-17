@@ -44,7 +44,7 @@ function Today() {
   };
 
   return (
-    <div className="p-3">
+    <div className="p-3" style={{marginBottom:"50px"}}>
       <h1> Action </h1>
       {pendingExperiences.length === 0 && (
         <div className="border border-light-subtle rounded p-3 mt-3 d-flex justify-content-center align-items-center">
