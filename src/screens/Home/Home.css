@@ -1,1 +1,19 @@
+#home {
+  background-image: url("/src/public/back-1.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  #description {
+    width: fit-content;
+    background-color: rgba(255, 255, 255, 0.406);
+  }
+}
 
+@media screen and (min-width: 990px) {
+  #home {
+    margin-top: 65px;
+    margin-bottom: 0;
+  }
+}

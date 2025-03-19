@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { loginService } from "../../services/auth.service";
 import { AuthContext } from "../../context/auth.context";
+import './Login.css'
 
 
 
@@ -39,10 +40,10 @@ function Login() {
       });
   };
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
+    <div id="login-screen" className="container">
+      <div className="row  justify-content-center ">
         <div className="col-md-4">
-          <div className="card">
+          <div className="card mt-5">
             <div className="card-body">
               <h4 className="card-title text-center">Login</h4>
               <form onSubmit={handleSubmit}>

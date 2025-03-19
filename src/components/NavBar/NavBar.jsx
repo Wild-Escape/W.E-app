@@ -15,22 +15,22 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar fixed-bottom d-block  navbar-light bg-white border-top">
+    <nav id="nav-overwrite" className="navbar fixed-bottom d-block  navbar-light bg-white border-top">
       <div className="container">
-        <ul className="navbar-nav d-flex flex-row justify-content-between w-100">
+        <ul id="ul" className="navbar-nav d-flex flex-row  w-100">
           {!currentUser && (
             <>
-              <li className="nav-item flex-grow-1 text-center">
+              <li className="nav-item  text-center">
                 <Link to="/common/login" className={getLinkClass("/common/login")}>
-                  <div className="d-flex flex-column align-items-center">
+                  <div className="d-flex  align-items-center">
                     <FaUser className="mb-1" size={20} />
                     <span className="nav-text">Login</span>
                   </div>
                 </Link>
               </li>
-              <li className="nav-item flex-grow-1 text-center">
+              <li className="nav-item  text-center">
                 <Link to="/register" className={getLinkClass("/register")}>
-                  <div className="d-flex flex-column align-items-center">
+                  <div className="d-flex  align-items-center">
                     <FaPlus className="mb-1" size={20} />
                     <span className="nav-text">Register</span>
                   </div>
