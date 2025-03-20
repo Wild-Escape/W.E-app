@@ -1,11 +1,15 @@
 import { LuPawPrint } from "react-icons/lu";
 import { FaUserCircle } from "react-icons/fa";
+import "./Register.css";
 
 import { Link } from "react-router-dom";
 function Register() {
   return (
-    <div className="row row-cols-1 row-cols-md-1 g-4 p-3">
-      <div className="col">
+    <div id="main-register">
+      <div
+        className=" container p-4 d-flex flex-column justify-content-around"
+        style={{ height: "90vh" }}
+      >
         <div className="card">
           <div className="card-body ">
             <h5 className="card-title">
@@ -13,9 +17,8 @@ function Register() {
               Register as User
             </h5>
             <p className="card-text mt-3">
-              Browse through a variety of conservation-focused activities and
-              book your next adventure—whether it’s a quick visit, a mid-length
-              stay, or an extended wildlife immersion. Start your journey today!
+              Explore and book conservation adventures, from quick visits to
+              extended stays. Start your journey today!
             </p>
             <Link
               type="button"
@@ -26,9 +29,7 @@ function Register() {
             </Link>
           </div>
         </div>
-      </div>
 
-      <div className="col">
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">
@@ -36,10 +37,9 @@ function Register() {
               Register as Partner
             </h5>
             <p className="card-text mt-3">
-              Help protect wildlife while sharing your expertise! As a partner,
-              you can create and offer immersive conservation experiences, from
-              short trips to extended stays, to nature enthusiasts eager to make
-              a difference. Join us and inspire positive change!
+              Protect wildlife while sharing your expertise! Partner with us to
+              offer conservation experiences, from short trips to long stays,
+              and inspire change.
             </p>
             <Link
               type="button"

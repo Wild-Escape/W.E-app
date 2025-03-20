@@ -1,0 +1,17 @@
+#main-register {
+    background-image: url("/src/public/back-2.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+  }
+
+@media screen and (min-width: 990px) {
+    #main-register  {
+      margin-top: 65px;
+      margin-bottom: 0;
+      padding: 40px;
+      
+    }
+  }
