@@ -3,6 +3,7 @@ import { addToFavoriteService } from "../../../services/favorite.service";
 import { useState, useEffect } from "react";
 import Experience from "../../../components/Experience/Experience";
 import { FaSearch } from "react-icons/fa";
+import './Explore.css'
 
 function Explore() {
   const [experiences, setExperiences] = useState([]);
@@ -24,8 +25,8 @@ function Explore() {
   );
 
   return (
-    <div className="p-3 mb-5">
-      <div className="container mb-4" style={{ maxWidth: "800px" }}>
+    <div id="explore" >
+      <div id="search-bar">
         <form className="input-group shadow-sm">
           <input
             type="text"

@@ -1,0 +1,34 @@
+
+@media screen and (max-width: 990px) {
+    #explore {
+        margin-bottom: 3rem;
+        padding: 1rem;
+        #search-bar {
+          padding: 0 1rem 1rem 1rem;
+          margin-bottom: 2rem;
+          position: sticky;
+          z-index: 3;
+          top: 25px;
+        }
+      }
+    #search-bar {
+      padding: 3rem;
+      margin-bottom: 2rem;
+      position: sticky;
+      z-index: 3;
+      top: 85px;
+    }
+  }
+@media screen and (min-width: 990px) {
+  #explore {
+    margin-top: 35px;
+    margin-bottom: 0;
+    padding: 3rem;
+  }
+  #search-bar {
+    padding: 2rem;
+    position: sticky;
+    z-index: 3;
+    top: 65px;
+  }
+}
