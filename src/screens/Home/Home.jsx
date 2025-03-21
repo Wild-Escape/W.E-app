@@ -5,7 +5,7 @@ function Home() {
 
     return (
       <div id='home' className="p-3 d-flex flex-column align-items-center justify-content-center ">
-        <div id='description' className='card d-flex flex-column align-items-center p-3 '>
+        <div id='description' className=' d-flex flex-column align-items-center p-3 '>
         <h1>Welcome to wild Escape!!!</h1>
           <p>
            Were you can find all your wildlife experiences in one place!! 
