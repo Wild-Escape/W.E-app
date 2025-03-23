@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { loginService } from "../../services/auth.service";
 import { AuthContext } from "../../context/auth.context";
 import "./Login.css";
-
+import lemur from "../../public/lemur-login.png"
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
@@ -91,6 +91,7 @@ function Login() {
             </div>
           </div>
         </div>
+        <img src={lemur} alt="lemur illustration" />
       </div>
     </div>
   );

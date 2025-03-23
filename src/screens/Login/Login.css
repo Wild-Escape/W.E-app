@@ -1,22 +1,28 @@
 #login-screen {
-  background-image: url("/src/public/login-cebra.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: rgb(0 147 167);
   width: 100vw;
   height: 100vh;
+  img {
+    position: absolute;
+    width: 169px;
+    top: 297px;
+    left: -8px;
+  }
 }
 
 @media screen and (min-width: 990px) {
   #login-screen {
-    background-image: url("/src/public/login-cebra.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: rgb(0 147 167);
     width: 100vw;
     height: 100vh;
     #login-form {
       margin-top: 65px;
+    }
+    img {
+      position: absolute;
+      width: 230px;
+      top: 330px;
+      left: 28%;
     }
   }
 }
