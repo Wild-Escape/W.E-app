@@ -1,14 +1,16 @@
 import { LuPawPrint } from "react-icons/lu";
 import { FaUserCircle } from "react-icons/fa";
 import "./Register.css";
+import registerImage from '../../public/register-main.png'
 
 import { Link } from "react-router-dom";
 function Register() {
   return (
-    <div id="main-register">
+    
+    <div id="main-register" >
       <div
         className=" container p-4 d-flex flex-column justify-content-around"
-        style={{ height: "90vh" }}
+        style={{ height: "90vh", }}
       >
         <div className="card">
           <div className="card-body ">
@@ -51,7 +53,10 @@ function Register() {
           </div>
         </div>
       </div>
+      <img src={registerImage} id="register-illustration" alt="world illustration" />
     </div>
+
+    
   );
 }
 

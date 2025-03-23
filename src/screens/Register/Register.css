@@ -1,10 +1,19 @@
 #main-register {
-    background-image: url("/src/public/register-cebra.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;
+    
+    position: relative;
+
+    #register-illustration {
+      position: absolute;
+      bottom: 63px;
+      width: 100%;
+      z-index:-1 ;
+
+    }
   }
 
 @media screen and (min-width: 990px) {

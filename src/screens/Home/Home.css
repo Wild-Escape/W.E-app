@@ -1,9 +1,8 @@
 #home {
-  background-image: url(/src/public/marco-jungle.png);
-  background-size: 170%;
+  
+  background-size: 100%;
+  background-position: top -10px;
   background-color: black;
-  background-size: 275%;
-  background-position: center bottom -256px;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
@@ -16,11 +15,9 @@
 @media (min-width: 430px) and (max-width: 990px) {
  
   #home {
-    background-image: url(/src/public/marco-jungle.png);
-    background-size: 170%;
+    
     background-color: black;
-    background-size: 275%;
-    background-position: center bottom -590px;
+    background-position: right;
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;
@@ -33,11 +30,9 @@
 
 @media screen and (min-width: 990px) {
   #home {
-    background-image: url(/src/public/marco-jungle.png);
-    background-size: 178%;
-    background-color: hsl(240deg 6% 7%);
-    background-position: center bottom -705px;
-    margin-top: 65px;
+    
+    background-color: black;
+    background-position: right;
     margin-bottom: 0;
     #description {
       color: white;
