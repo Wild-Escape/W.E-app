@@ -9,10 +9,11 @@ function Register() {
     
     <div id="main-register" >
       <div
-        className=" container p-4 d-flex flex-column justify-content-around"
+        className=" container p-4  justify-content-around"
         style={{ height: "90vh", }}
+        id="card-container"
       >
-        <div className="card">
+        <div className="card" id="card-1">
           <div className="card-body ">
             <h5 className="card-title">
               <FaUserCircle style={{ marginRight: "8px" }} />
@@ -32,7 +33,7 @@ function Register() {
           </div>
         </div>
 
-        <div className="card">
+        <div className="card" id="card-2" >
           <div className="card-body">
             <h5 className="card-title">
               <LuPawPrint style={{ marginRight: "8px" }} />
@@ -51,9 +52,10 @@ function Register() {
               Register here
             </Link>
           </div>
+          
         </div>
       </div>
-      <img src={registerImage} id="register-illustration" alt="world illustration" />
+      
     </div>
 
     

@@ -1,26 +1,45 @@
 #main-register {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
-    
-    position: relative;
-
-    #register-illustration {
-      position: absolute;
-      bottom: 63px;
-      width: 100%;
-      z-index:-1 ;
-
-    }
+  background-size: cover;
+  background-image: url("../../public/register-mobile.png");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  #card-container {
+    display: flex;
+    flex-direction: column;
   }
+}
 
 @media screen and (min-width: 990px) {
-    #main-register  {
-      margin-top: 65px;
-      margin-bottom: 0;
-      padding: 40px;
-      
+  #main-register {
+    background-image: url("../../public/wide-register.png");
+    width: 100vw;
+    height: 100vh;
+    margin-top: 65px;
+    margin-bottom: 0;
+    padding: 40px;
+    #register-illustration {
+      display: none;
+    }
+    #card-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      #card-1 {
+        width: 550px;
+        height: 200px;
+        a {
+          position: relative;
+          bottom: -25px;
+        }
+      }
+      #card-2 {
+        width: 550px;
+        height: 200px;
+       
+      }
     }
   }
+}
