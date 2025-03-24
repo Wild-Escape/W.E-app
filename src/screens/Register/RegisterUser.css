@@ -3,12 +3,14 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: rgba(226, 250, 255, 1);
     width: 100vw;
     height: 100vh;
   }
 
 @media screen and (min-width: 990px) {
     #register-user  {
+      background-color: rgba(226, 250, 255, 1);
       margin-top: 65px;
       margin-bottom: 0;
       padding: 40px;

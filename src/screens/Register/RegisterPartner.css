@@ -1,5 +1,6 @@
 #register-partner {
     background-image: url("/src/public/back-register-UP.jpg");
+    background-color: rgba(226, 250, 255, 1);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -9,6 +10,7 @@
 
 @media screen and (min-width: 990px) {
     #register-partner  {
+      background-color: rgba(226, 250, 255, 1);
       margin-top: 65px;
       margin-bottom: 0;
       padding: 40px;
