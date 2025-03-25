@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUser } from "../../services/auth.service";
 import { FaUserCircle } from "react-icons/fa";
 import "./RegisterUser.css";
+import userImage from '../../public/register-user.png'
 
 function RegisterUser() {
   const [name, setName] = useState();
@@ -98,6 +99,7 @@ function RegisterUser() {
           </div>
         </div>
       </div>
+      <img src={userImage} alt="bearded dragon image" />
     </div>
   );
 }
