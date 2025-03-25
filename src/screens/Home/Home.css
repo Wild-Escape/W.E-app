@@ -1,16 +1,44 @@
 #home {
   background-size: 100%;
-  background-image: url('../../public/main-mobile2.png');
+  background-image: url("../../public/main-mobile2.png");
   background-position: top -10px;
   background-size: covers;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
+  
   #description {
+    position: absolute;
+    top: 200px;
     color: white;
+    h1 {
+      font-family: "Darumadrop One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 3rem;
+      color: rgba(226, 245, 33, 1);
+    }
+    p {
+      font-family: "Darumadrop One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+    a{
+      background-color: rgba(255, 65, 145, 1);
+      font-family: "Darumadrop One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1.4rem;
+      border: none;
+    }
+    a:hover {
+      background-color: rgb(240, 52, 130);
+      color:aqua;
+    }
   }
+  
 }
-
 
 @media screen and (min-width: 550px) {
   #home {
@@ -21,6 +49,28 @@
     height: 100vh;
     #description {
       color: white;
+    }
+    h1 {
+      font-family: "Darumadrop One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 60px;
+      color: rgba(226, 245, 33, 1);
+    }
+    p {
+      font-family: "Darumadrop One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 25px;
+    }
+   
+    a{
+      background-color: rgba(255, 65, 145, 1);
+      font-family: "Darumadrop One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 23px;
+      border: none;
     }
   }
 }
