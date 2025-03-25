@@ -24,7 +24,7 @@
     #dragon-image{
       position: absolute;
       width: 130px;
-      bottom: -72px;
+      bottom: -105px;
       right: -46px;
       transform: rotate(30deg);
       animation: 5s linear 4s infinite alternate upAndDown;
@@ -68,10 +68,10 @@
 @keyframes upAndDown {
   from {
     
-    bottom: -75px;
+    bottom: -105px;
   }
   to {
     
-    bottom: -105px;
+    bottom: -75px;
   }
 }
