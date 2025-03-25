@@ -46,7 +46,7 @@ function Register() {
             </p>
             <Link
               type="button"
-              className="btn btn-primary"
+              className="btn "
               to="/register/partner"
             >
               Register here

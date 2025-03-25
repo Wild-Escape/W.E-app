@@ -18,7 +18,7 @@ function Home() {
         <p className="text-center">
           Click below to register and start your new adventure!
         </p>
-        <Link to="/register">
+        <Link to="/register" className="btn">
           Register here
         </Link>
       </div>
