@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUser } from "../../services/auth.service";
 import { LuPawPrint } from "react-icons/lu";
 import "./RegisterPartner.css";
+import partnerImage from "../../public/register-partner.png";
 
 function RegisterAdmin() {
   const [name, setName] = useState();
@@ -100,6 +101,7 @@ function RegisterAdmin() {
           </div>
         </div>
       </div>
+      <img src={partnerImage} alt="hawx" />
     </div>
   );
 }

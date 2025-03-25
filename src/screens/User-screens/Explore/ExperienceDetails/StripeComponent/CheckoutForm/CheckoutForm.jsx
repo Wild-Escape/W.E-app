@@ -54,7 +54,7 @@ function CheckoutForm({data, selectedDate}) {
       console.log("after confirmation");
       setIsProcessing(false);
       // Now manually redirect
-      window.location.href = `${window.location.origin}//user/experiences`;
+      window.location.href = `${window.location.origin}/user/payment/success`;
     }
 
 

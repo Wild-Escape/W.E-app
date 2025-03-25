@@ -11,6 +11,7 @@ import StripeComponent from "../screens/User-screens/Explore/ExperienceDetails/S
 import Completion from "../screens/User-screens/Explore/ExperienceDetails/StripeComponent/Completion/Completion";
 import Application from "../screens/User-screens/Explore/ExperienceDetails/Application/Application";
 import UserChat from "../screens/User-screens/UserMessages/UserChat/UserChat";
+import PaymentSuccess from "../screens/User-screens/Explore/ExperienceDetails/StripeComponent/PaymentSuccess/PaymentSuccess";
 
 const UserRoutes = [
 <Route key="/user/explore" path="/user/explore" element={<IsUser><Explore /></IsUser>} />,
@@ -24,6 +25,7 @@ const UserRoutes = [
 <Route key="/user/completed/payment" path="/user/completed/payment" element={<Completion />} />,
 <Route key="/user/:id/booking/ " path="/user/:id/booking/" element={<Application/>} />,
 <Route key="/user/chat/:id" path="/user/chat/:id" element={<IsUser><UserChat/></IsUser>} />,
+<Route key="/user/payment/success" path="/user/payment/success" element={<IsUser><PaymentSuccess/></IsUser>} />,
 
    
 ]

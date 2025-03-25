@@ -6,6 +6,12 @@
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;
+    img {
+      position: absolute;
+      width: 150px;
+      top: 416px;
+      right: 5px;
+    }
   }
 
 @media screen and (min-width: 990px) {
@@ -14,6 +20,12 @@
       margin-top: 65px;
       margin-bottom: 0;
       padding: 40px;
+      img {
+        position: absolute;
+        width: 230px;
+        top: 500px;
+        right: 16%;
+      }
       
     }
   }

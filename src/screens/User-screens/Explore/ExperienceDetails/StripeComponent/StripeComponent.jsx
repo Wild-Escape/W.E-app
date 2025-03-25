@@ -51,7 +51,7 @@ function StripeComponent() {
 
   return (
     <div className="p-3">
-      <h1>Payment Element</h1>
+      <h1>Payment </h1>
       {experience && (
         <div className="border border-secondary-subtle rounded mb-3 mt-3">
           <div className="p-3 ">

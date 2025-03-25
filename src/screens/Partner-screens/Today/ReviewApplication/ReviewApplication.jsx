@@ -88,7 +88,7 @@ function ReviewApplication() {
               <p className="mb-1">
                 <strong>Amount:</strong>
                 <span className="ms-2">
-                  {paymentData.price?.amount} {paymentData.price?.currency}
+                  {(paymentData.price?.amount * 0.15).toFixed(2)} {paymentData.price?.currency}
                 </span>
               </p>
             </div>
