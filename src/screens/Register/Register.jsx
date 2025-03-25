@@ -1,7 +1,8 @@
 import { LuPawPrint } from "react-icons/lu";
 import { FaUserCircle } from "react-icons/fa";
 import "./Register.css";
-import registerImage from '../../public/register-main.png'
+import registerImage from '../../public/register-main.png';
+import userImage from '../../public/register-user.png'
 
 import { Link } from "react-router-dom";
 function Register() {
@@ -31,6 +32,7 @@ function Register() {
               Register here
             </Link>
           </div>
+          <img id="dragon-image" src={userImage} alt="bearded dragon" />
         </div>
 
         <div className="card" id="card-2" >
