@@ -27,7 +27,7 @@
       bottom: -105px;
       right: -46px;
       transform: rotate(30deg);
-      animation: 5s linear 4s infinite alternate upAndDown;
+      animation: 7s linear 4s infinite alternate upAndDown;
     }
   }
 }
