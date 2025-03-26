@@ -11,7 +11,7 @@ function Home() {
         id="description"
         className=" d-flex flex-column align-items-center justify-content-center p-3 "
       >
-        <h1 className="text-center mb-3">Welcome to Wild Escape!!!</h1>
+        <h1 className="text-center mb-3">Wild Escape</h1>
         <p className="text-center">
           Were you can find all your wildlife experiences in one place!!
         </p>
