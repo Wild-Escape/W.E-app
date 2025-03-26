@@ -14,7 +14,7 @@ function Register() {
         style={{ height: "90vh", }}
         id="card-container"
       >
-        <div className="card" id="card-1">
+        <div  className="card" id="card-1">
           <div className="card-body ">
             <h5 className="card-title">
               <FaUserCircle style={{ marginRight: "8px" }} />
