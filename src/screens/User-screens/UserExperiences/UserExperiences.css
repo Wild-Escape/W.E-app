@@ -3,5 +3,20 @@
 }
 .hover-shadow-lg-hover:hover {
     transform: translateY(-5px);
-    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+}
+@media screen and (max-width: 990px) {
+    #booked-container {
+        padding: 1rem;
+        margin-bottom: 55px;
+    }
+}
+@media screen and (min-width: 990px) {
+    h1 {
+        display: none;
+    }
+    #booked-container {
+        margin-top: 80px;
+        padding: 0 150px 0 150px ;
+    }
 }

@@ -23,7 +23,7 @@ function UserExperiences() {
   }, []);
 
   return (
-    <div className="p-3">
+    <div id="booked-container">
       <h1 className="ms-2 mb-3">My Booked Experiences</h1>
       {experiences.length === 0 && (
         <div className="border border-light-subtle rounded p-3 mt-5 d-flex flex-column align-items-center">

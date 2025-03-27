@@ -15,6 +15,7 @@ import { Map, Marker } from "@vis.gl/react-google-maps";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import DatePicker from "react-datepicker";
+import "./ExperienceDetails.css";
 
 function ExperienceDetails() {
   const { experienceId } = useParams();
@@ -83,11 +84,7 @@ function ExperienceDetails() {
   return (
     <div>
       {experience && (
-        <div
-          className="container-md mx-auto p-4 bg-white "
-          style={{ marginBottom: "100px" }}
-        >
-          {/* Header Section */}
+        <div id="details-container">
           <div className="mb-4 pb-3 border-bottom">
             <div className="d-flex justify-content-between align-items-start">
               <div>
@@ -139,7 +136,10 @@ function ExperienceDetails() {
 
               {/* Coordinates */}
               <div className="mb-2 d-flex flex-column align-items-center">
-                <h4 className="fw-bold mb-3 text-center d-flex align-items-center "><FaMapLocationDot style={{marginRight:"8px"}} />See us in the map</h4>
+                <h4 className="fw-bold mb-3 text-center d-flex align-items-center ">
+                  <FaMapLocationDot style={{ marginRight: "8px" }} />
+                  See us in the map
+                </h4>
 
                 <Map
                   style={{
@@ -166,7 +166,11 @@ function ExperienceDetails() {
 
             {/* Right Column - Gallery */}
             <div className="col-md-4">
-              <h4 className="fw-bold mb-3 d-flex align-items-center justify-content-center"> <GrGallery style={{marginRight:"8px"}}/>Gallery</h4>
+              <h4 className="fw-bold mb-3 d-flex align-items-center justify-content-center">
+                {" "}
+                <GrGallery style={{ marginRight: "8px" }} />
+                Gallery
+              </h4>
               <div className="d-flex flex-column gap-3 ">
                 {experience.gallery.map((img, index) => (
                   <img
@@ -183,10 +187,17 @@ function ExperienceDetails() {
           {/* Choose Dates */}
           {!bookedExperiences.includes(experienceId) && (
             <div className="mb-4 d-flex flex-column align-items-center ">
-              <div className="mt-4 border border-light-subtle p-3 rounded-2" style={{width:"100%"}}>
-                <h4 className="fw-bold mb-3 d-flex align-items-center justify-content-center"><MdEventAvailable style={{marginRight:"8px"}} />Availavility</h4>
+              <div
+                className="mt-4 border border-light-subtle p-3 rounded-2"
+                style={{ width: "100%" }}
+              >
+                <h4 className="fw-bold mb-3 d-flex align-items-center justify-content-center">
+                  <MdEventAvailable style={{ marginRight: "8px" }} />
+                  Availavility
+                </h4>
                 <p className="text-center">
-                 <b>From:</b>  {new Date(experience.availableDates[0].start).toLocaleString(
+                  <b>From:</b>{" "}
+                  {new Date(experience.availableDates[0].start).toLocaleString(
                     "en-UK",
                     {
                       year: "numeric",
@@ -195,8 +206,9 @@ function ExperienceDetails() {
                     }
                   )}
                 </p>
-                <p className="text-center"> 
-                  <b>Until:</b>  {new Date(experience.availableDates[0].end).toLocaleString(
+                <p className="text-center">
+                  <b>Until:</b>{" "}
+                  {new Date(experience.availableDates[0].end).toLocaleString(
                     "en-UK",
                     {
                       year: "numeric",
@@ -272,7 +284,7 @@ function ExperienceDetails() {
                 to={`/user/${experience.id}/booking`}
                 className="btn btn-success mt-2"
                 style={{ cursor: "pointer", width: "fit-content" }}
-                state={{availableDates:experience.availableDates}}
+                state={{ availableDates: experience.availableDates }}
               >
                 Send a booking request
               </Link>

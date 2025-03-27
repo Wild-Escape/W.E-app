@@ -13,12 +13,13 @@ import {
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { MdCardMembership } from "react-icons/md";
+import './UserProfile.css'
 
 
 function UserProfile() {
   const { currentUser } = useContext(AuthContext);
   return (
-    <div className="container p-3">
+    <div id="profile-container">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
           <div>
