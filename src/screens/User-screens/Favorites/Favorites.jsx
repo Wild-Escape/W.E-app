@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getFavoritesService } from "../../../services/favorite.service";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import './Favorites.css'
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -15,7 +16,7 @@ function Favorites() {
       .catch((error) => next(error));
   }, []);
   return (
-    <div className="p-3" style={{ marginBottom: "55px" }}>
+    <div id="favorites-container">
       <h1 className="mb-3 ms-2">Favorites</h1>
       {favorites.length === 0 && (
         <div className="border border-light-subtle rounded p-3 shadow-sm d-flex flex-column align-items-center">

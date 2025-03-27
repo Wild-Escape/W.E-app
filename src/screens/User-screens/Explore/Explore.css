@@ -46,7 +46,7 @@
   #explore {
     margin-top: 35px;
     margin-bottom: 0;
-    padding: 3rem;
+    padding: 0 150px 0 150px ;
   }
   #search-bar {
     display: flex;
