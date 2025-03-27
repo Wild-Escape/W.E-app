@@ -13,13 +13,15 @@ function Home() {
       >
         <h1 className="text-center mb-3">Wild Escape</h1>
         <p className="text-center">
-          Were you can find all your wildlife experiences in one place!!
+         The world’s first marketplace for hands-on
+          conservation magic.
         </p>
-        <p className="text-center">
-          Click below to register and start your new adventure!
+        <p id="p2" className="text-center">
+          Start your
+          rewilding adventure with us today.
         </p>
         <Link to="/register" className="btn">
-          Register here
+          Join the herd
         </Link>
       </div>
     </div>
