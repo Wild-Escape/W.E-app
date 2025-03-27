@@ -7,6 +7,7 @@ import "./Explore.css";
 
 function Explore() {
   const [experiences, setExperiences] = useState([]);
+  const [filteredExperiences, setFilteredExperiences] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -14,15 +15,34 @@ function Explore() {
     getAllExperiences()
       .then((res) => {
         setExperiences(res.experiences);
+        setFilteredExperiences(res.experiences);
         setFavorites(res.favorites);
       })
       .catch(console.error);
   }, []);
 
-  // Filter experiences based on search term
-  const filteredExperiences = experiences.filter((experience) =>
-    experience.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  function searchExperiences (value){
+    const searchedExperiences = experiences.filter((experience)=> experience.name.toLowerCase().includes(value.toLowerCase()))
+    setSearchTerm(value)
+    setFilteredExperiences(searchedExperiences)
+  } 
+  function filterByCountry (value){
+    if(value.toLowerCase() === "all" ){
+      setFilteredExperiences(experiences)
+    } else {
+      const countryFilter = experiences.filter((experience)=> experience.location.toLowerCase().includes(value.toLowerCase()))
+      setFilteredExperiences(countryFilter)
+    }
+  }
+  function filterByType (value){
+    
+    if(value.toLowerCase() === "all" ){
+      setFilteredExperiences(experiences)
+    } else {
+      const typeFilter = experiences.filter((experience)=> experience.type[0].toLowerCase().includes(value.toLowerCase()))
+      setFilteredExperiences(typeFilter)
+    }
+  }
 
   return (
     <>
@@ -43,7 +63,7 @@ function Explore() {
                   aria-label="Search"
                   aria-describedby="search-addon"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => searchExperiences(e.target.value)}
                 />
                 <button
                   className="btn btn-outline-secondary"
@@ -54,8 +74,30 @@ function Explore() {
                 </button>
               </div>
             </div>
-          </form>
+            <div className="d-flex mt-2 justify-content-around">
+            <div>
+              <label htmlFor="countries">Country:</label>
+              <select name="countries" id="countries" onChange={(e)=> filterByCountry(e.target.value)}>
+              <option value="All">All</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="South Africa">South Africa</option>
+                
+              </select>
+            </div>
+            <div>
+            <label htmlFor="countries">Type:</label>
+              <select name="countries" id="countries"  onChange={(e)=> filterByType(e.target.value)}>
+              <option value="All">All</option>
+                <option value="Express">Express</option>
+                <option value="Short Stay">Short Stay</option>
+                <option value="Long stay">Long stay</option>
+                <option value="Mixed stay">Mixed stay</option>
+              </select>
+            </div>
 
+            </div>
+          </form>
+          <div className="p-3">
           {filteredExperiences.map((experience) => (
             <div key={experience._id}>
               <Experience
@@ -81,6 +123,8 @@ function Explore() {
               />
             </div>
           ))}
+
+          </div>
         </div>
       )}
     </>
