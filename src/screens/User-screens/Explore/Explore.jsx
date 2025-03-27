@@ -33,24 +33,28 @@ function Explore() {
       )}
       {experiences.length > 0 && (
         <div id="explore">
-          <div id="search-bar">
-            <form className="input-group shadow-sm">
-              <input
-                type="text"
-                className="form-control form-control-lg border-end-0"
-                placeholder="Search experiences..."
-                aria-label="Search experiences"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <button
-                className="btn btn-light bg-white border-start-0"
-                type="button"
-              >
-                <FaSearch className="text-muted" />
-              </button>
-            </form>
-          </div>
+          <form id="search-bar" className="container">
+            <div className="search-bar">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search..."
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  id="search-addon"
+                >
+                  <FaSearch className="text-muted" />
+                </button>
+              </div>
+            </div>
+          </form>
 
           {filteredExperiences.map((experience) => (
             <div key={experience._id}>
