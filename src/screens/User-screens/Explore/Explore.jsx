@@ -61,7 +61,7 @@ function Explore() {
         <div id="explore">
           
           <form id="search-bar" className="container">
-            <div className="search-bar">
+            <div id="search-div" className="search-bar">
             
               <div id="input-group" className="input-group">
                 <FaSearch className="text-muted" />
@@ -78,7 +78,7 @@ function Explore() {
               </div>
             </div>
             <div id="label-group" >
-              <div>
+              <div id="country-div">
                 <label htmlFor="countries" className="d-flex align-items-center"><FaMapLocationDot style={{marginRight:"3px"}} />Country:</label>
                 <select
                   name="countries"
@@ -90,11 +90,11 @@ function Explore() {
                   <option value="South Africa">South Africa</option>
                 </select>
               </div>
-              <div>
-                <label htmlFor="countries" className="d-flex align-items-center"><FaRegClock style={{marginRight:"3px"}}/>Type:</label>
+              <div id="type-div">
+                <label htmlFor="type" className="d-flex align-items-center"><FaRegClock style={{marginRight:"3px"}}/>Type:</label>
                 <select
-                  name="countries"
-                  id="countries"
+                  name="type"
+                  id="type"
                   onChange={(e) => filterByType(e.target.value)}
                 >
                   <option value="All">All</option>
