@@ -8,12 +8,14 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdEmail, MdCardMembership } from "react-icons/md";
+import './PartnerProfile.css';
+import partnerHawk from '../../../public/register-partner.png'
 
 function PartnerProfile() {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="container p-3">
+    <div id="parProfile-container">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
           <div>
@@ -101,6 +103,7 @@ function PartnerProfile() {
           </div>
         </div>
       </div>
+      <img id="hawk" src={partnerHawk} alt="hawk illustrition" />
     </div>
   );
 }

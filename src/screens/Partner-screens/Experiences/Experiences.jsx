@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { getPartnerExperiences } from "../../../services/experiences.service";
 import { useState, useEffect } from "react";
 import { FaArrowUpLong } from "react-icons/fa6";
+import './Experiences.css'
 
 function Experiences() {
   const [partnerExperiences, setPartnerExperiences] = useState([]);
@@ -15,7 +16,7 @@ function Experiences() {
       .catch((error) => next(error));
   }, []);
   return (
-    <div className="p-3" style={{ marginBottom: "50px" }}>
+    <div id="postings-container">
       <div className="d-flex justify-content-between mb-3">
         <h1 className="mb-3">Postings</h1>
         <Link className="btn btn-secondary mb-3" to="/partner/create-post">

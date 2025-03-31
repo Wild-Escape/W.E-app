@@ -1,0 +1,27 @@
+@media screen and (max-width: 990px) {
+    #parProfile-container {
+        padding: 1rem;
+        margin-bottom: 55px;
+    }
+    #hawk {
+        position: absolute;
+          width: 162px;
+          top: 384px;
+          right: -3px;
+      }
+}
+@media screen and (min-width: 990px) {
+    h1 {
+        display: none;
+    }
+    #parProfile-container {
+        margin-top: 90px;
+        padding: 0 150px 0 150px ;
+    }
+    #hawk {
+        position: absolute;
+        width: 230px;
+        top: 350px;
+        right: 11%;
+      }
+}

@@ -2,6 +2,7 @@ import { getChatsService } from "../../../services/chat.service";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import './PartnerMessages.css'
 
 function PartnerMessages() {
   const [chats, setChats] = useState([]);
@@ -18,7 +19,7 @@ function PartnerMessages() {
   }, []);
 
   return (
-    <div className="p-3">
+    <div id="pmessages-container">
       <h1>Messages</h1>
       <div className="row row-cols-1 row-cols-md-2 g-4">
         {chats.length === 0 && <p>No messages yet</p>}
