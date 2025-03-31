@@ -24,10 +24,12 @@ function Favorites() {
           <Link to="/user/explore" className="btn btn-primary d-flex align-items-center justify-content-center"> <IoSearch style={{marginRight:"5px"}} /> Go explore !</Link>
         </div>
       )}
+      <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3  g-4">
       {favorites &&
         favorites.map((experience) => (
-          <Experience
-            key={experience._id}
+          <div className="col" key={experience._id}>
+            <Experience
+            
             isFavorite={favorites.find((fav) => fav._id === experience._id)}
             _id={experience._id}
             name={experience.name}
@@ -45,7 +47,11 @@ function Favorites() {
             status={experience.status}
             partnerName={experience.partner.name}
           />
+          </div>
+          
         ))}
+      </div>
+     
     </div>
   );
 }

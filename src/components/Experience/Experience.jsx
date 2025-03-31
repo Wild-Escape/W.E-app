@@ -102,7 +102,7 @@ function Experience({
         </div>
 
         {/* Description */}
-        <p className="card-text">{intro}</p>
+        {/* <p className="card-text">{intro}</p> */}
       </div>
 
       {/* Footer */}

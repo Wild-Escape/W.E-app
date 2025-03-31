@@ -112,9 +112,9 @@ function Explore() {
             </div>
             
           </form>
-          <div className="p-3">
+          <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3 g-4">
             {filteredExperiences.map((experience) => (
-              <div key={experience._id}>
+              <div className="col" key={experience._id}>
                 <Experience
                   isFavorite={favorites.find(
                     (fav) => fav.experience === experience._id
