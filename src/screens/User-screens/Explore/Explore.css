@@ -99,7 +99,7 @@
       }
     }
     #label-group {
-      display: flex;
+      display: flex!important;
       padding: 1rem;
       #type-div {
         margin-left: 15px;

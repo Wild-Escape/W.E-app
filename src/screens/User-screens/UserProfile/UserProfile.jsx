@@ -14,6 +14,8 @@ import {
 import { MdEmail } from "react-icons/md";
 import { MdCardMembership } from "react-icons/md";
 import './UserProfile.css'
+import { alignProperty } from "@mui/material/styles/cssUtils";
+import userImage from '../../../public/register-user.png'
 
 
 function UserProfile() {
@@ -26,7 +28,7 @@ function UserProfile() {
             <h1 className="mb-0">Profile</h1>
             {/* Profile Body */}
             <div className="card-body mt-3">
-              <div className="row align-items-center">
+              <div className="row align-items-center justify-content-center">
                 {/* Profile Picture Placeholder */}
                 <div className="col-md-4 text-center mb-3 mb-md-0">
                   <img
@@ -41,8 +43,8 @@ function UserProfile() {
                 </div>
 
                 {/* User Info */}
-                <div className="col-md-8 ms-3">
-                  <h2 className="mb-3">
+                <div className="col-md-8 ms-3 " style={{width:"100%"}} >
+                  <h2 className="mb-3 text-start">
                     Hello !! {currentUser.name}
                   </h2>
                 </div>
@@ -87,6 +89,7 @@ function UserProfile() {
           </div>
         </div>
       </div>
+      <img id="dragon" src={userImage} alt="bearded dragon image" />
     </div>
   );
 }

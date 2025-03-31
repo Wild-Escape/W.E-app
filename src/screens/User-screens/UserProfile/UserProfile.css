@@ -3,6 +3,12 @@
         padding: 1rem;
         margin-bottom: 55px;
     }
+    #dragon {
+        position: absolute;
+          width: 162px;
+          top: 384px;
+          right: -3px;
+      }
 }
 @media screen and (min-width: 990px) {
     h1 {
@@ -12,4 +18,10 @@
         margin-top: 90px;
         padding: 0 150px 0 150px ;
     }
+    #dragon {
+        position: absolute;
+        width: 230px;
+        top: 350px;
+        right: 11%;
+      }
 }
