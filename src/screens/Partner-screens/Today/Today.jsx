@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaRegUserCircle } from "react-icons/fa";
 import { GiDinosaurRex } from "react-icons/gi";
 import { confirmExperienceService, declineExperienceService } from "../../../services/payment.service";
+import './Today.css'
 function Today() {
   const [pendingExperiences, setPendingExperiences] = useState([]);
   useEffect(() => {
@@ -44,7 +45,7 @@ function Today() {
   };
 
   return (
-    <div className="p-3" style={{marginBottom:"50px"}}>
+    <div id="today-container">
       <h1> Action </h1>
       {pendingExperiences.length === 0 && (
         <div className="border border-light-subtle rounded p-3 mt-3 d-flex justify-content-center align-items-center">

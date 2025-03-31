@@ -2,6 +2,7 @@ import { getConfirmedExperiencesService } from "../../../services/payment.servic
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BarChart } from "@mui/x-charts/BarChart";
+import './Calendar.css';
 
 function Calendar() {
   const [confirmedExperiences, setConfirmedExperiences] = useState([]);
@@ -61,13 +62,13 @@ function Calendar() {
   ];
 
   return (
-    <div className="p-3" style={{ marginBottom: "70px" }}>
+    <div id="calendar-container">
       <h1 className="mb-3">Calendar</h1>
       {confirmedExperiences && (
         <>
 
-          <div className="border border-dark rounded p-2">
-            <p>Confirmed experiences: {confirmedExperiences.length}</p>
+          <div className="border d-flex align-items-center justify-content-between  rounded p-2">
+            <p className="m-0">Confirmed experiences: {confirmedExperiences.length}</p>
             <Link to='/confirmed/experiences' className="btn btn-primary">
               See details
             </Link>
@@ -120,7 +121,7 @@ function Calendar() {
             height={200}
           />
 
-          <div className="row row-cols-1 row-cols-md-2 g-4 mt-2">
+          <div className="row row-cols-2 row-cols-md-3 g-4 mt-2">
             {
               monthNames.map((month) => (
                 <div className="col" key={month}>
