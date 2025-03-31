@@ -5,12 +5,14 @@ import Experience from "../../../components/Experience/Experience";
 import { FaSearch, FaRegClock } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 import "./Explore.css";
+import filterController from '../../../public/filter-controller.svg'
 
 function Explore() {
   const [experiences, setExperiences] = useState([]);
   const [filteredExperiences, setFilteredExperiences] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     getAllExperiences()
@@ -60,8 +62,8 @@ function Explore() {
       {experiences.length > 0 && (
         <div id="explore">
           
-          <form id="search-bar" className="container">
-            <div id="search-div" className="search-bar">
+          <form id="search-bar" >
+            <div id="search-div" className="search-bar d-flex">
             
               <div id="input-group" className="input-group">
                 <FaSearch className="text-muted" />
@@ -76,8 +78,11 @@ function Explore() {
                   onChange={(e) => searchExperiences(e.target.value)}
                 />
               </div>
+              <div id="filter-button" onClick={()=> setIsOpen(!isOpen)}>
+                <img src={filterController} alt="filter icon" />
+              </div>
             </div>
-            <div id="label-group" >
+            <div id="label-group" style={{display: isOpen ? "" : "none"}}  >
               <div id="country-div">
                 <label htmlFor="countries" className="d-flex align-items-center"><FaMapLocationDot style={{marginRight:"3px"}} />Country:</label>
                 <select
@@ -105,6 +110,7 @@ function Explore() {
                 </select>
               </div>
             </div>
+            
           </form>
           <div className="p-3">
             {filteredExperiences.map((experience) => (
