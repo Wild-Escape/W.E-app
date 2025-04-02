@@ -8,6 +8,9 @@
 @media screen and (max-width: 990px) {
   #explore {
     margin-bottom: 3rem;
+    #experiences-div{
+      width: 100%;
+    }
 
     #search-bar {
       padding: 1.3rem 2rem 0.8rem 2rem;
