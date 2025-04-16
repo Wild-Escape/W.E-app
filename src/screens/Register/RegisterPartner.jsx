@@ -5,6 +5,7 @@ import { LuPawPrint } from "react-icons/lu";
 import { testService } from "../../services/test.service";
 import "./RegisterPartner.css";
 import partnerImage from "../../public/register-partner.png";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function RegisterAdmin() {
   const [apiRunning, setApiRunning] = useState(false);
@@ -50,7 +51,7 @@ function RegisterAdmin() {
   return (
     <>
     {loading && <div className="d-flex justify-content-center align-items-center vh-100">
-      <p>Loading...</p>
+      <p>Loading...<ClipLoader/></p>
     </div> }
     {apiRunning && <div id="register-partner">
       <div className="container ">

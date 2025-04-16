@@ -5,6 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { testService } from "../../services/test.service";
 import "./RegisterUser.css";
 import userImage from '../../public/register-user.png'
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function RegisterUser() {
@@ -50,7 +51,7 @@ function RegisterUser() {
   return (
     <>
     {loading && <div className="d-flex justify-content-center align-items-center vh-100">
-      <p>Loading...</p>
+      <p>Loading...<ClipLoader/></p>
     </div> }
     {apiRunning &&    <div id="register-user">
       <div className="container ">

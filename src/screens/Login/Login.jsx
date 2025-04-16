@@ -6,6 +6,7 @@ import { testService } from "../../services/test.service";
 import { useEffect } from "react";
 import "./Login.css";
 import lemur from "../../public/lemur-login.png"
+import ClipLoader from "react-spinners/ClipLoader";
 function Login() {
   const [apiRunning, setApiRunning] = useState(false);
   const [loading, setLoading] = useState(true)
@@ -54,7 +55,7 @@ function Login() {
   return (
     <>
     {loading && <div className="d-flex justify-content-center align-items-center vh-100">
-      <p>Loading...</p>
+      <p>Loading... <ClipLoader /></p>
     </div> }
     {apiRunning && 
     <div id="login-screen">
