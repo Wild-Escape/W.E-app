@@ -2,10 +2,28 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../services/auth.service";
 import { FaUserCircle } from "react-icons/fa";
+import { testService } from "../../services/test.service";
+import { useEffect } from "react";
 import "./RegisterUser.css";
 import userImage from '../../public/register-user.png'
 
+
 function RegisterUser() {
+  const [apiRunning, setApiRunning] = useState(false);
+  const [loading, setLoading] = useState(true)
+  useEffect(()=>{
+    testService()
+      .then((res)=>{
+        if (res === "API running"){
+          setApiRunning(true)
+          setLoading(false)
+
+        } else {
+          throw new Error('Backend not ready');
+        }
+      })
+      .catch((err)=>console.log(err))
+})
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -31,7 +49,11 @@ function RegisterUser() {
   };
 
   return (
-    <div id="register-user">
+    <>
+    {loading && <div className="d-flex justify-content-center align-items-center vh-100">
+      <p>Loading...</p>
+    </div> }
+    {apiRunning &&    <div id="register-user">
       <div className="container ">
         <div className="row justify-content-center">
           <div className="col-md-6">
@@ -101,6 +123,9 @@ function RegisterUser() {
       </div>
       <img src={userImage} alt="bearded dragon image" />
     </div>
+    }
+    </>
+ 
   );
 }
 
