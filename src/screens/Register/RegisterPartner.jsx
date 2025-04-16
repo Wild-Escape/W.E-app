@@ -2,10 +2,27 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../services/auth.service";
 import { LuPawPrint } from "react-icons/lu";
+import { testService } from "../../services/test.service";
+import { useEffect } from "react";
 import "./RegisterPartner.css";
 import partnerImage from "../../public/register-partner.png";
 
 function RegisterAdmin() {
+  const [apiRunning, setApiRunning] = useState(false);
+  const [loading, setLoading] = useState(true)
+  useEffect(()=>{
+    testService()
+      .then((res)=>{
+        if (res === "API running"){
+          setApiRunning(true)
+          setLoading(false)
+
+        } else {
+          throw new Error('Backend not ready');
+        }
+      })
+      .catch((err)=>console.log(err))
+})
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -32,7 +49,11 @@ function RegisterAdmin() {
   };
 
   return (
-    <div id="register-partner">
+    <>
+    {loading && <div className="d-flex justify-content-center align-items-center vh-100">
+      <p>Loading...</p>
+    </div> }
+    {apiRunning && <div id="register-partner">
       <div className="container ">
         <div className="row justify-content-center">
           <div className="col-md-6">
@@ -102,7 +123,9 @@ function RegisterAdmin() {
         </div>
       </div>
       <img src={partnerImage} alt="hawk" />
-    </div>
+    </div>}
+    </>
+    
   );
 }
 export default RegisterAdmin;
