@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../services/auth.service";
 import { LuPawPrint } from "react-icons/lu";
 import { testService } from "../../services/test.service";
-import { useEffect } from "react";
 import "./RegisterPartner.css";
 import partnerImage from "../../public/register-partner.png";
 

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { createUser } from "../../services/auth.service";
 import { FaUserCircle } from "react-icons/fa";
 import { testService } from "../../services/test.service";
-import { useEffect } from "react";
 import "./RegisterUser.css";
 import userImage from '../../public/register-user.png'
 
