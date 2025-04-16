@@ -22,7 +22,9 @@ function Login() {
   };
 
   if (!isAuthLoaded) {
-    return "Loading";
+    return <div className="d-flex justify-content-center align-items-center vh-100">
+      <p>Loading...</p>
+    </div>;
   }
 
   const handleSubmit = (e) => {
