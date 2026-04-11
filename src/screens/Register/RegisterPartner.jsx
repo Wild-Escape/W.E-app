@@ -51,7 +51,7 @@ function RegisterAdmin() {
   return (
     <>
     {loading && <div className="d-flex justify-content-center align-items-center vh-100">
-      <p>Loading...<ClipLoader/></p>
+      <p className="d-flex justify-content-center align-items-center">Loading...<ClipLoader/></p>
     </div> }
     {apiRunning && <div id="register-partner">
       <div className="container ">
